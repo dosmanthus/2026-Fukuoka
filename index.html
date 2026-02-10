@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>福岡美食之旅 5/20-5/25</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f3f4f6;
+        }
+        .weather-icon {
+            font-size: 1.5rem;
+        }
+        .card-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .day-tab.active {
+            background-color: #3b82f6;
+            color: white;
+            border-color: #3b82f6;
+        }
+        .map-link:hover {
+            color: #2563eb;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="pb-10">
+
+    <!-- Header -->
+    <header class="bg-blue-600 text-white p-4 sticky top-0 z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <div>
+                <h1 class="text-xl font-bold">福岡美食六日遊</h1>
+                <p class="text-xs opacity-90">2026/05/20 - 05/25</p>
+            </div>
+            <div class="text-right">
+                <div id="exchange-rate" class="text-sm font-medium bg-blue-700 px-2 py-1 rounded">
+                    匯率載入中...
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container mx-auto px-4 max-w-3xl">
+
+        <!-- Info Cards: Weather & Flights -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+            
+            <!-- Weather Widget (Mock) -->
+            <div class="bg-white rounded-xl p-4 card-shadow">
+                <h2 class="text-gray-500 text-sm font-bold mb-2 uppercase tracking-wide">福岡天氣預報 (預測)</h2>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <i class="fa-solid fa-sun text-yellow-500 text-3xl mr-3"></i>
+                        <div>
+                            <span class="text-2xl font-bold">24°C</span>
+                            <p class="text-xs text-gray-500">平均氣溫</p>
+                        </div>
+                    </div>
+                    <div class="text-right text-sm text-gray-600">
+                        <div>降雨機率: <span class="text-blue-500 font-bold">20%</span></div>
+                        <div>濕度: 65%</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hotel Info -->
+            <div class="bg-white rounded-xl p-4 card-shadow relative overflow-hidden">
+                <div class="absolute right-0 top-0 h-full w-1 bg-indigo-500"></div>
+                <h2 class="text-gray-500 text-sm font-bold mb-2 uppercase tracking-wide">住宿飯店</h2>
+                <h3 class="font-bold text-lg text-gray-800">福岡蒙特利拉蘇瑞酒店</h3>
+                <p class="text-xs text-gray-500">Hotel Monterey La Soeur Fukuoka</p>
+                <p class="text-sm text-gray-600 mt-1"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> 福岡市中央區大名2-8-27</p>
+                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Monterey+La+Soeur+Fukuoka" target="_blank" class="text-blue-500 text-xs mt-2 inline-block font-bold">導航至飯店 <i class="fa-solid fa-arrow-right"></i></a>
+            </div>
+        </div>
+
+        <!-- Flights -->
+        <div class="bg-white rounded-xl p-4 mt-4 card-shadow">
+            <h2 class="text-gray-500 text-sm font-bold mb-3 uppercase tracking-wide">航班資訊</h2>
+            <div class="flex flex-col gap-4">
+                <!-- Outbound -->
+                <div class="flex items-center justify-between border-b pb-2">
+                    <div class="flex-1">
+                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold">去程 5/20</span>
+                        <div class="flex items-center mt-1">
+                            <span class="text-lg font-bold">08:10</span>
+                            <span class="text-xs text-gray-500 mx-1">TPE</span>
+                            <i class="fa-solid fa-plane text-gray-400 mx-2"></i>
+                            <span class="text-lg font-bold">11:20</span>
+                            <span class="text-xs text-gray-500 mx-1">FUK</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- Inbound -->
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded font-bold">回程 5/25</span>
+                        <div class="flex items-center mt-1">
+                            <span class="text-lg font-bold">19:20</span>
+                            <span class="text-xs text-gray-500 mx-1">FUK</span>
+                            <i class="fa-solid fa-plane text-gray-400 mx-2"></i>
+                            <span class="text-lg font-bold">20:45</span>
+                            <span class="text-xs text-gray-500 mx-1">TPE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Itinerary Navigation -->
+        <div class="flex overflow-x-auto gap-2 mt-6 py-2 no-scrollbar" id="day-tabs">
+            <!-- Tabs injected by JS -->
+        </div>
+
+        <!-- Itinerary Content -->
+        <div id="itinerary-container" class="mt-2">
+            <!-- Content injected by JS -->
+        </div>
+
+    </div>
+
+    <script>
+        // Mock Data Configuration
+        const EXCHANGE_RATE = 4.72; // 1 TWD = X JPY
+        
+        // Itinerary Data
+        const itinerary = [
+            {
+                date: "5/20 (三)",
+                title: "抵達福岡與天神探索",
+                weather: "晴時多雲 23°C",
+                events: [
+                    { time: "11:20", title: "抵達福岡機場", desc: "辦理入境手續，領取行李", icon: "fa-plane-arrival" },
+                    { 
+                        time: "12:30", 
+                        title: "前往飯店寄放行李", 
+                        desc: "搭乘地鐵至天神站，步行至飯店", 
+                        icon: "fa-hotel",
+                        transport: { text: "地鐵空港線 (福岡機場 -> 天神, 約 11 分)", icon: "fa-train-subway" }
+                    },
+                    { 
+                        time: "13:30", 
+                        title: "午餐：天麩羅處 Hirao (大名店)", 
+                        desc: "【必吃清單】福岡靈魂美食！現炸天婦羅一道道上桌，搭配無限供應的招牌「柚子花枝」小菜。翻桌率快。", 
+                        icon: "fa-utensils",
+                        tag: "必吃",
+                        location: "福岡市中央区大名2-6-20",
+                        googleMap: "Tempura+Hirao+Daimyo",
+                        // image: "img/LINE_ALBUM_福岡必吃_260210_x.jpg", // TBD
+                        transport: { text: "步行前往 (約 5-10 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "15:00", 
+                        title: "REC COFFEE 天神南店", 
+                        desc: "【必吃清單】福岡知名咖啡，稍作休息享受午後時光。", 
+                        tag: "必吃", 
+                        location: "福岡県福岡市中央区渡辺通5-1-19",
+                        googleMap: "Rec+Coffee+Tenjin+Minami",
+                        imgType: "cafe",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_6.jpg",
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "16:30", 
+                        title: "天神地下街逛街 & RINGO", 
+                        desc: "【必吃清單】RINGO 蘋果派。順道逛逛天神地下街。", 
+                        tag: "必吃",
+                        link: "https://bobbyfun.tw/tenjin-chikagai/",
+                        linkText: "天神地下街攻略 (必買/美食/地圖)", 
+                        nonShopper: "不逛街推薦：可至地下街的「Appetito Cafe」或「Ueshima Coffee」休息。",
+                        location: "RINGO 天神地下街店",
+                        googleMap: "RINGO+Tenjin+Underground",
+                        imgType: "dessert",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_1.jpg",
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "18:00", 
+                        title: "博多牛腸鍋 前田屋 (大名店)", 
+                        desc: "【必吃清單】推薦：和牛牛腸鍋、花腹鯖生魚片(胡麻鯖魚)。就在飯店附近的大名區。", 
+                        tag: "必吃", 
+                        booking: "建議 2 個月前官網/Tabelog 預約 (約 3/20 開放)",
+                        location: "福岡市中央区大名1-12-39",
+                        googleMap: "Maedaya+Daimyo",
+                        imgType: "food",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_8.jpg",
+                        transport: { text: "步行前往 (約 10 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "20:00",
+                        title: "超市採買：MaxValu / Reganet",
+                        desc: "回飯店前去超市買福岡草莓(あまおう)與酒。<br>🍓 **關於草莓**：<br>1. 福岡「甘王草莓 (Amaou)」的產季通常到 5月底結束。<br>2. 這時候可能已經是尾聲了，不過還是有機會買到！<br>3. 如果超市沒看到草莓，推薦試試當時盛產的 **熊本西瓜** 或 **長崎枇杷**，也非常甜美！<br>🛒 **超市推薦**：「MaxValu Express 大名店」(開到 24:00) 或「Reganet 天神」(開到 22:00)。",
+                        icon: "fa-basket-shopping",
+                        transport: { text: "步行前往 (大名區內, 約 5 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "20:30",
+                        title: "返回飯店休息",
+                        desc: "步行返回飯店 (Hotel Monterey La Soeur Fukuoka)。",
+                        icon: "fa-bed",
+                        transport: { text: "步行前往 (超市 -> 飯店, 約 3-5 分)", icon: "fa-person-walking" }
+                    }
+                ]
+            },
+            {
+                date: "5/21 (四)",
+                title: "門司港懷舊與鐵道之旅",
+                weather: "晴時多雲 25°C",
+                events: [
+                    { 
+                        time: "08:00", 
+                        title: "早餐：The City Bakery (Solaria Plaza)", 
+                        desc: "來自紐約的知名麵包店，就在西鐵天神下方的 Solaria Plaza。推薦可頌與熱巧克力。", 
+                        icon: "fa-mug-hot",
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "09:00", 
+                        title: "出發前往門司港", 
+                        desc: "搭乘地鐵至博多站，轉乘 JR 鹿兒島本線前往門司港。", 
+                        icon: "fa-train",
+                        transport: { text: "地鐵+JR (天神 -> 博多 -> 門司港, 約 60-90 分)", icon: "fa-train" }
+                    },
+                    { 
+                        time: "10:30", 
+                        title: "九州鐵道紀念館", 
+                        desc: "【必去景點】鐵道迷聖地！體驗駕駛模擬器、參觀戶外車輛展示。", 
+                        icon: "fa-train-subway",
+                        // image: "img/LINE_ALBUM_福岡景點_260210_x.jpg", // TBD: User to add image
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "12:30", 
+                        title: "午餐：門司港燒咖哩", 
+                        desc: "【必吃清單】門司港名物！推薦「BEAR FRUITS」或「伽哩本舗」。", 
+                        tag: "必吃",
+                        icon: "fa-utensils",
+                        imgType: "food",
+                        // image: "img/LINE_ALBUM_福岡必吃_260210_x.jpg" // TBD
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "14:00", 
+                        title: "門司港懷舊區散策", 
+                        desc: "參觀門司港車站（國家重要文化財）、舊門司三井俱樂部、海峽廣場。", 
+                        icon: "fa-camera-retro",
+                        rain: "備案: 參觀舊門司三井俱樂部(室內)或海峽廣場逛街。",
+                        transport: { text: "步行前往 (各景點間約 5-10 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "16:00", 
+                        title: "返回天神", 
+                        desc: "搭乘 JR 返回博多，轉乘地鐵回天神。", 
+                        icon: "fa-train",
+                        transport: { text: "JR+地鐵 (門司港 -> 博多 -> 天神, 約 60-90 分)", icon: "fa-train" }
+                    },
+                    { 
+                        time: "18:30", 
+                        title: "晚餐：博多拉麵 ShinShin", 
+                        desc: "如果還沒吃過，推薦嘗試這家在地人氣拉麵 (天神本店)。", 
+                        icon: "fa-bowl-food",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_11.jpg",
+                        transport: { text: "步行前往 (天神站 -> ShinShin, 約 5 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "20:00", 
+                        title: "唐吉訶德 天神本店", 
+                        desc: "最後補貨採買伴手禮", 
+                        transport: { text: "步行前往 (ShinShin -> 唐吉訶德, 約 10 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "20:30",
+                        title: "平價藥妝推薦：大國藥妝 (天神ビル店)",
+                        desc: "就在唐吉訶德附近！若要買藥品、膠原蛋白等，價格通常比唐吉訶德便宜。<br>位置：天神 Building B1F (Uniqlo 旁 / 天神地下街直通)。",
+                        icon: "fa-pills",
+                        transport: { text: "步行前往 (唐吉訶德步行 2 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "21:30",
+                        title: "返回飯店休息",
+                        desc: "將戰利品帶回飯店。整理行李。",
+                        icon: "fa-bed",
+                        transport: { text: "計程車/步行 (天神南 -> 飯店, 車程約 5-10 分)", icon: "fa-taxi" }
+                    }
+                ]
+            },
+            {
+                date: "5/22 (五)",
+                title: "大濠公園與麵包之旅",
+                weather: "晴朗 25°C",
+                events: [
+                    { 
+                        time: "09:30", 
+                        title: "Full Full 天神麵包工房 (Pan to Wine)", 
+                        desc: "【必吃清單】購買招牌「明太子法國麵包」。**店內可內用 (有咖啡/酒)**。或是步行 2 分鐘至冠軍拉花店「Connect Coffee」。", 
+                        tag: "必吃", 
+                        location: "福岡市中央区天神3-3-5",
+                        googleMap: "Full+Full+Tenjin+Pan+to+Wine",
+                        imgType: "bread",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_4.jpg",
+                        transport: { text: "步行前往 (約 5-10 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "10:30", 
+                        title: "大濠公園散策", 
+                        desc: "帶著麵包到公園野餐，參觀福岡城跡、舞鶴公園。", 
+                        icon: "fa-tree",
+                        rain: "備案: 參觀公園內的「福岡市美術館」(草間彌生南瓜)。",
+                        transport: { text: "地鐵 (天神 -> 大濠公園, 約 5 分)", icon: "fa-train-subway" }
+                    },
+                    { 
+                        time: "12:30", 
+                        title: "博多水炊鍋 橙 (Daidai)", 
+                        desc: "【必吃清單】福岡必吃水炊雞肉鍋名店，就在大濠公園旁。*務必預約*", 
+                        tag: "必吃", 
+                        booking: "建議 1 個月前透過 TableCheck 預約 (約 4/22)",
+                        location: "福岡市中央区大手門1-8-14",
+                        googleMap: "Hakata+Mizutaki+Daidai",
+                        imgType: "food",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_9.jpg",
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "15:00", 
+                        title: "福岡麵包超人兒童博物館", 
+                        desc: "【親子必去】3歲小孩的最愛！有唱跳秀、角色見面會與各種互動遊戲。位於博多 Riverain Mall 5/6F。", 
+                        icon: "fa-child-reaching",
+                        booking: "可現場購票或事先上網預約",
+                        rain: "室內樂園，完全不受天氣影響。",
+                        location: "福岡市博多区下川端町3-1 (中洲川端站直結)",
+                        googleMap: "Fukuoka+Anpanman+Children's+Museum",
+                        // image: "img/LINE_ALBUM_福岡景點_260210_x.jpg", // TBD
+                        transport: { text: "計程車/地鐵 (橙 -> 中洲川端, 約 15-20 分)", icon: "fa-taxi" }
+                    },
+                    { 
+                        time: "17:30", 
+                        title: "晚餐：川端通商店街", 
+                        desc: "位於博多 Riverain 旁。因人數較多，建議在此享用晚餐 (有頂棚商店街，餐廳選擇多)。", 
+                        icon: "fa-utensils",
+                        rain: "室內行程，不受雨天影響。",
+                        transport: { text: "步行前往 (博物館樓下即是)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "20:00",
+                        title: "宵夜：中洲屋台 (自由參加)",
+                        desc: "若還有胃口，可步行至附近的那珂川畔體驗屋台氣氛 (拉麵、關東煮)。",
+                        icon: "fa-beer-mug-empty",
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "21:00",
+                        title: "返回飯店休息",
+                        desc: "結束一天的行程，返回飯店。",
+                        icon: "fa-bed",
+                        transport: { text: "計程車/地鐵 (中洲 -> 天神 -> 飯店, 車程約 10 分)", icon: "fa-taxi" }
+                    }
+                ]
+            },
+            {
+                date: "5/23 (六)",
+                title: "太宰府歷史漫遊",
+                weather: "多雲 24°C",
+                events: [
+                    { 
+                        time: "08:30", 
+                        title: "早餐：Heart Bread ANTIQUE (福岡天神店)", 
+                        desc: "大名區內的魔幻風格麵包店。有名的「麵包吃到飽」早餐 (Morning buffet)。", 
+                        icon: "fa-bread-slice",
+                        transport: { text: "步行前往 (大名區內, 約 3 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "10:00", 
+                        title: "前往太宰府", 
+                        desc: "從西鐵福岡(天神)站搭乘旅人號列車前往", 
+                        icon: "fa-train",
+                        transport: { text: "西鐵電車 (西鐵天神 -> 太宰府, 約 30 分)", icon: "fa-train" }
+                    },
+                    { 
+                        time: "11:00", 
+                        title: "太宰府天滿宮", 
+                        desc: "參拜學問之神，欣賞御本殿(目前為臨時殿)", 
+                        icon: "fa-gopuram",
+                        rain: "備案: 走隧道前往「九州國立博物館」參觀 (室內)。",
+                        transport: { text: "步行前往 (沿參道走, 約 5-10 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "12:30", 
+                        title: "參道午餐 & 梅枝餅", 
+                        desc: "品嚐當地特色小吃", 
+                        icon: "fa-utensils",
+                        transport: { text: "步行前往 (參道周邊)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "15:00", 
+                        title: "下午茶：Ivorish 法式吐司", 
+                        desc: "福岡本店就在大名區，享受美味的法式吐司甜點。", 
+                        icon: "fa-mug-hot",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_15.jpg",
+                        transport: { text: "西鐵電車+步行 (太宰府 -> 西鐵天神 -> 大名, 約 40 分)", icon: "fa-train" }
+                    },
+                    { 
+                        time: "16:30", 
+                        title: "大名區 / 天神商圈逛街", 
+                        desc: "逛逛大名區的古著店、潮流選物店，或天神地下街。", 
+                        icon: "fa-bag-shopping",
+                        rain: "備案: 集中逛 PARCO、岩田屋或天神地下街 (皆有連通道)。",
+                        nonShopper: "不逛街推薦：大名區巷弄內有許多特色咖啡廳，如「Stereo Coffee」或「Manu Coffee」。",
+                        transport: { text: "步行前往 (Ivorish -> 大名商圈, 約 3 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "19:00", 
+                        title: "漢堡排與蛋包飯 Ikura (いくら)", 
+                        desc: "【必吃清單】推薦！滑嫩的歐姆蛋包飯與漢堡排。建議前往今泉店較近。", 
+                        tag: "必吃", 
+                        booking: "部分資訊顯示不可預約，建議避開尖峰或請飯店確認",
+                        location: "福岡市中央区今泉1-13-21",
+                        googleMap: "Hamburg+Omurice+Ikura+Imaizumi",
+                        imgType: "food",
+                        imgType: "food",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_2.jpg",
+                        transport: { text: "步行前往 (天神/大名 -> 今泉, 約 10 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "20:30",
+                        title: "返回飯店休息",
+                        desc: "漫步返回飯店。",
+                        icon: "fa-bed",
+                        transport: { text: "步行前往 (今泉 -> 飯店, 約 10-15 分)", icon: "fa-person-walking" }
+                    }
+                ]
+            },
+            {
+                date: "5/24 (日)",
+                title: "市區名店巡禮",
+                weather: "多雲時晴 24°C",
+                events: [
+                    { 
+                        time: "09:00", 
+                        title: "Sabataro (さばたろう)", 
+                        desc: "【必吃清單】極致的鯖魚土鍋早餐。*務必提前預約*", 
+                        tag: "必吃", 
+                        booking: "極難訂，建議 1 個月前 TableCheck 開放即搶 (約 4/21)。*注意：店內多為吧台，無兒童椅*",
+                        location: "福岡市中央区赤坂1-5-11",
+                        googleMap: "Sabataro+Fukuoka",
+                        imgType: "food",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_7.jpg",
+                        transport: { text: "地鐵/步行 (天神 -> 赤坂, 約 10 分)", icon: "fa-train-subway" }
+                    },
+                    { 
+                        time: "11:00", 
+                        title: "住吉神社 & 樂水園", 
+                        desc: "參拜日本三大住吉之一的古老神社，並在日式庭園（樂水園）散步消化。", 
+                        icon: "fa-torii-gate",
+                        rain: "備案: 改去「博多運河城」逛街或「福岡亞洲美術館」。",
+                        transport: { text: "計程車/地鐵 (赤坂 -> 住吉/博多, 約 15-20 分)", icon: "fa-taxi" }
+                    },
+                    { 
+                        time: "12:30", 
+                        title: "移動至博多車站", 
+                        desc: "步行前往博多站，逛 JR Hakata City / Amu Plaza", 
+                        icon: "fa-person-walking",
+                        nonShopper: "不逛街推薦：可去頂樓「燕林廣場」看風景，或「REC COFFEE (KITTE博多店)」喝咖啡。",
+                        transport: { text: "步行前往 (約 10-15 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "13:00", 
+                        title: "博多 椒房庵 (Shobo-an)", 
+                        desc: "【必吃清單】位於博多站 Amu Plaza 9F。享用多層次明太子料理與現煮土鍋飯。", 
+                        tag: "必吃", 
+                        location: "JR博多城 Amu Plaza 9F",
+                        googleMap: "Hakata+Shobo-an",
+                        imgType: "food",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_3.jpg",
+                        transport: { text: "步行 (博多站內直達, 約 3 分)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "15:00", 
+                        title: "博多運河城 / 櫛田神社", 
+                        desc: "購物或參拜博多總鎮守", 
+                        icon: "fa-torii-gate",
+                        nonShopper: "不逛街推薦：運河城內「Cafe MUJI」或「星乃珈琲店」適合安靜休息。",
+                        rain: "備案: 室內商場，如遇雨可全程在此逛街。",
+                        transport: { text: "步行/巴士 (博多站 -> 運河城, 約 10-15 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "17:00",
+                        title: "平價藥妝推薦：Cosmos (科摩思) 天神大丸前店",
+                        desc: "【在地人推薦】福岡起家的超便宜藥妝店。價格含稅都可能比別家未稅便宜。<br>特色：不退稅但價格極具競爭力 (適合不湊免稅額的小額購買)。",
+                        icon: "fa-pills",
+                        transport: { text: "步行/地鐵 (天神南站旁)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "18:30", 
+                        title: "地鶏屋 大和 (Jidoriya Yamato)", 
+                        desc: "【必吃清單】地雞料理居酒屋，感受在地氛圍。", 
+                        tag: "必吃", 
+                        booking: "建議預約「別館」禁菸席或個室 (適合帶小孩)",
+                        location: "福岡市博多区冷泉町2-12 (本館/別館都在附近)",
+                        googleMap: "Jidoriya+Yamato+Fukuoka",
+                        imgType: "food",
+                        image: "img/LINE_ALBUM_福岡必吃_260210_5.jpg",
+                        transport: { text: "步行前往 (約 5 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "20:30",
+                        title: "返回飯店休息",
+                        desc: "從冷泉町返回天神飯店。",
+                        icon: "fa-bed",
+                        transport: { text: "計程車/地鐵 (祇園/博多 -> 天神, 車程約 10-15 分)", icon: "fa-taxi" }
+                    }
+                ]
+            },
+            {
+                date: "5/25 (一)",
+                title: "最後巡禮與返程",
+                weather: "多雲 23°C",
+                events: [
+                    { 
+                        time: "08:30", 
+                        title: "寄送行李 & 飯店退房", 
+                        desc: "先將行李交給飯店櫃台寄往機場 (Cargo Pass，需 10:00 前)，並辦理退房手續。一身輕便出發！", 
+                        icon: "fa-suitcase",
+                        booking: "行李費用約 ¥550-¥1100/件",
+                        transport: { text: "飯店櫃台辦理", icon: "fa-bell-concierge" } 
+                    },
+                    { 
+                        time: "09:30", 
+                        title: "早午餐：bills 福岡 (水上公園)", 
+                        desc: "【世界第一早餐】辦完正事後，優雅地享用鬆餅早午餐。位於中洲水上公園，風景優美。", 
+                        icon: "fa-pancakes",
+                        transport: { text: "計程車 (飯店 -> 西中洲, 約 10 分)", icon: "fa-taxi" }
+                    },
+                    { 
+                        time: "11:30", 
+                        title: "前往 LaLaport 福岡", 
+                        desc: "吃飽後直接搭乘計程車/巴士前往 LaLaport。", 
+                        icon: "fa-bus",
+                        transport: { text: "計程車 (西中洲 -> LaLaport, 約 20-25 分)", icon: "fa-taxi" } 
+                    },
+                    { 
+                        time: "12:00", 
+                        title: "LaLaport 福岡 & 實物大鋼彈", 
+                        desc: "參觀 1:1 鋼彈立像、JUMP Shop，享用最後的午餐與購物。", 
+                        icon: "fa-robot",
+                        link: "https://bobbyfun.tw/lalaport-fukuoka/",
+                        linkText: "LaLaport 攻略 (博多鋼彈/交通/美食)",
+                        rain: "室內行程，不受雨天影響。",
+                        nonShopper: "不逛街推薦：可至「伊右衛門 Cafe」品茶，或「Moff animal cafe」看小動物。",
+                        transport: { text: "步行前往 (商場內)", icon: "fa-person-walking" }
+                    },
+                    { 
+                        time: "16:30", 
+                        title: "前往福岡機場 & 領取行李", 
+                        desc: "搭乘計程車直達國際線航廈。**在 1F 入境大廳 (Cargo Pass/宅配櫃台) 領取行李**。", 
+                        icon: "fa-suitcase-rolling",
+                        tag: "重要",
+                        transport: { text: "計程車 (LaLaport -> 福岡機場國際線, 約 15-20 分)", icon: "fa-taxi" }
+                    },
+                    { time: "19:20", title: "搭機返台", desc: "帶著滿滿的回憶回家", icon: "fa-plane-departure" }
+                ]
+            }
+        ];
+
+        // Init Exchange Rate
+        document.getElementById('exchange-rate').innerHTML = `1 TWD ≈ ${EXCHANGE_RATE} JPY <i class="fa-solid fa-arrows-rotate ml-1 text-xs cursor-pointer" onclick="alert('匯率已更新')"></i>`;
+
+        // Render Tabs
+        const tabContainer = document.getElementById('day-tabs');
+        const contentContainer = document.getElementById('itinerary-container');
+
+        itinerary.forEach((day, index) => {
+            const btn = document.createElement('button');
+            btn.className = `day-tab whitespace-nowrap px-4 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-colors duration-200 hover:bg-gray-50 focus:outline-none flex-shrink-0 ${index === 0 ? 'active' : ''}`;
+            btn.textContent = day.date;
+            btn.onclick = () => switchTab(index);
+            tabContainer.appendChild(btn);
+        });
+
+        // Function to Switch Tabs and Render Content
+        function switchTab(index) {
+            try {
+                // Update Tab Styles
+                const tabs = document.querySelectorAll('.day-tab'); 
+                tabs.forEach((t, i) => {
+                    if(i === index) {
+                        t.classList.add('active');
+                    } else {
+                        t.classList.remove('active');
+                    }
+                });
+
+                // Render Content
+                const day = itinerary[index];
+                if (!day) return;
+
+                let html = `
+                    <div class="bg-white rounded-lg shadow-lg p-6 animate-fade-in">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-2xl font-bold text-gray-800">${day.title}</h2>
+                            <div class="flex items-center text-gray-600 bg-gray-100 px-3 py-1 rounded-full text-sm">
+                                <i class="fa-solid fa-cloud-sun mr-2"></i>
+                                ${day.weather}
+                            </div>
+                        </div>
+                        <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                `;
+
+                day.events.forEach(event => {
+                    let tagHtml = '';
+                    if (event.tag) {
+                        tagHtml = `<span class="inline-block bg-pink-100 text-pink-600 text-xs px-2 py-1 rounded-full mb-2 border border-pink-200">${event.tag}</span>`;
+                    }
+
+                    // Pre-calculate conditional HTML blocks to avoid nested template literal confusion
+                    const transportHtml = event.transport ? `
+                        <div class="flex items-center text-slate-500 text-sm bg-slate-100 p-2 rounded mb-3">
+                            <i class="fa-solid ${event.transport.icon} w-5 text-center mr-2"></i>
+                            <span>${event.transport.text}</span>
+                        </div>
+                    ` : '';
+
+                    const bookingHtml = event.booking ? `
+                        <div class="flex items-center text-amber-700 text-sm bg-amber-50 border border-amber-200 p-2 rounded mb-3">
+                            <i class="fa-solid fa-calendar-check w-5 text-center mr-2"></i>
+                            <span class="font-bold">⚠️ ${typeof event.booking === 'string' ? event.booking : '需提前預約'}</span>
+                        </div>
+                    ` : '';
+
+                    const rainHtml = event.rain ? `
+                        <div class="flex items-center text-blue-700 text-sm bg-blue-50 border border-blue-200 p-2 rounded mb-3">
+                            <i class="fa-solid fa-umbrella w-5 text-center mr-2"></i>
+                            <span class="font-bold">${event.rain}</span>
+                        </div>
+                    ` : '';
+
+                    const nonShopperHtml = event.nonShopper ? `
+                        <div class="flex items-center text-teal-700 text-sm bg-teal-50 border border-teal-200 p-2 rounded mb-3">
+                            <i class="fa-solid fa-mug-hot w-5 text-center mr-2"></i>
+                            <span class="font-bold">${event.nonShopper}</span>
+                        </div>
+                    ` : '';
+
+                    const linkHtml = event.link ? `
+                        <div class="mb-3">
+                            <a href="${event.link}" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-2 rounded-lg border border-indigo-200 transition-colors w-full sm:w-auto">
+                                <i class="fa-solid fa-book-open mr-2"></i>
+                                ${event.linkText || '查看詳細資訊'} <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs opacity-70"></i>
+                            </a>
+                        </div>
+                    ` : '';
+
+                    const imageHtml = event.image ? `
+                        <div class="mt-3 rounded-lg overflow-hidden relative group cursor-pointer">
+                            <img src="${event.image}" alt="${event.title}" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                        </div>
+                    ` : '';
+
+                    const locationHtml = event.location ? `
+                        <div class="mt-3 pt-2 border-t border-gray-200 flex justify-between items-center">
+                            <span class="text-xs text-gray-400 truncate w-2/3"><i class="fa-solid fa-map-pin mr-1"></i>${event.location}</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${event.googleMap || event.location}" target="_blank" class="map-link text-xs font-bold text-blue-500 flex items-center">
+                                導航 <i class="fa-solid fa-location-arrow ml-1"></i>
+                            </a>
+                        </div>
+                    ` : '';
+
+                    html += `
+                        <div class="relative pl-10">
+                            <div class="absolute left-0 top-1 w-10 h-10 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center shadow-sm z-10 text-blue-500">
+                                <i class="fa-solid ${event.icon || 'fa-location-dot'}"></i>
+                            </div>
+                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 hover:shadow-md transition-shadow">
+                                <div class="flex justify-between items-start mb-2">
+                                    <span class="font-bold text-blue-600 font-mono text-lg">${event.time}</span>
+                                    ${tagHtml}
+                                </div>
+                                <h3 class="font-bold text-gray-800 text-lg mb-1">${event.title}</h3>
+                                <p class="text-gray-600 text-sm mb-3 leading-relaxed">${event.desc}</p>
+                                
+                                ${transportHtml}
+                                ${rainHtml}
+                                ${nonShopperHtml}
+                                ${linkHtml}
+                                ${bookingHtml}
+                                ${imageHtml}
+                                ${locationHtml}
+                            </div>
+                        </div>
+                    `;
+                });
+
+                html += `
+                        </div>
+                    </div>
+                `;
+                contentContainer.innerHTML = html;
+            } catch (e) {
+                console.error("Error rendering itinerary:", e);
+                contentContainer.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"><strong class="font-bold">發生錯誤!</strong><span class="block sm:inline"> 無法顯示行程內容: ${e.message}</span></div>`;
+            }
+        }
+
+        // Initial Render
+        switchTab(0);
+
+    </script>
+</body>
+</html>
