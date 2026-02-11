@@ -218,7 +218,7 @@
                     { 
                         time: "08:00", 
                         title: "早餐：Bread, Espresso & Hakata", 
-                        desc: "【人氣早餐】位於博多站前 (The Blossom Hakata Premier 1F)。推薦鐵板法式吐司與獨家「穆」土司套餐。", 
+                        desc: "【人氣早餐】位於博多站前 (The Blossom Hakata Premier 1F)，推薦鐵板法式吐司與獨家「穆」土司套餐。<br>⚠️經常排隊，需要搶頭香", 
                         icon: "fa-mug-hot",
                         location: "福岡市博多区博多駅前2-8-12",
                         googleMap: "Bread+Espresso+Hakata",
@@ -236,6 +236,8 @@
                         title: "九州鐵道紀念館", 
                         desc: "【步行 3 分鐘即達】就在門司港車站旁，交通非常方便！<br>適合拍照與參觀戶外火車展示。<br>⏰ **營業時間**：09:00 - 17:00 (最後入館 16:30)。", 
                         icon: "fa-train-subway",
+                        link: "https://journey.tw/kurogane-rail/",
+                        linkText: "九州鐵道紀念館攻略 (門司港必去景點)",
                         // image: "img/LINE_ALBUM_福岡景點_260210_x.jpg", // TBD: User to add image
                         transport: { text: "步行前往 (車站旁, 約 3 分)", icon: "fa-person-walking" }
                     },
@@ -258,43 +260,55 @@
                         title: "門司港懷舊區散策 & 下午茶", 
                         desc: "參觀門司港車站(九州鐵道的發源點)、舊門司三井俱樂部、海峽廣場。<br>☕ **海峽廣場咖啡推薦**：<br>1. **MILKHALL MOJIKO** (海峽廣場西館 1F)：大正浪漫風，自家烘焙咖啡配「門司港布丁」是絕配。<br>2. **KOU. (ウ)** (西館 1F)：手沖咖啡與酥脆鬆餅。", 
                         icon: "fa-mug-hot",
-                        rain: "備案: 參觀舊門司三井俱樂部(室內)或海峽廣場逛街。",
+                        link: "https://www.kaikyo-plaza.com/#area",
+                        linkText: "海峽廣場店鋪清單",
+                        rain: "備案: 海峽廣場逛街或參觀舊門司三井俱樂部(室內)。",
                         transport: { text: "步行前往 (各景點間約 5-10 分)", icon: "fa-person-walking" }
                     },
                     { 
-                        time: "16:00", 
-                        title: "返回天神", 
-                        desc: "搭乘 JR 返回博多，轉乘地鐵回天神。", 
+                        time: "15:30", 
+                        title: "前往皿倉山 (日本新三大夜景)", 
+                        desc: "搭乘 JR 到八幡站，轉接駁車或計程車至纜車站。<br>搭乘登山纜車 + 全景單軌電車攻頂，等待絕美「百億夜景」。<br>⏰ **日落時間約 19:15** (建議停留至 19:40 天黑)。", 
+                        icon: "fa-mountain",
+                        link: "http://www.sarakurayama-cablecar.co.jp/",
+                        linkText: "皿倉山纜車官網 (運行狀況)",
+                        transport: { text: "JR+計程車+纜車 (門司港 -> 八幡 -> 山頂, 約 1.5 小時)", icon: "fa-train" }
+                    },
+                    {
+                        time: "20:00",
+                        title: "下山返回天神",
+                        desc: "搭纜車下山 -> JR 八幡 -> 博多 -> 天神。<br>車程約 1 小時，在車上稍作休息。",
                         icon: "fa-train",
-                        transport: { text: "JR+地鐵 (門司港 -> 博多 -> 天神, 約 60-90 分)", icon: "fa-train" }
+                        transport: { text: "纜車+JR+地鐵 (八幡 -> 天神, 約 60-70 分)", icon: "fa-train" }
                     },
                     { 
-                        time: "18:30", 
-                        title: "晚餐：博多拉麵 ShinShin", 
-                        desc: "如果還沒吃過，推薦嘗試這家在地人氣拉麵 (天神本店)。", 
+                        time: "21:00", 
+                        title: "晚餐：博多拉麵 ShinShin (天神本店)", 
+                        desc: "回到天神享用熱騰騰的拉麵！營業至凌晨 3:00，不用趕時間。<br>吃完剛好有力氣逛街。", 
                         icon: "fa-bowl-food",
                         image: "img/LINE_ALBUM_福岡必吃_260210_11.jpg",
                         transport: { text: "步行前往 (天神站 -> ShinShin, 約 5 分)", icon: "fa-person-walking" }
                     },
-                    { 
-                        time: "20:00", 
-                        title: "唐吉訶德 天神本店", 
-                        desc: "最後補貨採買伴手禮", 
-                        transport: { text: "步行前往 (ShinShin -> 唐吉訶德, 約 10 分)", icon: "fa-person-walking" }
-                    },
                     {
-                        time: "20:30",
+                        time: "20:00",
                         title: "平價藥妝推薦：大國藥妝 (天神ビル店)",
-                        desc: "就在唐吉訶德附近！若要買藥品、膠原蛋白等，價格通常比唐吉訶德便宜。<br>位置：天神 Building B1F (Uniqlo 旁 / 天神地下街直通)。",
+                        desc: "就在 ShinShin 附近！藥妝價格通常較優惠。<br>⚠️ **注意：約 21:00 打烊**，吃完拉麵先來買。",
                         icon: "fa-pills",
-                        transport: { text: "步行前往 (唐吉訶德步行 2 分)", icon: "fa-person-walking" }
+                        transport: { text: "步行前往 (ShinShin -> 大國, 約 3 分)", icon: "fa-person-walking" }
                     },
                     {
-                        time: "21:30",
+                        time: "22:00",
+                        title: "深夜採買：唐吉訶德 天神本店",
+                        desc: "【24小時營業】就在 ShinShin 附近！吃飽後大逛特逛。<br>大國藥妝若已打烊，可改天買或直接在唐吉訶德補齊。",
+                        icon: "fa-bag-shopping",
+                        transport: { text: "步行前往 (ShinShin -> 唐吉訶德, 約 5-8 分)", icon: "fa-person-walking" }
+                    },
+                    {
+                        time: "23:30",
                         title: "返回飯店休息",
-                        desc: "將戰利品帶回飯店。整理行李。",
+                        desc: "帶著滿滿戰利品回飯店 (就在附近)。",
                         icon: "fa-bed",
-                        transport: { text: "計程車/步行 (天神南 -> 飯店, 車程約 5-10 分)", icon: "fa-taxi" }
+                        transport: { text: "步行前往 (約 10 分)", icon: "fa-person-walking" }
                     }
                 ]
             },
@@ -316,12 +330,12 @@
                         transport: { text: "步行前往 (約 5-10 分)", icon: "fa-person-walking" }
                     },
                     { 
-                        time: "10:30", 
-                        title: "大濠公園散策", 
-                        desc: "帶著麵包到公園野餐，參觀福岡城跡、舞鶴公園。", 
+                        time: "09:30", 
+                        title: "大濠公園散策 & 兒童遊樂場", 
+                        desc: "福岡市民的後花園，適合親子悠閒散步。<br>🛝 **兒童遊樂設施攻略**：<br>1. **西側 (橡實公園 / どんぐり公園)**：有低矮溜滑梯與護欄，**最適合 3 歲幼兒**。<br>2. **東側 (鯨魚公園 / くじら公園)**：有巨大鯨魚溜滑梯，適合大一點的小孩。<br>建議主攻**西側**，離星巴克也近！", 
                         icon: "fa-tree",
-                        rain: "備案: 參觀公園內的「福岡市美術館」(草間彌生南瓜)。",
-                        transport: { text: "地鐵 (天神 -> 大濠公園, 約 5 分)", icon: "fa-train-subway" }
+                        rain: "備案: 搭計程車前往「福岡市科學館」或「蔦屋書店」(六本松)。",
+                        transport: { text: "地鐵+步行 (天神 -> 大濠公園, 約 15 分)", icon: "fa-subway" }
                     },
                     { 
                         time: "12:30", 
