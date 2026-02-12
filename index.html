@@ -214,7 +214,7 @@
                         location: "福岡県福岡市中央区渡辺通5-1-19",
                         googleMap: "Rec+Coffee+Tenjin+Minami",
                         imgType: "cafe",
-                        image: "img/LINE_ALBUM_福岡必吃_260210_6.jpg",
+                        image: "img/640x640_rect_622e45b4b372067ce3195c12a4d55a86.jpg",
                         transport: { text: "步行前往 (約 15 分)", icon: "fa-person-walking" }
                     },
                     {
@@ -248,7 +248,7 @@
                         location: "福岡市中央区大名1-12-39",
                         googleMap: "Maedaya+Daimyo",
                         imgType: "food",
-                        image: "img/LINE_ALBUM_福岡必吃_260210_8.jpg",
+                        image: "img/DSC_1873.webp",
                         transport: { text: "步行前往 (約 12 分)", icon: "fa-person-walking" }
                     },
                     {
@@ -298,7 +298,8 @@
                         icon: "fa-train-subway",
                         link: "https://journey.tw/kurogane-rail/",
                         linkText: "九州鐵道紀念館攻略 (門司港必去景點)",
-                        // image: "img/LINE_ALBUM_福岡景點_260210_x.jpg", // TBD: User to add image
+                        image: "img/LINE_ALBUM_福岡景點_260210_2.jpg",
+                        imgType: "attraction",
                         transport: { text: "步行前往 (車站旁, 約 3 分)", icon: "fa-person-walking" }
                     },
                     { 
@@ -338,7 +339,7 @@
                         title: "晚餐：博多拉麵 ShinShin (天神本店)", 
                         desc: "如果還沒吃過，推薦嘗試這家在地人氣拉麵。<br>晚餐時段人潮較多，建議提早前往。", 
                         icon: "fa-bowl-food",
-                        image: "img/LINE_ALBUM_福岡必吃_260210_11.jpg",
+                        image: "img/20250930163351_0_6dfa85.jpg",
                         transport: { text: "步行前往 (天神站 -> ShinShin, 約 5 分)", icon: "fa-person-walking" }
                     },
                     {
@@ -418,6 +419,8 @@
                         location: "福岡県福岡市中央区薬院エリア",
                         link: "https://fukuokainsider.com/article/yakuinzakka/",
                         linkText: "藥院選物地圖",
+                        image: "img/LINE_ALBUM_福岡景點_260210_1.jpg",
+                        imgType: "attraction",
                         transport: { text: "JR+地鐵 (下山門 -> 藥院大通, 約 40 分)", icon: "fa-train" }
                     },
                     { 
@@ -452,10 +455,15 @@
                 events: [
                     { 
                         time: "08:30", 
-                        title: "早餐：Heart Bread ANTIQUE (福岡天神店)", 
-                        desc: "大名區內的魔幻風格麵包店。有名的「麵包吃到飽」早餐 (Morning buffet)。", 
+                        title: "早餐：stock (Pain Stock 天神店)", 
+                        desc: "【必吃清單】福岡最強麵包店 Pain Stock 與 COFFEE COUNTY 聯名店。<br>🥖 必吃：明太子法國麵包 (Mentai France) 與 蜂蜜咖啡。<br>📍 位置：西中洲 (天神中央公園旁)。", 
                         icon: "fa-bread-slice",
-                        transport: { text: "步行前往 (大名區內, 約 3 分)", icon: "fa-person-walking" }
+                        tag: "排隊名店",
+                        location: "福岡市中央区西中洲6-17",
+                        image: "img/54622856024_3835b36d49_b.jpg",
+                        imgType: "food",
+                        googleMap: "stock+Pain+Stock+Tenjin",
+                        transport: { text: "步行前往 (大名 -> 西中洲, 約 15 分)", icon: "fa-person-walking" }
                     },
                     { 
                         time: "10:00", 
@@ -532,27 +540,31 @@
                 events: [
                     { 
                         time: "09:00", 
-                        title: "Sabataro (さばたろう)", 
-                        desc: "【必吃清單】極致的鯖魚土鍋早餐。*務必提前預約*", 
+                        title: "元祖博多明太重 (Ganso Hakata Mentaiju)", 
+                        desc: "【必吃清單】福岡代表性美食！整條明太子鋪在熱騰騰的白飯上，淋上特製醬汁。<br>🍱 招牌：明太重 (Mentaiju) 與 沾麵 (Tsukemen)。<br>⚠️ 注意：人氣極高，建議早點去排隊或事先查詢預約狀況。", 
                         tag: "必吃", 
-                        booking: "極難訂 (約 4/21 開放)。",
-                        location: "福岡市中央区赤坂1-5-11",
-                        googleMap: "Sabataro+Fukuoka",
+                        booking: "可官網預約 (建議提前)",
+                        location: "福岡市中央区西中洲6-15",
+                        googleMap: "Ganso+Hakata+Mentaiju",
+                        link: "https://banbi.tw/fukuoka-mentaiju/",
+                        linkText: "元祖博多明太重",
                         imgType: "food",
-                        image: "img/LINE_ALBUM_福岡必吃_260210_7.jpg",
-                        transport: { text: "步行 (天神 -> 赤坂, 約 13 分)", icon: "fa-person-walking" }
+                        image: "img/20240917100558_0_67f415.jpg", // Keeping original image placeholder or user can update
+                        transport: { text: "步行 (大名 -> 西中洲, 約 15 分)", icon: "fa-person-walking" }
                     },
 
                     { 
                         time: "11:00", 
                         title: "那珂川遊船 & 櫛田神社散策", 
-                        desc: "【悠閒派首選】<br>1. 那珂川遊船：約 30 分鐘，從水上欣賞博多風景 (乘船處：福博であい橋/天神中央公園)。<br>2. 櫛田神社：下船後步行前往參拜 (就在附近)，欣賞巨型山笠。<br>☕ **FUK COFFEE**：就在櫛田神社旁 (祇園町)，必拍的機場主題咖啡廳！拿鐵上有飛機圖案。<br>📍 路線：遊船 -> 櫛田神社 -> FUK COFFEE -> 搭巴士/走路去博多站吃午餐。", 
+                        desc: "【悠閒派首選】<br>1. 那珂川遊船：約 30 分鐘，從水上欣賞博多風景 (乘船處：福博であい橋/天神中央公園)。<br>2. 櫛田神社：下船後步行前往參拜 (就在附近)，欣賞巨型山笠。<br>☕ FUK COFFEE：就在櫛田神社旁 (祇園町)，必拍的機場主題咖啡廳！拿鐵上有飛機圖案。<br>📍 路線：遊船 -> 櫛田神社 -> FUK COFFEE -> 搭巴士/走路去博多站吃午餐。", 
                         icon: "fa-ship",
                         tag: "體驗",
                         link: "https://gogojp.tw/fukuoka-river-cruise/",
                         linkText: "那珂川水上巴士",
+                        image: "img/fune5-870x500-1750310197.webp",
+                        imgType: "attraction",
                         rain: "備案: 若遇大雨停駛，可改至「福岡亞洲美術館」室內活動。",
-                        transport: { text: "步行/地鐵 (赤坂 -> 福博であい橋/櫛田, 約 15-20 分)", icon: "fa-person-walking" }
+                        transport: { text: "步行 2分鐘 (西中洲 -> 櫛田神社, 約 10-15 分)", icon: "fa-person-walking" }
                     },
                     { 
                         time: "12:30", 
@@ -612,6 +624,8 @@
                         title: "早午餐：bills 福岡 (水上公園)", 
                         desc: "【世界第一早餐】辦完正事後，優雅地享用鬆餅早午餐。位於中洲水上公園，風景優美。", 
                         icon: "fa-pancakes",
+                        image: "img/1600868794-3175290969-g.jpg",
+                        imgType: "food",
                         transport: { text: "步行 (飯店 -> 西中洲, 約 13 分)", icon: "fa-person-walking" }
                     },
                     { 
