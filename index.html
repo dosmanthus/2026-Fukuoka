@@ -177,23 +177,23 @@
         <!-- Info Cards: Weather & Flights -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
             
-            <!-- Weather Widget (Mock) -->
-            <div class="glass-card rounded-2xl p-5 relative overflow-hidden group">
-                <div class="absolute -right-6 -top-6 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl group-hover:bg-yellow-400/30 transition-colors"></div>
-                <h2 class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider">福岡天氣預報 (預測)</h2>
+            <!-- Weather Widget -->
+            <div id="weather-card" class="glass-card rounded-2xl p-5 relative overflow-hidden group">
+                <div class="absolute -right-6 -top-6 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl group-hover:bg-blue-400/30 transition-colors"></div>
+                <h2 class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider">福岡 即時天氣</h2>
                 <div class="flex items-center justify-between">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-100 to-yellow-50 flex items-center justify-center shadow-soft text-yellow-500 text-2xl">
-                            <i class="fa-solid fa-cloud-sun"></i>
+                        <div id="weather-icon-container" class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center shadow-soft text-blue-500 text-2xl">
+                            <i id="weather-icon" class="fa-solid fa-spinner fa-spin"></i>
                         </div>
                         <div>
-                            <span class="text-3xl font-extrabold text-gray-800 tracking-tight">24°</span>
-                            <p class="text-xs text-gray-400 font-medium">平均氣溫</p>
+                            <span id="weather-temp" class="text-3xl font-extrabold text-gray-800 tracking-tight">--°</span>
+                            <p class="text-xs text-gray-400 font-medium">目前氣溫</p>
                         </div>
                     </div>
                     <div class="text-right text-sm text-gray-600 font-medium space-y-1">
-                        <div class="flex items-center justify-end gap-1"><i class="fa-solid fa-droplet text-blue-400 text-xs text-center w-4"></i><span class="text-blue-600 font-bold">20%</span></div>
-                        <div class="flex items-center justify-end gap-1"><i class="fa-solid fa-water text-cyan-400 text-xs text-center w-4"></i><span>65%</span></div>
+                        <div class="flex items-center justify-end gap-1"><i class="fa-solid fa-droplet text-blue-400 text-xs text-center w-4"></i><span id="weather-humidity" class="text-blue-600 font-bold">--%</span></div>
+                        <div class="flex items-center justify-end gap-1"><i class="fa-solid fa-wind text-cyan-400 text-xs text-center w-4"></i><span id="weather-wind">-- km/h</span></div>
                     </div>
                 </div>
             </div>
@@ -820,7 +820,7 @@
         });
 
         // Function to Switch Tabs and Render Content
-        function switchTab(index) {
+        function switchTab(index, isInitialLoad = false) {
             try {
                 // Update Tab Styles
                 const tabs = document.querySelectorAll('.day-tab'); 
@@ -971,16 +971,18 @@
                 contentContainer.innerHTML = html;
 
                 // Scroll to top of the itinerary container smoothly
-                // Set a small timeout to allow DOM to render to get accurate positioning
-                setTimeout(() => {
-                    const tabsHeight = tabContainer.offsetHeight;
-                    const offsetPosition = contentContainer.offsetTop - tabsHeight - 10;
+                if (!isInitialLoad) {
+                    // Set a small timeout to allow DOM to render to get accurate positioning
+                    setTimeout(() => {
+                        const tabsHeight = tabContainer.offsetHeight;
+                        const offsetPosition = contentContainer.offsetTop - tabsHeight - 10;
 
-                    window.scrollTo({
-                         top: Math.max(0, offsetPosition),
-                         behavior: "smooth"
-                    });
-                }, 10);
+                        window.scrollTo({
+                             top: Math.max(0, offsetPosition),
+                             behavior: "smooth"
+                        });
+                    }, 10);
+                }
 
             } catch (e) {
                 console.error("Error rendering itinerary:", e);
@@ -989,7 +991,7 @@
         }
 
         // Initial Render
-        switchTab(0);
+        switchTab(0, true);
 
         // Lightbox Functions
         function openLightbox(src) {
@@ -1012,6 +1014,76 @@
                 document.getElementById('lightbox-img').src = '';
             }, 300);
         }
+
+        // Fetch Weather Data
+        async function fetchWeather() {
+            try {
+                // Fukuoka Coordinates
+                const lat = 33.5902;
+                const lon = 130.4017;
+                const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=Asia%2FTokyo`;
+                
+                const response = await fetch(url);
+                if (!response.ok) throw new Error('Weather network response was not ok');
+                
+                const data = await response.json();
+                const current = data.current;
+                
+                // Update UI
+                document.getElementById('weather-temp').innerText = `${Math.round(current.temperature_2m)}°`;
+                document.getElementById('weather-humidity').innerText = `${Math.round(current.relative_humidity_2m)}%`;
+                document.getElementById('weather-wind').innerText = `${Math.round(current.wind_speed_10m)} km/h`;
+                
+                // Map WMO Weather Codes to FontAwesome Icons and Colors
+                // WMO Code Ref: https://open-meteo.com/en/docs
+                const code = current.weather_code;
+                const iconMap = {
+                    0: { icon: 'fa-sun', iconColor: 'text-yellow-500', bg: 'from-yellow-100 to-yellow-50' }, // Clear
+                    1: { icon: 'fa-cloud-sun', iconColor: 'text-yellow-500', bg: 'from-yellow-100 to-yellow-50' }, // Mainly clear
+                    2: { icon: 'fa-cloud-sun', iconColor: 'text-gray-500', bg: 'from-gray-100 to-gray-50' }, // Partly cloudy
+                    3: { icon: 'fa-cloud', iconColor: 'text-gray-500', bg: 'from-gray-200 to-gray-100' }, // Overcast
+                    45: { icon: 'fa-smog', iconColor: 'text-gray-400', bg: 'from-gray-200 to-gray-100' }, // Fog
+                    48: { icon: 'fa-smog', iconColor: 'text-gray-400', bg: 'from-gray-200 to-gray-100' },
+                    51: { icon: 'fa-cloud-rain', iconColor: 'text-blue-500', bg: 'from-blue-100 to-blue-50' }, // Drizzle
+                    53: { icon: 'fa-cloud-rain', iconColor: 'text-blue-500', bg: 'from-blue-100 to-blue-50' },
+                    55: { icon: 'fa-cloud-rain', iconColor: 'text-blue-500', bg: 'from-blue-100 to-blue-50' },
+                    61: { icon: 'fa-cloud-showers-heavy', iconColor: 'text-blue-600', bg: 'from-blue-200 to-blue-100' }, // Rain
+                    63: { icon: 'fa-cloud-showers-heavy', iconColor: 'text-blue-600', bg: 'from-blue-200 to-blue-100' },
+                    65: { icon: 'fa-cloud-showers-heavy', iconColor: 'text-blue-600', bg: 'from-blue-200 to-blue-100' },
+                    71: { icon: 'fa-snowflake', iconColor: 'text-cyan-500', bg: 'from-cyan-100 to-cyan-50' }, // Snow
+                    73: { icon: 'fa-snowflake', iconColor: 'text-cyan-500', bg: 'from-cyan-100 to-cyan-50' },
+                    75: { icon: 'fa-snowflake', iconColor: 'text-cyan-500', bg: 'from-cyan-100 to-cyan-50' },
+                    80: { icon: 'fa-cloud-showers-water', iconColor: 'text-blue-500', bg: 'from-blue-100 to-blue-50' }, // Showers
+                    81: { icon: 'fa-cloud-showers-water', iconColor: 'text-blue-500', bg: 'from-blue-100 to-blue-50' },
+                    82: { icon: 'fa-cloud-showers-water', iconColor: 'text-blue-500', bg: 'from-blue-100 to-blue-50' },
+                    95: { icon: 'fa-cloud-bolt', iconColor: 'text-indigo-600', bg: 'from-indigo-200 to-indigo-100' }, // Thunderstorm
+                    96: { icon: 'fa-cloud-bolt', iconColor: 'text-indigo-600', bg: 'from-indigo-200 to-indigo-100' },
+                    99: { icon: 'fa-cloud-bolt', iconColor: 'text-indigo-600', bg: 'from-indigo-200 to-indigo-100' }
+                };
+
+                const weatherConfig = iconMap[code] || { icon: 'fa-cloud', iconColor: 'text-blue-500', bg: 'from-blue-100 to-blue-50' };
+                
+                const iconContainer = document.getElementById('weather-icon-container');
+                iconContainer.className = `w-12 h-12 rounded-full bg-gradient-to-br ${weatherConfig.bg} flex items-center justify-center shadow-soft ${weatherConfig.iconColor} text-2xl transition-colors duration-500`;
+                
+                // Use innerHTML because FontAwesome SVG core replaces the <i> tag natively
+                iconContainer.innerHTML = `<i id="weather-icon" class="fa-solid ${weatherConfig.icon} animate-fade-in"></i>`;
+                
+            } catch (error) {
+                console.error('Error fetching weather:', error);
+                document.getElementById('weather-temp').innerText = 'N/A';
+                
+                const iconContainer = document.getElementById('weather-icon-container');
+                if (iconContainer) {
+                    iconContainer.innerHTML = `<i id="weather-icon" class="fa-solid fa-circle-exclamation text-red-500 animate-fade-in"></i>`;
+                }
+            }
+        }
+
+        // Initialize weather fetching after DOM is fully loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchWeather();
+        });
 
     </script>
 </body>
