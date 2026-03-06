@@ -154,7 +154,7 @@
 <body class="pb-10 antialiased selection:bg-indigo-100 selection:text-indigo-900">
 
     <!-- Header -->
-    <header class="bg-gradient-to-r from-primary to-secondary text-white p-5 sticky top-0 z-50 shadow-glass backdrop-blur-md bg-opacity-90">
+    <header class="bg-gradient-to-r from-primary to-secondary text-white p-5 shadow-glass bg-opacity-90">
         <div class="container mx-auto flex justify-between items-center px-2">
             <div>
                 <h1 class="text-2xl font-bold tracking-tight">福岡美食六日遊</h1>
@@ -260,7 +260,7 @@
         </div>
 
         <!-- Itinerary Navigation -->
-        <div class="flex overflow-x-auto gap-2 mt-6 py-3 px-1 no-scrollbar sticky top-[96px] z-40 bg-gray-50/90 backdrop-blur-md border-b border-gray-200/50 shadow-sm -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent sm:backdrop-blur-none sm:border-0 sm:shadow-none transition-all" id="day-tabs">
+        <div class="flex overflow-x-auto gap-2 mt-6 py-3 px-1 no-scrollbar sticky top-0 z-40 bg-gray-50/90 backdrop-blur-md border-b border-gray-200/50 shadow-sm -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent sm:backdrop-blur-none sm:border-0 sm:shadow-none transition-all" id="day-tabs">
             <!-- Tabs injected by JS -->
         </div>
 
@@ -925,30 +925,30 @@
                     ` : '';
 
                     const locationHtml = event.location ? `
-                        <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center bg-gray-50/50 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
-                            <span class="text-xs text-gray-500 font-medium truncate w-[70%]"><i class="fa-solid fa-map-pin mr-1.5 text-gray-400"></i>${event.location}</span>
-                            <a href="https://www.google.com/maps/search/?api=1&query=${event.googleMap || event.location}" target="_blank" class="map-link text-xs font-bold text-primary flex items-center bg-white px-2.5 py-1 rounded-md shadow-sm border border-indigo-50 hover:bg-indigo-50">
+                        <div class="mt-4 pt-3 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50/50 -mx-3 sm:-mx-5 -mb-5 px-3 sm:px-5 py-3 rounded-b-2xl gap-2 sm:gap-0">
+                            <span class="text-xs text-gray-500 font-medium truncate w-full sm:w-[70%]"><i class="fa-solid fa-map-pin mr-1.5 text-gray-400"></i>${event.location}</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${event.googleMap || event.location}" target="_blank" class="map-link text-xs font-bold text-primary flex items-center bg-white px-3 py-1.5 sm:px-2.5 sm:py-1 rounded-md shadow-sm border border-indigo-50 hover:bg-indigo-50 w-full justify-center sm:w-auto sm:justify-start">
                                 導航 <i class="fa-solid fa-location-arrow ml-1.5 text-[10px]"></i>
                             </a>
                         </div>
                     ` : '';
 
                     html += `
-                        <div class="relative pl-12 pr-2 group">
-                            <div class="absolute left-0 top-1 w-[2.8rem] h-[2.8rem] bg-white border-4 border-indigo-50 rounded-full flex items-center justify-center shadow-soft z-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:border-indigo-100 group-hover:text-indigo-600">
-                                <i class="fa-solid ${event.icon || 'fa-location-dot'} text-lg"></i>
+                        <div class="relative pl-10 sm:pl-12 pr-1 sm:pr-2 group">
+                            <div class="absolute left-0 top-1 w-[2.4rem] h-[2.4rem] sm:w-[2.8rem] sm:h-[2.8rem] bg-white border-4 border-indigo-50 rounded-full flex items-center justify-center shadow-soft z-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:border-indigo-100 group-hover:text-indigo-600">
+                                <i class="fa-solid ${event.icon || 'fa-location-dot'} text-base sm:text-lg"></i>
                             </div>
-                            <div class="glass-card event-card p-5 rounded-2xl relative z-0 ml-2 shadow-soft hover:shadow-lg">
-                                <div class="flex justify-between items-start mb-3">
+                            <div class="glass-card event-card p-4 sm:p-5 rounded-2xl relative z-0 ml-1 sm:ml-2 shadow-soft hover:shadow-lg w-full break-words">
+                                <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-2 sm:gap-0">
                                     <span class="font-black text-transparent bg-clip-text bg-gradient-to-br from-primary to-indigo-400 font-mono text-xl tracking-tighter">${event.time}</span>
-                                    <div class="ml-2">${tagHtml}</div>
+                                    <div class="sm:ml-2">${tagHtml}</div>
                                 </div>
-                                <h3 class="font-extrabold text-gray-800 text-xl mb-2 tracking-tight leading-snug">${event.title}</h3>
-                                <div class="mb-3 flex flex-wrap">
+                                <h3 class="font-extrabold text-gray-800 text-lg sm:text-xl mb-2 tracking-tight leading-snug break-words hyphens-auto">${event.title}</h3>
+                                <div class="mb-3 flex flex-wrap gap-2">
                                     ${priceHtml}
                                     ${menuHtml}
                                 </div>
-                                <p class="text-gray-600 text-[15px] mb-4 leading-relaxed font-medium">${event.desc}</p>
+                                <p class="text-gray-600 text-sm sm:text-[15px] mb-4 leading-relaxed font-medium break-words">${event.desc}</p>
                                 
                                 <div class="space-y-1">
                                     ${transportHtml}
@@ -973,9 +973,8 @@
                 // Scroll to top of the itinerary container smoothly
                 // Set a small timeout to allow DOM to render to get accurate positioning
                 setTimeout(() => {
-                    const headerHeight = document.querySelector('header').offsetHeight;
                     const tabsHeight = tabContainer.offsetHeight;
-                    const offsetPosition = contentContainer.offsetTop - headerHeight - tabsHeight - 20;
+                    const offsetPosition = contentContainer.offsetTop - tabsHeight - 10;
 
                     window.scrollTo({
                          top: Math.max(0, offsetPosition),
