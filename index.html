@@ -5,28 +5,96 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>福岡美食之旅 5/20-5/25</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#4f46e5', // Indigo-600
+                        secondary: '#ec4899', // Pink-500
+                    },
+                    boxShadow: {
+                        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+                        'soft': '0 4px 20px -2px rgba(0, 0, 0, 0.05)',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
     <style>
         body {
-            font-family: 'Noto Sans TC', sans-serif;
-            background-color: #f3f4f6;
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+            background-attachment: fixed;
+            color: #1f2937;
         }
-        .weather-icon {
-            font-size: 1.5rem;
+        ::selection {
+            background-color: #c7d2fe;
+            color: #312e81;
         }
-        .card-shadow {
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+        }
+        .day-tab {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .day-tab:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
         }
         .day-tab.active {
-            background-color: #3b82f6;
+            background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
             color: white;
-            border-color: #3b82f6;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+            font-weight: 600;
+        }
+        .event-card {
+            transition: all 0.3s ease;
+        }
+        .event-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+            border-color: rgba(79, 70, 229, 0.3);
+        }
+        .map-link {
+            transition: all 0.2s ease;
         }
         .map-link:hover {
-            color: #2563eb;
+            color: #4f46e5;
             text-decoration: underline;
+            transform: translateX(2px);
         }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
         /* Lightbox */
         #lightbox {
             display: none;
@@ -36,11 +104,12 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
             justify-content: center;
             align-items: center;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.4s ease;
         }
         #lightbox.show {
             opacity: 1;
@@ -48,10 +117,10 @@
         #lightbox img {
             max-width: 90%;
             max-height: 90%;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            transform: scale(0.95);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-radius: 12px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         #lightbox.show img {
             transform: scale(1);
@@ -60,28 +129,43 @@
             position: absolute;
             top: 20px;
             right: 30px;
-            color: white;
-            font-size: 40px;
+            color: rgba(255,255,255,0.7);
+            font-size: 44px;
+            font-weight: 300;
             cursor: pointer;
             z-index: 1001;
-            transition: color 0.2s;
+            transition: all 0.3s;
         }
         #lightbox-close:hover {
-            color: #ef4444;
+            color: #fff;
+            transform: rotate(90deg);
+        }
+        
+        /* Smooth Entrance Animation */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in {
+            animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
     </style>
 </head>
-<body class="pb-10">
+<body class="pb-10 antialiased selection:bg-indigo-100 selection:text-indigo-900">
 
     <!-- Header -->
-    <header class="bg-blue-600 text-white p-4 sticky top-0 z-50 shadow-md">
-        <div class="container mx-auto flex justify-between items-center">
+    <header class="bg-gradient-to-r from-primary to-secondary text-white p-5 sticky top-0 z-50 shadow-glass backdrop-blur-md bg-opacity-90">
+        <div class="container mx-auto flex justify-between items-center px-2">
             <div>
-                <h1 class="text-xl font-bold">福岡美食六日遊</h1>
-                <p class="text-xs opacity-90">2026/05/20 - 05/25</p>
+                <h1 class="text-2xl font-bold tracking-tight">福岡美食六日遊</h1>
+                <p class="text-sm font-medium opacity-90 mt-0.5">2026/05/20 - 05/25</p>
             </div>
-            <div class="text-right">
-                <div id="exchange-rate" class="text-sm font-medium bg-blue-700 px-2 py-1 rounded">
+            <div class="text-right flex items-center gap-3">
+                <div class="hidden sm:flex flex-col text-xs text-right opacity-80 font-medium">
+                    <span>Currency</span>
+                    <span>Exchange Rate</span>
+                </div>
+                <div id="exchange-rate" class="text-sm font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20 shadow-soft">
                     匯率載入中...
                 </div>
             </div>
@@ -91,64 +175,84 @@
     <div class="container mx-auto px-4 max-w-3xl">
 
         <!-- Info Cards: Weather & Flights -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mt-8">
             
             <!-- Weather Widget (Mock) -->
-            <div class="bg-white rounded-xl p-4 card-shadow">
-                <h2 class="text-gray-500 text-sm font-bold mb-2 uppercase tracking-wide">福岡天氣預報 (預測)</h2>
+            <div class="glass-card rounded-2xl p-5 relative overflow-hidden group">
+                <div class="absolute -right-6 -top-6 w-24 h-24 bg-yellow-400/20 rounded-full blur-2xl group-hover:bg-yellow-400/30 transition-colors"></div>
+                <h2 class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider">福岡天氣預報 (預測)</h2>
                 <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <i class="fa-solid fa-sun text-yellow-500 text-3xl mr-3"></i>
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-100 to-yellow-50 flex items-center justify-center shadow-soft text-yellow-500 text-2xl">
+                            <i class="fa-solid fa-cloud-sun"></i>
+                        </div>
                         <div>
-                            <span class="text-2xl font-bold">24°C</span>
-                            <p class="text-xs text-gray-500">平均氣溫</p>
+                            <span class="text-3xl font-extrabold text-gray-800 tracking-tight">24°</span>
+                            <p class="text-xs text-gray-400 font-medium">平均氣溫</p>
                         </div>
                     </div>
-                    <div class="text-right text-sm text-gray-600">
-                        <div>降雨機率: <span class="text-blue-500 font-bold">20%</span></div>
-                        <div>濕度: 65%</div>
+                    <div class="text-right text-sm text-gray-600 font-medium space-y-1">
+                        <div class="flex items-center justify-end gap-1"><i class="fa-solid fa-droplet text-blue-400 text-xs text-center w-4"></i><span class="text-blue-600 font-bold">20%</span></div>
+                        <div class="flex items-center justify-end gap-1"><i class="fa-solid fa-water text-cyan-400 text-xs text-center w-4"></i><span>65%</span></div>
                     </div>
                 </div>
             </div>
 
             <!-- Hotel Info -->
-            <div class="bg-white rounded-xl p-4 card-shadow relative overflow-hidden">
-                <div class="absolute right-0 top-0 h-full w-1 bg-indigo-500"></div>
-                <h2 class="text-gray-500 text-sm font-bold mb-2 uppercase tracking-wide">住宿飯店</h2>
-                <h3 class="font-bold text-lg text-gray-800">福岡蒙特利拉蘇瑞酒店</h3>
-                <p class="text-xs text-gray-500">Hotel Monterey La Soeur Fukuoka</p>
-                <p class="text-sm text-gray-600 mt-1"><i class="fa-solid fa-location-dot text-red-500 mr-1"></i> 福岡市中央區大名2-8-27</p>
-                <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Monterey+La+Soeur+Fukuoka" target="_blank" class="text-blue-500 text-xs mt-2 inline-block font-bold">導航至飯店 <i class="fa-solid fa-arrow-right"></i></a>
+            <div class="glass-card rounded-2xl p-5 relative overflow-hidden group hover:-translate-y-1 transition-transform">
+                <div class="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-primary to-indigo-400"></div>
+                <h2 class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider pl-2">住宿飯店</h2>
+                <div class="pl-2">
+                    <h3 class="font-bold text-lg text-gray-800 tracking-tight">福岡蒙特利拉蘇瑞酒店</h3>
+                    <p class="text-xs text-gray-400 font-medium mb-3">Hotel Monterey La Soeur Fukuoka</p>
+                    <p class="text-sm text-gray-600 font-medium flex items-start gap-2">
+                        <i class="fa-solid fa-location-dot text-rose-500 mt-0.5"></i> 
+                        福岡市中央區大名2-8-27
+                    </p>
+                    <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Monterey+La+Soeur+Fukuoka" target="_blank" class="text-primary text-sm mt-3 inline-flex items-center gap-1 font-bold group-hover:text-indigo-700 transition-colors">
+                        導航路線 <i class="fa-solid fa-arrow-right-long text-xs transition-transform group-hover:translate-x-1"></i>
+                    </a>
+                </div>
             </div>
         </div>
 
         <!-- Flights -->
-        <div class="bg-white rounded-xl p-4 mt-4 card-shadow">
-            <h2 class="text-gray-500 text-sm font-bold mb-3 uppercase tracking-wide">航班資訊</h2>
-            <div class="flex flex-col gap-4">
+        <div class="glass-card rounded-2xl p-5 mt-5">
+            <h2 class="text-indigo-400 text-xs font-bold mb-4 uppercase tracking-wider flex items-center gap-2">
+                <i class="fa-solid fa-plane-departure"></i> 航班資訊
+            </h2>
+            <div class="flex flex-col gap-5">
                 <!-- Outbound -->
-                <div class="flex items-center justify-between border-b pb-2">
+                <div class="flex items-center justify-between border-b border-gray-100 pb-4">
                     <div class="flex-1">
-                        <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded font-bold">去程 5/20</span>
-                        <div class="flex items-center mt-1">
-                            <span class="text-lg font-bold">08:10</span>
-                            <span class="text-xs text-gray-500 mx-1">TPE</span>
-                            <i class="fa-solid fa-plane text-gray-400 mx-2"></i>
-                            <span class="text-lg font-bold">11:20</span>
-                            <span class="text-xs text-gray-500 mx-1">FUK</span>
+                        <div class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-600 border border-emerald-100 px-2.5 py-1 rounded-md text-xs font-bold mb-2 shadow-sm">
+                            <i class="fa-solid fa-plane-departure"></i> 去程 5/20
+                        </div>
+                        <div class="flex items-center text-gray-800">
+                            <span class="text-2xl font-black font-mono tracking-tighter">08:10</span>
+                            <span class="text-xs text-gray-400 font-bold ml-1.5">TPE</span>
+                            <div class="flex-1 border-t-2 border-dashed border-gray-200 mx-4 relative flex justify-center">
+                                <i class="fa-solid fa-plane text-emerald-400 absolute -top-3 bg-white px-2"></i>
+                            </div>
+                            <span class="text-2xl font-black font-mono tracking-tighter">11:20</span>
+                            <span class="text-xs text-gray-400 font-bold ml-1.5">FUK</span>
                         </div>
                     </div>
                 </div>
                 <!-- Inbound -->
                 <div class="flex items-center justify-between">
                     <div class="flex-1">
-                        <span class="bg-orange-100 text-orange-800 text-xs px-2 py-1 rounded font-bold">回程 5/25</span>
-                        <div class="flex items-center mt-1">
-                            <span class="text-lg font-bold">19:20</span>
-                            <span class="text-xs text-gray-500 mx-1">FUK</span>
-                            <i class="fa-solid fa-plane text-gray-400 mx-2"></i>
-                            <span class="text-lg font-bold">20:45</span>
-                            <span class="text-xs text-gray-500 mx-1">TPE</span>
+                        <div class="inline-flex items-center gap-1.5 bg-rose-50 text-rose-600 border border-rose-100 px-2.5 py-1 rounded-md text-xs font-bold mb-2 shadow-sm">
+                            <i class="fa-solid fa-plane-arrival"></i> 回程 5/25
+                        </div>
+                        <div class="flex items-center text-gray-800">
+                            <span class="text-2xl font-black font-mono tracking-tighter">19:20</span>
+                            <span class="text-xs text-gray-400 font-bold ml-1.5">FUK</span>
+                            <div class="flex-1 border-t-2 border-dashed border-gray-200 mx-4 relative flex justify-center">
+                                <i class="fa-solid fa-plane text-rose-400 absolute -top-3 bg-white px-2 transform rotate-180"></i>
+                            </div>
+                            <span class="text-2xl font-black font-mono tracking-tighter">20:45</span>
+                            <span class="text-xs text-gray-400 font-bold ml-1.5">TPE</span>
                         </div>
                     </div>
                 </div>
@@ -733,118 +837,126 @@
                 if (!day) return;
 
                 let html = `
-                    <div class="bg-white rounded-lg shadow-lg p-6 animate-fade-in">
-                        <div class="flex justify-between items-center mb-6">
+                    <div class="glass-card rounded-3xl shadow-glass p-6 sm:p-8 animate-fade-in relative overflow-hidden mt-4">
+                        <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
+                        <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 relative z-10 gap-4 border-b border-gray-100 pb-6">
                             <div>
-                                <h2 class="text-2xl font-bold text-gray-800">${day.title}</h2>
-                                <p class="text-sm text-gray-500">${day.memo}</p>
+                                <h2 class="text-3xl font-extrabold text-gray-800 tracking-tight">${day.title}</h2>
+                                <p class="text-sm text-primary font-bold mt-1.5 px-3 py-1 bg-primary/5 inline-block rounded-md border border-primary/10">${day.memo}</p>
                             </div>
-                            <div class="flex items-center text-gray-600 bg-gray-100 px-3 py-1 rounded-full text-sm">
-                                <i class="fa-solid fa-cloud-sun mr-2"></i>
+                            <div class="flex items-center text-indigo-700 bg-indigo-50 border border-indigo-100 px-4 py-2 rounded-full text-sm shadow-sm font-bold whitespace-nowrap group hover:bg-indigo-100 transition-colors">
+                                <i class="fa-solid fa-cloud-sun mr-2.5 text-indigo-500 scale-110 group-hover:rotate-12 transition-transform"></i>
                                 ${day.weather}
                             </div>
                         </div>
-                        <div class="space-y-8 relative before:absolute before:inset-0 before:ml-5 before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-300 before:to-transparent">
+                        <div class="space-y-8 relative before:absolute before:inset-0 before:ml-[1.4rem] before:-translate-x-px before:h-[98%] before:w-1 before:bg-gradient-to-b before:from-primary/30 before:via-secondary/20 before:to-transparent before:rounded-full pt-2">
                 `;
 
                 day.events.forEach(event => {
                     let tagHtml = '';
                     if (event.tag) {
-                        tagHtml = `<span class="inline-block bg-pink-100 text-pink-600 text-xs px-2 py-1 rounded-full mb-2 border border-pink-200">${event.tag}</span>`;
+                        tagHtml = `<span class="inline-block bg-gradient-to-r from-pink-50 to-rose-50 text-pink-600 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-200 shadow-sm">${event.tag}</span>`;
                     }
 
                     // Pre-calculate conditional HTML blocks to avoid nested template literal confusion
                     const transportHtml = event.transport ? `
-                        <div class="flex items-center text-slate-500 text-sm bg-slate-100 p-2 rounded mb-3">
-                            <i class="fa-solid ${event.transport.icon} w-5 text-center mr-2"></i>
-                            <span>${event.transport.text}</span>
+                        <div class="flex items-center text-slate-500 text-sm bg-slate-50/80 backdrop-blur-sm p-3 rounded-xl mb-3 border border-slate-100/50 hover:bg-slate-100 transition-colors group">
+                            <div class="w-8 h-8 rounded-lg bg-white shadow-soft flex items-center justify-center mr-3 text-slate-400 group-hover:text-primary transition-colors">
+                                <i class="fa-solid ${event.transport.icon}"></i>
+                            </div>
+                            <span class="font-medium">${event.transport.text}</span>
                         </div>
                     ` : '';
 
                     const bookingHtml = event.booking ? `
-                        <div class="flex items-center text-amber-700 text-sm bg-amber-50 border border-amber-200 p-2 rounded mb-3">
-                            <i class="fa-solid fa-calendar-check w-5 text-center mr-2"></i>
-                            <span class="font-bold">⚠️ ${typeof event.booking === 'string' ? event.booking : '需提前預約'}</span>
+                        <div class="flex items-start text-amber-700 text-sm bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 p-3 rounded-xl mb-3 shadow-sm">
+                            <i class="fa-solid fa-calendar-check mt-0.5 w-6 text-center text-amber-500 mr-2"></i>
+                            <span class="font-bold tracking-wide">⚠️ ${typeof event.booking === 'string' ? event.booking : '需提前預約'}</span>
                         </div>
                     ` : '';
 
                     const rainHtml = event.rain ? `
-                        <div class="flex items-center text-blue-700 text-sm bg-blue-50 border border-blue-200 p-2 rounded mb-3">
-                            <i class="fa-solid fa-umbrella w-5 text-center mr-2"></i>
-                            <span class="font-bold">${event.rain}</span>
+                        <div class="flex items-start text-blue-700 text-sm bg-blue-50 border border-blue-200 p-3 rounded-xl mb-3 shadow-sm">
+                            <i class="fa-solid fa-umbrella mt-0.5 w-6 text-center text-blue-400 mr-2"></i>
+                            <span class="font-bold tracking-wide">${event.rain}</span>
                         </div>
                     ` : '';
 
                     const nonShopperHtml = event.nonShopper ? `
-                        <div class="flex items-center text-teal-700 text-sm bg-teal-50 border border-teal-200 p-2 rounded mb-3">
-                            <i class="fa-solid fa-mug-hot w-5 text-center mr-2"></i>
-                            <span class="font-bold">${event.nonShopper}</span>
+                        <div class="flex items-start text-teal-700 text-sm bg-teal-50 border border-teal-200 p-3 rounded-xl mb-3 shadow-sm">
+                            <i class="fa-solid fa-mug-hot mt-0.5 w-6 text-center text-teal-500 mr-2"></i>
+                            <span class="font-bold tracking-wide">${event.nonShopper}</span>
                         </div>
                     ` : '';
 
                     const priceHtml = event.price ? `
-                        <div class="inline-flex items-center text-xs font-bold text-gray-600 bg-gray-100 px-2 py-1 rounded mr-2 mb-2">
-                            <i class="fa-solid fa-yen-sign mr-1"></i>
+                        <div class="inline-flex items-center text-xs font-bold text-gray-700 bg-white border border-gray-100 shadow-sm px-3 py-1.5 rounded-lg mr-2 mb-2 transition-transform hover:scale-105">
+                            <i class="fa-solid fa-yen-sign mr-1.5 text-gray-400"></i>
                             平均：${event.price}
                         </div>
                     ` : '';
 
                     const menuHtml = event.menuLink ? `
-                        <a href="${event.menuLink}" target="_blank" class="inline-flex items-center text-xs font-bold text-orange-600 bg-orange-50 px-2 py-1 rounded border border-orange-200 hover:bg-orange-100 transition-colors mb-2">
-                            <i class="fa-solid fa-book-open mr-1"></i>
+                        <a href="${event.menuLink}" target="_blank" class="inline-flex items-center text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1.5 rounded-lg border border-orange-200 hover:bg-orange-100 hover:-translate-y-0.5 transition-all mb-2 shadow-sm">
+                            <i class="fa-solid fa-book-open mr-1.5"></i>
                             查看菜單
                         </a>
                     ` : '';
 
                     const linkHtml = event.link ? `
-                        <div class="mb-3">
-                            <a href="${event.link}" target="_blank" class="inline-flex items-center text-sm font-bold text-indigo-600 hover:text-indigo-800 bg-indigo-50 px-3 py-2 rounded-lg border border-indigo-200 transition-colors w-full sm:w-auto">
+                        <div class="mb-4 mt-2">
+                            <a href="${event.link}" target="_blank" class="inline-flex items-center justify-center text-sm font-bold text-white bg-indigo-500 hover:bg-indigo-600 px-4 py-2.5 rounded-xl transition-all w-full sm:w-auto shadow-sm hover:shadow-md hover:-translate-y-0.5">
                                 <i class="fa-solid fa-book-open mr-2"></i>
-                                ${event.linkText || '查看詳細資訊'} <i class="fa-solid fa-arrow-up-right-from-square ml-1 text-xs opacity-70"></i>
+                                ${event.linkText || '查看詳細資訊'} <i class="fa-solid fa-arrow-up-right-from-square ml-1.5 text-xs opacity-80"></i>
                             </a>
                         </div>
                     ` : '';
 
                     const imageHtml = event.image ? `
-                        <div class="mt-3 rounded-lg overflow-hidden relative group cursor-pointer" onclick="openLightbox('${event.image}')">
-                            <img src="${event.image}" alt="${event.title}" class="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                                <i class="fa-solid fa-expand text-white text-3xl drop-shadow-md transform scale-75 group-hover:scale-100 transition-transform duration-300"></i>
+                        <div class="mt-4 rounded-xl overflow-hidden relative group cursor-pointer shadow-soft border border-gray-100" onclick="openLightbox('${event.image}')">
+                            <img src="${event.image}" alt="${event.title}" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
+                            <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="w-12 h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40">
+                                    <i class="fa-solid fa-expand text-white text-xl"></i>
+                                </div>
                             </div>
                         </div>
                     ` : '';
 
                     const locationHtml = event.location ? `
-                        <div class="mt-3 pt-2 border-t border-gray-200 flex justify-between items-center">
-                            <span class="text-xs text-gray-400 truncate w-2/3"><i class="fa-solid fa-map-pin mr-1"></i>${event.location}</span>
-                            <a href="https://www.google.com/maps/search/?api=1&query=${event.googleMap || event.location}" target="_blank" class="map-link text-xs font-bold text-blue-500 flex items-center">
-                                導航 <i class="fa-solid fa-location-arrow ml-1"></i>
+                        <div class="mt-4 pt-3 border-t border-gray-100 flex justify-between items-center bg-gray-50/50 -mx-5 -mb-5 px-5 py-3 rounded-b-2xl">
+                            <span class="text-xs text-gray-500 font-medium truncate w-[70%]"><i class="fa-solid fa-map-pin mr-1.5 text-gray-400"></i>${event.location}</span>
+                            <a href="https://www.google.com/maps/search/?api=1&query=${event.googleMap || event.location}" target="_blank" class="map-link text-xs font-bold text-primary flex items-center bg-white px-2.5 py-1 rounded-md shadow-sm border border-indigo-50 hover:bg-indigo-50">
+                                導航 <i class="fa-solid fa-location-arrow ml-1.5 text-[10px]"></i>
                             </a>
                         </div>
                     ` : '';
 
                     html += `
-                        <div class="relative pl-10">
-                            <div class="absolute left-0 top-1 w-10 h-10 bg-white border-2 border-blue-500 rounded-full flex items-center justify-center shadow-sm z-10 text-blue-500">
-                                <i class="fa-solid ${event.icon || 'fa-location-dot'}"></i>
+                        <div class="relative pl-12 pr-2 group">
+                            <div class="absolute left-0 top-1 w-[2.8rem] h-[2.8rem] bg-white border-4 border-indigo-50 rounded-full flex items-center justify-center shadow-soft z-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:border-indigo-100 group-hover:text-indigo-600">
+                                <i class="fa-solid ${event.icon || 'fa-location-dot'} text-lg"></i>
                             </div>
-                            <div class="bg-slate-50 p-4 rounded-lg border border-slate-100 hover:shadow-md transition-shadow">
-                                <div class="flex justify-between items-start mb-2">
-                                    <span class="font-bold text-blue-600 font-mono text-lg">${event.time}</span>
-                                    ${tagHtml}
+                            <div class="glass-card event-card p-5 rounded-2xl relative z-0 ml-2 shadow-soft hover:shadow-lg">
+                                <div class="flex justify-between items-start mb-3">
+                                    <span class="font-black text-transparent bg-clip-text bg-gradient-to-br from-primary to-indigo-400 font-mono text-xl tracking-tighter">${event.time}</span>
+                                    <div class="ml-2">${tagHtml}</div>
                                 </div>
-                                <h3 class="font-bold text-gray-800 text-lg mb-1">${event.title}</h3>
-                                <div class="mb-2">
+                                <h3 class="font-extrabold text-gray-800 text-xl mb-2 tracking-tight leading-snug">${event.title}</h3>
+                                <div class="mb-3 flex flex-wrap">
                                     ${priceHtml}
                                     ${menuHtml}
                                 </div>
-                                <p class="text-gray-600 text-sm mb-3 leading-relaxed">${event.desc}</p>
+                                <p class="text-gray-600 text-[15px] mb-4 leading-relaxed font-medium">${event.desc}</p>
                                 
-                                ${transportHtml}
-                                ${rainHtml}
-                                ${nonShopperHtml}
+                                <div class="space-y-1">
+                                    ${transportHtml}
+                                    ${rainHtml}
+                                    ${nonShopperHtml}
+                                    ${bookingHtml}
+                                </div>
                                 ${linkHtml}
-                                ${bookingHtml}
                                 ${imageHtml}
                                 ${locationHtml}
                             </div>
