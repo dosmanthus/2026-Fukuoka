@@ -653,14 +653,11 @@
                       >
                         <i class="fa-solid fa-fish"></i> 博多炉端 魚男
                       </div>
-                      <div class="font-bold text-gray-800 mt-1 text-sm">
-                        <i class="fa-solid fa-shop text-emerald-500 mr-1"></i
-                        >藥院選物
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <span class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600">A</span><i class="fa-solid fa-shop text-emerald-500 mr-1"></i>藥院選物
                       </div>
-                      <div
-                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
-                      >
-                        16區(達克瓦茲) / 文具<br />MOONSTAR等各類雜貨
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <span class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600">B</span><i class="fa-solid fa-hippo text-amber-500 mr-1"></i>福岡動植物園
                       </div>
                     </div>
                   </td>
@@ -1151,16 +1148,27 @@
             {
               time: "14:00",
               title: "藥院質感選物巡禮 (Shopping)",
-              desc: "推薦散步路線（由今泉/白金一路逛回藥院，順路接晚餐！）：<br>1. Yamabikoya 山響屋 (今泉區鄉土玩具)<br>2. Kitchen Paradise / NONE TOO SOON (白金區)<br>3. GOUACHE / Mille (文青服飾與選物)<br>4. HIGHTIDE STORE (知名文具雜貨)<br>5. ALSO MOONSTAR (質感休閒鞋)<br>6. B・B・B POTTERS (必逛生活器皿與雜貨)<br>7. フランス菓子16区 (必吃達克瓦茲，超級好吃！)<br>8. 🍞 むつか堂 藥院本店 (晚餐前剛好去買人氣生吐司！)",
+              desc: "推薦散步路線（由今泉/白金一路逛回藥院，順路接晚餐！）：<br>1. Yamabikoya 山響屋 (今泉區鄉土玩具)<br>2. HIGHTIDE STORE (知名文具雜貨)<br>3. B・B・B POTTERS (必逛生活器皿)<br>4. フランス菓子16区 (必吃達克瓦茲)<br>5. 🍞 むつか堂 藥院本店 (接續晚餐前去買生吐司！)",
               icon: "fa-shop",
               location: "福岡県福岡市中央区薬院エリア",
-              link: "https://fukuokainsider.com/article/yakuinzakka/",
-              linkText: "藥院選物地圖",
               image: "img/LINE_ALBUM_福岡景點_260210_1.jpg",
               imgType: "attraction",
               transport: {
                 text: "步行前往 (今泉區餐廳 -> 藥院選物店, 順路直達)",
                 icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "14:00",
+              title: "下午備案：福岡動植物園",
+              desc: "如果想親近大自然，吃飽後從今泉搭公車，不到 15 分鐘即可直達園區門口！<br>🐘 園區剛翻新，可以近距離看企鵝與人猿，綠意盎然，非常適合休閒放電與拍照！",
+              icon: "fa-hippo",
+              location: "福岡県福岡市中央区南公園1-1",
+              googleMap: "Fukuoka+City+Zoological+and+Botanical+Garden",
+              imgType: "attraction",
+              transport: {
+                text: "搭乘公車直達 (今泉 -> 動植物園, 乘車約 15 分)",
+                icon: "fa-bus",
               },
             },
             {
@@ -1694,7 +1702,7 @@
                                   `
                                       : ""
                                   }
-                                  <h3 class="font-extrabold text-gray-800 text-lg sm:text-xl mb-2 tracking-tight leading-snug break-words hyphens-auto mt-1">${event.title}</h3>
+                                  <h3 class="font-extrabold text-gray-800 text-lg sm:text-xl mb-2 tracking-tight leading-snug break-words hyphens-auto ${isMultiOption && !tagHtml ? 'mt-7 sm:mt-5' : 'mt-1'}">${event.title}</h3>
                                   <div class="mb-3 flex flex-wrap gap-2">
                                       ${priceHtml}
                                       ${menuHtml}
