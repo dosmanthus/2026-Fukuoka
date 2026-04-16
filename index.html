@@ -164,6 +164,46 @@
       transform: rotate(90deg);
     }
 
+    /* Budget Tooltips */
+    .budget-tooltip {
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translateX(-50%) translateY(-10px);
+      width: 220px;
+      max-height: 300px;
+      overflow-y: auto;
+      z-index: 100;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      font-family: inherit;
+    }
+
+    .group:hover .budget-tooltip {
+      opacity: 1;
+      visibility: visible;
+      transform: translateX(-50%) translateY(-20px);
+    }
+
+    .budget-tooltip::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .budget-tooltip-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 4px 0;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+      font-size: 11px;
+    }
+
+    .budget-tooltip-item:last-child {
+      border-bottom: none;
+    }
+
+
     /* Smooth Entrance Animation */
     @keyframes fadeUp {
       from {
@@ -315,8 +355,11 @@
 
     <!-- Budget Dashboard [New Section] -->
     <div class="mt-8 mb-4 animate-fade-in" style="animation-delay: 0.1s">
-      <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
-        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+      <div class="glass-card rounded-2xl p-6 relative">
+        <!-- Background Decoration (Clipped) -->
+        <div class="absolute inset-0 overflow-hidden rounded-2xl pointer-events-none">
+          <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+        </div>
         <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
           <div>
             <h2 class="text-indigo-400 text-xs font-bold uppercase tracking-wider mb-3">
@@ -333,20 +376,44 @@
           </div>
 
           <div class="grid grid-cols-3 gap-4 w-full md:w-auto">
-            <div class="bg-orange-50/50 border border-orange-100 p-3 rounded-xl flex flex-col items-center">
+            <div class="group relative cursor-help bg-orange-50/50 border border-orange-100 p-3 rounded-xl flex flex-col items-center">
               <i class="fa-solid fa-utensils text-orange-400 mb-1"></i>
               <span class="text-[10px] text-gray-500 font-bold uppercase">美食</span>
               <span id="cat-food" class="text-sm font-black text-orange-600">¥0</span>
+              <div class="budget-tooltip glass-card p-4 rounded-xl shadow-xl">
+                <div class="text-[11px] font-black text-orange-600 uppercase tracking-tighter mb-2 pb-1 border-b border-orange-100 flex items-center gap-1.5">
+                  <i class="fa-solid fa-utensils"></i> 美食項目明細
+                </div>
+                <div id="tooltip-food" class="text-gray-600 space-y-0.5 text-[11px]">
+                  <!-- JS will populate -->
+                </div>
+              </div>
             </div>
-            <div class="bg-blue-50/50 border border-blue-100 p-3 rounded-xl flex flex-col items-center">
+            <div class="group relative cursor-help bg-blue-50/50 border border-blue-100 p-3 rounded-xl flex flex-col items-center">
               <i class="fa-solid fa-bus text-blue-400 mb-1"></i>
               <span class="text-[10px] text-gray-500 font-bold uppercase">交通</span>
               <span id="cat-transport" class="text-sm font-black text-blue-600">¥0</span>
+              <div class="budget-tooltip glass-card p-4 rounded-xl shadow-xl">
+                <div class="text-[11px] font-black text-blue-600 uppercase tracking-tighter mb-2 pb-1 border-b border-blue-100 flex items-center gap-1.5">
+                  <i class="fa-solid fa-bus"></i> 交通項目明細
+                </div>
+                <div id="tooltip-transport" class="text-gray-600 space-y-0.5 text-[11px]">
+                  <!-- JS will populate -->
+                </div>
+              </div>
             </div>
-            <div class="bg-purple-50/50 border border-purple-100 p-3 rounded-xl flex flex-col items-center">
+            <div class="group relative cursor-help bg-purple-50/50 border border-purple-100 p-3 rounded-xl flex flex-col items-center">
               <i class="fa-solid fa-ticket text-purple-400 mb-1"></i>
               <span class="text-[10px] text-gray-500 font-bold uppercase">門票</span>
               <span id="cat-activity" class="text-sm font-black text-purple-600">¥0</span>
+              <div class="budget-tooltip glass-card p-4 rounded-xl shadow-xl">
+                <div class="text-[11px] font-black text-purple-600 uppercase tracking-tighter mb-2 pb-1 border-b border-purple-100 flex items-center gap-1.5">
+                  <i class="fa-solid fa-ticket"></i> 門票項目明細
+                </div>
+                <div id="tooltip-activity" class="text-gray-600 space-y-0.5 text-[11px]">
+                  <!-- JS will populate -->
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -1907,6 +1974,10 @@
       let totalTransport = 0;
       let totalActivity = 0;
       let allItems = [];
+      
+      let foodItems = [];
+      let transportItems = [];
+      let activityItems = [];
 
       itinerary.forEach((day) => {
         day.events.forEach((event) => {
@@ -1929,6 +2000,7 @@
             tag.includes("吃")
           ) {
             totalFood += price;
+            foodItems.push({ title: event.title, price });
           } else if (
             icon.includes("bus") ||
             icon.includes("train") ||
@@ -1939,8 +2011,10 @@
             icon.includes("ticket")
           ) {
             totalTransport += price;
+            transportItems.push({ title: event.title, price });
           } else {
             totalActivity += price;
+            activityItems.push({ title: event.title, price });
           }
         });
       });
@@ -1959,6 +2033,23 @@
         `¥${totalTransport.toLocaleString()}`;
       document.getElementById("cat-activity").innerText =
         `¥${totalActivity.toLocaleString()}`;
+
+      // Update Tooltips
+      const updateTooltip = (id, items) => {
+        const container = document.getElementById(id);
+        if (!container) return;
+        container.innerHTML = items.length > 0 
+          ? items.map(item => `
+            <div class="budget-tooltip-item">
+              <span class="truncate pr-2">${item.title}</span>
+              <span class="font-mono font-bold text-gray-800 shrink-0">¥${item.price.toLocaleString()}</span>
+            </div>
+          `).join('')
+          : '<div class="text-center py-2 text-gray-400">目前尚無項目</div>';
+      };
+      updateTooltip("tooltip-food", foodItems);
+      updateTooltip("tooltip-transport", transportItems);
+      updateTooltip("tooltip-activity", activityItems);
 
       // Update Top 3 Ranking
       const top3 = allItems.sort((a, b) => b.price - a.price).slice(0, 3);
