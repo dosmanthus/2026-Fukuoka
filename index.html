@@ -385,47 +385,107 @@
       <!-- Budget Dashboard [New Section] -->
       <div class="mt-8 mb-4 animate-fade-in" style="animation-delay: 0.1s">
         <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
-          <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
-          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+          <div
+            class="absolute -right-20 -bottom-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"
+          ></div>
+          <div
+            class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10"
+          >
             <div>
-              <h2 class="text-indigo-400 text-xs font-bold uppercase tracking-wider mb-3">行程支出預算 (不含機票住宿)</h2>
+              <h2
+                class="text-indigo-400 text-xs font-bold uppercase tracking-wider mb-3"
+              >
+                行程支出預算 (不含機票住宿)
+              </h2>
               <div class="flex items-end gap-3">
-                <span id="total-jpy" class="text-4xl font-black text-gray-800 tracking-tighter">¥ 0</span>
+                <span
+                  id="total-jpy"
+                  class="text-4xl font-black text-gray-800 tracking-tighter"
+                  >¥ 0</span
+                >
                 <span class="text-lg font-bold text-gray-400 mb-1.5">/</span>
-                <span id="total-twd" class="text-2xl font-bold text-primary mb-1">NT$ 0</span>
+                <span
+                  id="total-twd"
+                  class="text-2xl font-bold text-primary mb-1"
+                  >NT$ 0</span
+                >
               </div>
-              <p class="text-[11px] text-gray-400 font-medium mt-2 italic">* 依據目前行程表內標記之價格估算 (取最高值)</p>
+              <p class="text-[11px] text-gray-400 font-medium mt-2 italic">
+                * 依據目前行程表內標記之價格估算 (取最高值)
+              </p>
             </div>
-            
+
             <div class="grid grid-cols-3 gap-4 w-full md:w-auto">
-              <div class="bg-orange-50/50 border border-orange-100 p-3 rounded-xl flex flex-col items-center">
+              <div
+                class="bg-orange-50/50 border border-orange-100 p-3 rounded-xl flex flex-col items-center"
+              >
                 <i class="fa-solid fa-utensils text-orange-400 mb-1"></i>
-                <span class="text-[10px] text-gray-500 font-bold uppercase">美食</span>
-                <span id="cat-food" class="text-sm font-black text-orange-600">¥0</span>
+                <span class="text-[10px] text-gray-500 font-bold uppercase"
+                  >美食</span
+                >
+                <span id="cat-food" class="text-sm font-black text-orange-600"
+                  >¥0</span
+                >
               </div>
-              <div class="bg-blue-50/50 border border-blue-100 p-3 rounded-xl flex flex-col items-center">
+              <div
+                class="bg-blue-50/50 border border-blue-100 p-3 rounded-xl flex flex-col items-center"
+              >
                 <i class="fa-solid fa-bus text-blue-400 mb-1"></i>
-                <span class="text-[10px] text-gray-500 font-bold uppercase">交通</span>
-                <span id="cat-transport" class="text-sm font-black text-blue-600">¥0</span>
+                <span class="text-[10px] text-gray-500 font-bold uppercase"
+                  >交通</span
+                >
+                <span
+                  id="cat-transport"
+                  class="text-sm font-black text-blue-600"
+                  >¥0</span
+                >
               </div>
-              <div class="bg-purple-50/50 border border-purple-100 p-3 rounded-xl flex flex-col items-center">
+              <div
+                class="bg-purple-50/50 border border-purple-100 p-3 rounded-xl flex flex-col items-center"
+              >
                 <i class="fa-solid fa-ticket text-purple-400 mb-1"></i>
-                <span class="text-[10px] text-gray-500 font-bold uppercase">門票</span>
-                <span id="cat-activity" class="text-sm font-black text-purple-600">¥0</span>
+                <span class="text-[10px] text-gray-500 font-bold uppercase"
+                  >門票</span
+                >
+                <span
+                  id="cat-activity"
+                  class="text-sm font-black text-purple-600"
+                  >¥0</span
+                >
               </div>
             </div>
           </div>
-          
+
           <!-- Progress Bar -->
-          <div class="mt-6 w-full h-1.5 bg-gray-100 rounded-full overflow-hidden flex shadow-inner">
-            <div id="bar-food" class="h-full bg-orange-400 transition-all duration-1000" style="width: 0%"></div>
-            <div id="bar-transport" class="h-full bg-blue-400 transition-all duration-1000 shadow-[inset_-1px_0_0_rgba(255,255,255,0.2)]" style="width: 0%"></div>
-            <div id="bar-activity" class="h-full bg-purple-400 transition-all duration-1000 shadow-[inset_-1px_0_0_rgba(255,255,255,0.2)]" style="width: 0%"></div>
+          <div
+            class="mt-6 w-full h-1.5 bg-gray-100 rounded-full overflow-hidden flex shadow-inner"
+          >
+            <div
+              id="bar-food"
+              class="h-full bg-orange-400 transition-all duration-1000"
+              style="width: 0%"
+            ></div>
+            <div
+              id="bar-transport"
+              class="h-full bg-blue-400 transition-all duration-1000 shadow-[inset_-1px_0_0_rgba(255,255,255,0.2)]"
+              style="width: 0%"
+            ></div>
+            <div
+              id="bar-activity"
+              class="h-full bg-purple-400 transition-all duration-1000 shadow-[inset_-1px_0_0_rgba(255,255,255,0.2)]"
+              style="width: 0%"
+            ></div>
           </div>
 
           <!-- Top 3 Expensive Items [New] -->
-          <div class="mt-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap"><i class="fa-solid fa-fire text-rose-400 mr-1"></i> 高額消費排行</span>
+          <div
+            class="mt-5 flex flex-col sm:flex-row items-start sm:items-center gap-3"
+          >
+            <span
+              class="text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap"
+              ><i class="fa-solid fa-fire text-rose-400 mr-1"></i>
+              高額消費排行</span
+            >
             <div id="top-3-container" class="flex flex-wrap gap-2">
               <!-- Injected by JS -->
             </div>
@@ -654,7 +714,9 @@
                         寄行李至機場
                       </div>
                       <div class="font-bold text-gray-800 mt-1 text-sm">
-                        <i class="fa-solid fa-train-subway text-rose-500 mr-1"></i
+                        <i
+                          class="fa-solid fa-train-subway text-rose-500 mr-1"
+                        ></i
                         >太宰府 (旅人列車)
                       </div>
                       <div
@@ -1046,25 +1108,8 @@
             },
             {
               time: "10:00",
-              title: "早午餐：吉塚うなぎ (Yoshizuka Unagi)",
-              desc: "【百年名店】福岡最知名的鰻魚飯，焦香味美！備註：不吃鰻魚飯的人可以稍微晚點吃蛋包飯 Ikura。<br>⏰ 營業時間：10:00 - 21:00 (週三公休)",
-              tag: "必吃",
-              icon: "fa-utensils",
-              price: "¥3,500 - ¥5,000",
-              menuLink: "https://yoshizukaunagi.com/",
-              location: "福岡市博多区中洲2-8-27",
-              googleMap: "Yoshizuka+Unagi+Honten",
-              imgType: "food",
-              image: "img/yoshidukaunagi10.jpg.webp",
-              transport: {
-                text: "步行前往 (中洲川端站 5 分鐘)",
-                icon: "fa-person-walking",
-              },
-            },
-            {
-              time: "11:00",
-              title: "川端通商店街 & 櫛田神社 & FUK COFFEE",
-              desc: "【順路不繞道】經典散步路線！<br>1️⃣ 川端通商店街：吃飽後從天神過橋到中洲，逛傳統工藝與土產。<br>2️⃣ 櫛田神社：商店街走到底就是神社南門，參拜博多總鎮守。<br>3️⃣ FUK COFFEE：參拜完從神社旁走出來，喝杯飛機圖案拿鐵。<br>📍 路線：天神 -> 商店街(北往南) -> 櫛田神社 -> FUK COFFEE。",
+              title: "川端通商店街 & 櫛田神社",
+              desc: "【順路不繞道】經典散步路線！<br>1️⃣ 川端通商店街：吃飽後從天神過橋到中洲，逛傳統工藝與土產。<br>2️⃣ 櫛田神社：商店街走到底就是神社南門，參拜博多總鎮守。<br>📍 路線：天神 -> 商店街(北往南) -> 櫛田神社 -> 鰻魚飯。",
               icon: "fa-torii-gate",
               tag: "順路",
               image: "img/19-177478.webp",
@@ -1077,7 +1122,7 @@
               },
             },
             {
-              time: "11:00",
+              time: "10:00",
               title: "麵包超人兒童博物館",
               desc: "【親子必訪】位於博多河畔城 (Hakata Riverain) 5F-6F。<br>帶小孩必去！從中洲川端站直結，室內樂園不怕下雨。<br>🎡 必玩：麵包超人劇場、果醬爺爺的麵包工場。<br>📍 就在中洲川端站旁，非常方便！",
               icon: "fa-child-reaching",
@@ -1094,7 +1139,24 @@
               },
             },
             {
-              time: "12:30",
+              time: "11:00",
+              title: "早午餐：吉塚うなぎ (Yoshizuka Unagi)",
+              desc: "【百年名店】福岡最知名的鰻魚飯，焦香味美！<br>⏰ 營業時間：10:00 - 21:00 (週三公休)",
+              tag: "必吃",
+              icon: "fa-utensils",
+              price: "¥3,500 - ¥5,000",
+              menuLink: "https://yoshizukaunagi.com/",
+              location: "福岡市博多区中洲2-8-27",
+              googleMap: "Yoshizuka+Unagi+Honten",
+              imgType: "food",
+              image: "img/yoshidukaunagi10.jpg.webp",
+              transport: {
+                text: "步行前往 (中洲川端站 5 分鐘)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "12:00",
               title: "（午餐備案）漢堡排與蛋包飯 Ikura (博多店)",
               desc: "【必吃清單】網路超人氣！滑嫩歐姆蛋包飯與多汁漢堡排。<br>⏰ 營業時間：11:30 - 15:00 (最後點餐 14:00) / 17:00 - 21:00 (不定休)<br>⚠️ 蛋包飯僅午餐時段供應，務必中午來！",
               icon: "fa-utensils",
@@ -1107,6 +1169,21 @@
               transport: {
                 text: "步行/巴士 (櫛田神社 -> 博多站/運河城, 約 10-15 分)",
                 icon: "fa-bus",
+              },
+            },
+            {
+              time: "13:00",
+              title: "FUK COFFEE (祇園本店)",
+              desc: "【旅行主題咖啡】以機場、飛機為設計靈感，杯身有登機吊牌貼紙。招牌必點「昭和布丁」搭配冰淇淋，口感紮實濃郁！<br>📍 地址：福岡市博多區祇園町 6-22 (就在櫛田神社對面)。",
+              icon: "fa-mug-hot",
+              tag: "咖啡",
+              imgType: "food",
+              image: "img/fukcoffee1.jpeg",
+              price: "約 ¥1,200 - ¥1,500",
+              menuLink: "https://fuk-coffee.com/shop/fuk-coffee-2/",
+              transport: {
+                text: "步行前往 (吉塚鰻魚屋 -> FUK COFFEE, 約 8 分)",
+                icon: "fa-person-walking",
               },
             },
             {
@@ -1246,7 +1323,7 @@
               linkText: "動植物園遊記分享",
               imgType: "attraction",
               image: "img/Fukuoka-City-Zoological-and-Botanical-Garden.jpg",
-               price: "¥600",
+              price: "¥600",
               transport: {
                 text: "搭乘公車直達 (今泉 -> 動植物園, 乘車約 15 分)",
                 icon: "fa-bus",
@@ -1335,7 +1412,7 @@
               title: "西鐵福岡（天神）站集合",
               desc: "準備搭乘 THE RAIL KITCHEN CHIKUGO，請準時抵達車站報到。<br>⚠️ 建議在 **12:10** 左右從大濠公園出發。<br>💡 **省錢必買**：在有站務員的窗口出示預約畫面，加購「THE RAIL KITCHEN 限定1日乘車券」 (成人 650円 / 兒童 330円)。<br>於搭乘當日可在天神大牟田線、太宰府線及甘木線自由上下車，回程從柳川搭西鐵特急回天神直接用這張卡就全包了！",
               icon: "fa-train",
-               price: "¥650",
+              price: "¥650",
               transport: {
                 text: "搭乘地鐵空港線 (大濠公園站 -> 天神站, 車程 4 分) + 轉乘步行 (約 8 分)",
                 icon: "fa-subway",
@@ -1449,7 +1526,7 @@
               icon: "fa-ticket",
               link: "https://www.retro-line.net/about/value_tickets/%E9%96%A2%E9%96%80%E6%B5%B7%E5%B3%A1%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%90%E3%83%BC%E3%81%8D%E3%81%A3%E3%81%B7/",
               linkText: "關門海峽四葉草套票官網",
-               price: "¥1,600",
+              price: "¥1,600",
               transport: {
                 text: "新幹線 + JR (博多 -> 小倉 -> 門司港站)",
                 icon: "fa-train-subway",
@@ -1588,7 +1665,7 @@
               title: "寄送行李 & 飯店退房",
               desc: "先將行李交給飯店櫃台寄往機場 (Cargo Pass，需 10:00 前)，並辦理退房手續。一身輕便出發！",
               icon: "fa-suitcase",
-               price: "¥1,100",
+              price: "¥1,100",
               transport: { text: "飯店櫃台辦理", icon: "fa-bell-concierge" },
             },
             {
@@ -2155,22 +2232,31 @@
         const totalTWD = Math.round(totalJPY / EXCHANGE_RATE);
 
         // Update Text
-        document.getElementById("total-jpy").innerText = `¥ ${totalJPY.toLocaleString()}`;
-        document.getElementById("total-twd").innerText = `NT$ ${totalTWD.toLocaleString()}`;
-        document.getElementById("cat-food").innerText = `¥${totalFood.toLocaleString()}`;
-        document.getElementById("cat-transport").innerText = `¥${totalTransport.toLocaleString()}`;
-        document.getElementById("cat-activity").innerText = `¥${totalActivity.toLocaleString()}`;
+        document.getElementById("total-jpy").innerText =
+          `¥ ${totalJPY.toLocaleString()}`;
+        document.getElementById("total-twd").innerText =
+          `NT$ ${totalTWD.toLocaleString()}`;
+        document.getElementById("cat-food").innerText =
+          `¥${totalFood.toLocaleString()}`;
+        document.getElementById("cat-transport").innerText =
+          `¥${totalTransport.toLocaleString()}`;
+        document.getElementById("cat-activity").innerText =
+          `¥${totalActivity.toLocaleString()}`;
 
         // Update Top 3 Ranking
         const top3 = allItems.sort((a, b) => b.price - a.price).slice(0, 3);
         const top3Container = document.getElementById("top-3-container");
-        top3Container.innerHTML = top3.map((item, idx) => `
+        top3Container.innerHTML = top3
+          .map(
+            (item, idx) => `
           <div class="flex items-center gap-1.5 bg-white/60 backdrop-blur-sm border border-gray-100 px-2.5 py-1 rounded-lg shadow-sm hover:translate-y-[-1px] transition-transform">
-            <span class="w-4 h-4 rounded-full bg-primary text-white text-[9px] flex items-center justify-center font-bold font-mono">${idx+1}</span>
+            <span class="w-4 h-4 rounded-full bg-primary text-white text-[9px] flex items-center justify-center font-bold font-mono">${idx + 1}</span>
             <span class="text-[11px] font-bold text-gray-700 truncate max-w-[80px] sm:max-w-[120px]">${item.title}</span>
             <span class="text-[10px] font-black text-rose-500 font-mono">¥${item.price.toLocaleString()}</span>
           </div>
-        `).join("");
+        `,
+          )
+          .join("");
 
         // Update Progress Bars
         const foodPct = (totalFood / totalJPY) * 100;
