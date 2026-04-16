@@ -382,6 +382,57 @@
         </div>
       </div>
 
+      <!-- Budget Dashboard [New Section] -->
+      <div class="mt-8 mb-4 animate-fade-in" style="animation-delay: 0.1s">
+        <div class="glass-card rounded-2xl p-6 relative overflow-hidden group">
+          <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative z-10">
+            <div>
+              <h2 class="text-indigo-400 text-xs font-bold uppercase tracking-wider mb-3">行程支出預算 (不含機票住宿)</h2>
+              <div class="flex items-end gap-3">
+                <span id="total-jpy" class="text-4xl font-black text-gray-800 tracking-tighter">¥ 0</span>
+                <span class="text-lg font-bold text-gray-400 mb-1.5">/</span>
+                <span id="total-twd" class="text-2xl font-bold text-primary mb-1">NT$ 0</span>
+              </div>
+              <p class="text-[11px] text-gray-400 font-medium mt-2 italic">* 依據目前行程表內標記之價格估算 (取最高值)</p>
+            </div>
+            
+            <div class="grid grid-cols-3 gap-4 w-full md:w-auto">
+              <div class="bg-orange-50/50 border border-orange-100 p-3 rounded-xl flex flex-col items-center">
+                <i class="fa-solid fa-utensils text-orange-400 mb-1"></i>
+                <span class="text-[10px] text-gray-500 font-bold uppercase">美食</span>
+                <span id="cat-food" class="text-sm font-black text-orange-600">¥0</span>
+              </div>
+              <div class="bg-blue-50/50 border border-blue-100 p-3 rounded-xl flex flex-col items-center">
+                <i class="fa-solid fa-bus text-blue-400 mb-1"></i>
+                <span class="text-[10px] text-gray-500 font-bold uppercase">交通</span>
+                <span id="cat-transport" class="text-sm font-black text-blue-600">¥0</span>
+              </div>
+              <div class="bg-purple-50/50 border border-purple-100 p-3 rounded-xl flex flex-col items-center">
+                <i class="fa-solid fa-ticket text-purple-400 mb-1"></i>
+                <span class="text-[10px] text-gray-500 font-bold uppercase">門票</span>
+                <span id="cat-activity" class="text-sm font-black text-purple-600">¥0</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Progress Bar -->
+          <div class="mt-6 w-full h-1.5 bg-gray-100 rounded-full overflow-hidden flex shadow-inner">
+            <div id="bar-food" class="h-full bg-orange-400 transition-all duration-1000" style="width: 0%"></div>
+            <div id="bar-transport" class="h-full bg-blue-400 transition-all duration-1000 shadow-[inset_-1px_0_0_rgba(255,255,255,0.2)]" style="width: 0%"></div>
+            <div id="bar-activity" class="h-full bg-purple-400 transition-all duration-1000 shadow-[inset_-1px_0_0_rgba(255,255,255,0.2)]" style="width: 0%"></div>
+          </div>
+
+          <!-- Top 3 Expensive Items [New] -->
+          <div class="mt-5 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+            <span class="text-[10px] font-black text-gray-400 uppercase tracking-widest whitespace-nowrap"><i class="fa-solid fa-fire text-rose-400 mr-1"></i> 高額消費排行</span>
+            <div id="top-3-container" class="flex flex-wrap gap-2">
+              <!-- Injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
       <!-- Itinerary Summary Table -->
       <div class="glass-card rounded-2xl p-5 mt-5">
         <div class="flex justify-between items-center mb-4">
@@ -1177,6 +1228,7 @@
               linkText: "動植物園遊記分享",
               imgType: "attraction",
               image: "img/Fukuoka-City-Zoological-and-Botanical-Garden.jpg",
+               price: "¥600",
               transport: {
                 text: "搭乘公車直達 (今泉 -> 動植物園, 乘車約 15 分)",
                 icon: "fa-bus",
@@ -1265,6 +1317,7 @@
               title: "西鐵福岡（天神）站集合",
               desc: "準備搭乘 THE RAIL KITCHEN CHIKUGO，請準時抵達車站報到。<br>⚠️ 建議在 **12:10** 左右從大濠公園出發。<br>💡 **省錢必買**：在有站務員的窗口出示預約畫面，加購「THE RAIL KITCHEN 限定1日乘車券」 (成人 650円 / 兒童 330円)。<br>於搭乘當日可在天神大牟田線、太宰府線及甘木線自由上下車，回程從柳川搭西鐵特急回天神直接用這張卡就全包了！",
               icon: "fa-train",
+               price: "¥650",
               transport: {
                 text: "搭乘地鐵空港線 (大濠公園站 -> 天神站, 車程 4 分) + 轉乘步行 (約 8 分)",
                 icon: "fa-subway",
@@ -1378,6 +1431,7 @@
               icon: "fa-ticket",
               link: "https://www.retro-line.net/about/value_tickets/%E9%96%A2%E9%96%80%E6%B5%B7%E5%B3%A1%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%90%E3%83%BC%E3%81%8D%E3%81%A3%E3%81%B7/",
               linkText: "關門海峽四葉草套票官網",
+               price: "¥1,600",
               transport: {
                 text: "新幹線 + JR (博多 -> 小倉 -> 門司港站)",
                 icon: "fa-train-subway",
@@ -1516,7 +1570,7 @@
               title: "寄送行李 & 飯店退房",
               desc: "先將行李交給飯店櫃台寄往機場 (Cargo Pass，需 10:00 前)，並辦理退房手續。一身輕便出發！",
               icon: "fa-suitcase",
-              booking: "行李費用約 ¥550-¥1100/件",
+               price: "¥1,100",
               transport: { text: "飯店櫃台辦理", icon: "fa-bell-concierge" },
             },
             {
@@ -2019,10 +2073,98 @@
         }
       }
 
-      // Initialize weather fetching after DOM is fully loaded
+      // Initialize budget and weather fetching after DOM is fully loaded
       document.addEventListener("DOMContentLoaded", () => {
         fetchWeather();
+        renderBudget();
       });
+
+      // Budget Calculation Logic
+      function parsePrice(priceStr) {
+        if (!priceStr) return 0;
+        // Clean symbols like ¥, commas, and handle ranges
+        const clean = priceStr.replace(/[¥,]/g, "");
+        const parts = clean.match(/\d+/g);
+        if (!parts) return 0;
+        // If there's a range like "3500 - 5000", take the maximum
+        return Math.max(...parts.map(Number));
+      }
+
+      function renderBudget() {
+        let totalFood = 0;
+        let totalTransport = 0;
+        let totalActivity = 0;
+        let allItems = [];
+
+        itinerary.forEach((day) => {
+          day.events.forEach((event) => {
+            const price = parsePrice(event.price);
+            if (price === 0) return;
+
+            // Collect items for Ranking
+            allItems.push({ title: event.title, price: price });
+
+            // Simple categorization based on icon or tag
+            const icon = event.icon || "";
+            const tag = event.tag || "";
+
+            if (
+              icon.includes("utensils") ||
+              icon.includes("bread") ||
+              icon.includes("fish") ||
+              icon.includes("fire") ||
+              icon.includes("mug") ||
+              tag.includes("吃")
+            ) {
+              totalFood += price;
+            } else if (
+              icon.includes("bus") ||
+              icon.includes("train") ||
+              icon.includes("plane") ||
+              icon.includes("ship") ||
+              icon.includes("subway") ||
+              icon.includes("taxi") ||
+              icon.includes("ticket")
+            ) {
+              totalTransport += price;
+            } else {
+              totalActivity += price;
+            }
+          });
+        });
+
+        const totalJPY = totalFood + totalTransport + totalActivity;
+        const totalTWD = Math.round(totalJPY / EXCHANGE_RATE);
+
+        // Update Text
+        document.getElementById("total-jpy").innerText = `¥ ${totalJPY.toLocaleString()}`;
+        document.getElementById("total-twd").innerText = `NT$ ${totalTWD.toLocaleString()}`;
+        document.getElementById("cat-food").innerText = `¥${totalFood.toLocaleString()}`;
+        document.getElementById("cat-transport").innerText = `¥${totalTransport.toLocaleString()}`;
+        document.getElementById("cat-activity").innerText = `¥${totalActivity.toLocaleString()}`;
+
+        // Update Top 3 Ranking
+        const top3 = allItems.sort((a, b) => b.price - a.price).slice(0, 3);
+        const top3Container = document.getElementById("top-3-container");
+        top3Container.innerHTML = top3.map((item, idx) => `
+          <div class="flex items-center gap-1.5 bg-white/60 backdrop-blur-sm border border-gray-100 px-2.5 py-1 rounded-lg shadow-sm hover:translate-y-[-1px] transition-transform">
+            <span class="w-4 h-4 rounded-full bg-primary text-white text-[9px] flex items-center justify-center font-bold font-mono">${idx+1}</span>
+            <span class="text-[11px] font-bold text-gray-700 truncate max-w-[80px] sm:max-w-[120px]">${item.title}</span>
+            <span class="text-[10px] font-black text-rose-500 font-mono">¥${item.price.toLocaleString()}</span>
+          </div>
+        `).join("");
+
+        // Update Progress Bars
+        const foodPct = (totalFood / totalJPY) * 100;
+        const transPct = (totalTransport / totalJPY) * 100;
+        const actPct = (totalActivity / totalJPY) * 100;
+
+        setTimeout(() => {
+          document.getElementById("bar-food").style.width = `${foodPct}%`;
+          document.getElementById("bar-transport").style.width = `${transPct}%`;
+          document.getElementById("bar-activity").style.width = `${actPct}%`;
+        }, 100);
+      }
     </script>
   </body>
 </html>
