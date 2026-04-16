@@ -1,1403 +1,1624 @@
 <!doctype html>
 <html lang="zh-TW">
-
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>福岡美食之旅 5/20-5/25</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            primary: "#4f46e5", // Indigo-600
-            secondary: "#ec4899", // Pink-500
-          },
-          boxShadow: {
-            glass: "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
-            soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>福岡美食之旅 5/20-5/25</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#4f46e5", // Indigo-600
+              secondary: "#ec4899", // Pink-500
+            },
+            boxShadow: {
+              glass: "0 8px 32px 0 rgba(31, 38, 135, 0.07)",
+              soft: "0 4px 20px -2px rgba(0, 0, 0, 0.05)",
+            },
           },
         },
-      },
-    };
-  </script>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
-    rel="stylesheet" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
-  <style>
-    body {
-      font-family: "Inter", "Noto Sans TC", sans-serif;
-      background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
-      background-attachment: fixed;
-      color: #1f2937;
-    }
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+TC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+      body {
+        font-family: "Inter", "Noto Sans TC", sans-serif;
+        background: linear-gradient(135deg, #f0f4ff 0%, #faf5ff 100%);
+        background-attachment: fixed;
+        color: #1f2937;
+      }
 
-    ::selection {
-      background-color: #c7d2fe;
-      color: #312e81;
-    }
+      ::selection {
+        background-color: #c7d2fe;
+        color: #312e81;
+      }
 
-    .glass-card {
-      background: rgba(255, 255, 255, 0.85);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.5);
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
-    }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+      }
 
-    .day-tab {
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+      .day-tab {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
 
-    .day-tab:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
-    }
+      .day-tab:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(79, 70, 229, 0.15);
+      }
 
-    .day-tab.active {
-      background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
-      color: white;
-      border-color: transparent;
-      box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
-      font-weight: 600;
-    }
+      .day-tab.active {
+        background: linear-gradient(135deg, #4f46e5 0%, #ec4899 100%);
+        color: white;
+        border-color: transparent;
+        box-shadow: 0 4px 15px rgba(236, 72, 153, 0.3);
+        font-weight: 600;
+      }
 
-    .event-card {
-      transition: all 0.3s ease;
-    }
+      .event-card {
+        transition: all 0.3s ease;
+      }
 
-    .event-card:hover {
-      transform: translateY(-4px) scale(1.01);
-      box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
-      border-color: rgba(79, 70, 229, 0.3);
-    }
+      .event-card:hover {
+        transform: translateY(-4px) scale(1.01);
+        box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.1);
+        border-color: rgba(79, 70, 229, 0.3);
+      }
 
-    .map-link {
-      transition: all 0.2s ease;
-    }
+      .map-link {
+        transition: all 0.2s ease;
+      }
 
-    .map-link:hover {
-      color: #4f46e5;
-      text-decoration: underline;
-      transform: translateX(2px);
-    }
+      .map-link:hover {
+        color: #4f46e5;
+        text-decoration: underline;
+        transform: translateX(2px);
+      }
 
-    /* Custom Scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
+      /* Custom Scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+      }
 
-    ::-webkit-scrollbar-track {
-      background: transparent;
-    }
+      ::-webkit-scrollbar-track {
+        background: transparent;
+      }
 
-    ::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
-      border-radius: 4px;
-    }
+      ::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 4px;
+      }
 
-    ::-webkit-scrollbar-thumb:hover {
-      background: #94a3b8;
-    }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+      }
 
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
 
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
+      .no-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
 
-    /* Lightbox */
-    #lightbox {
-      display: none;
-      position: fixed;
-      z-index: 1000;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.85);
-      backdrop-filter: blur(8px);
-      justify-content: center;
-      align-items: center;
-      opacity: 0;
-      transition: opacity 0.4s ease;
-    }
-
-    #lightbox.show {
-      opacity: 1;
-    }
-
-    #lightbox img {
-      max-width: 90%;
-      max-height: 90%;
-      border-radius: 12px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
-      transform: scale(0.9);
-      transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-
-    #lightbox.show img {
-      transform: scale(1);
-    }
-
-    #lightbox-close {
-      position: absolute;
-      top: 20px;
-      right: 30px;
-      color: rgba(255, 255, 255, 0.7);
-      font-size: 44px;
-      font-weight: 300;
-      cursor: pointer;
-      z-index: 1001;
-      transition: all 0.3s;
-    }
-
-    #lightbox-close:hover {
-      color: #fff;
-      transform: rotate(90deg);
-    }
-
-    /* Smooth Entrance Animation */
-    @keyframes fadeUp {
-      from {
+      /* Lightbox */
+      #lightbox {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.85);
+        backdrop-filter: blur(8px);
+        justify-content: center;
+        align-items: center;
         opacity: 0;
-        transform: translateY(20px);
+        transition: opacity 0.4s ease;
       }
 
-      to {
+      #lightbox.show {
         opacity: 1;
-        transform: translateY(0);
       }
-    }
 
-    .animate-fade-in {
-      animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-  </style>
-</head>
+      #lightbox img {
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 12px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        transform: scale(0.9);
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
 
-<body class="pb-10 antialiased selection:bg-indigo-100 selection:text-indigo-900">
-  <!-- Header -->
-  <header class="bg-gradient-to-r from-primary to-secondary text-white p-5 shadow-glass bg-opacity-90">
-    <div class="container mx-auto flex justify-between items-center px-2">
-      <div>
-        <h1 class="text-2xl font-bold tracking-tight">福岡美食六日遊</h1>
-        <p class="text-sm font-medium opacity-90 mt-0.5">
-          2026/05/20 - 05/25
-        </p>
-      </div>
-      <div class="text-right flex items-center gap-3">
-        <div class="hidden sm:flex flex-col text-xs text-right opacity-80 font-medium">
-          <span>Currency</span>
-          <span>Exchange Rate</span>
+      #lightbox.show img {
+        transform: scale(1);
+      }
+
+      #lightbox-close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: rgba(255, 255, 255, 0.7);
+        font-size: 44px;
+        font-weight: 300;
+        cursor: pointer;
+        z-index: 1001;
+        transition: all 0.3s;
+      }
+
+      #lightbox-close:hover {
+        color: #fff;
+        transform: rotate(90deg);
+      }
+
+      /* Smooth Entrance Animation */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .animate-fade-in {
+        animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+      }
+    </style>
+  </head>
+
+  <body
+    class="pb-10 antialiased selection:bg-indigo-100 selection:text-indigo-900"
+  >
+    <!-- Header -->
+    <header
+      class="bg-gradient-to-r from-primary to-secondary text-white p-5 shadow-glass bg-opacity-90"
+    >
+      <div class="container mx-auto flex justify-between items-center px-2">
+        <div>
+          <h1 class="text-2xl font-bold tracking-tight">福岡美食六日遊</h1>
+          <p class="text-sm font-medium opacity-90 mt-0.5">
+            2026/05/20 - 05/25
+          </p>
         </div>
-        <div id="exchange-rate"
-          class="text-sm font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20 shadow-soft">
-          匯率載入中...
+        <div class="text-right flex items-center gap-3">
+          <div
+            class="hidden sm:flex flex-col text-xs text-right opacity-80 font-medium"
+          >
+            <span>Currency</span>
+            <span>Exchange Rate</span>
+          </div>
+          <div
+            id="exchange-rate"
+            class="text-sm font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20 shadow-soft"
+          >
+            匯率載入中...
+          </div>
         </div>
       </div>
-    </div>
-  </header>
+    </header>
 
-  <div class="container mx-auto px-4 max-w-5xl">
-    <!-- Info Cards: Weather, Hotel & Flights -->
-    <div class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-8 items-stretch">
-      <!-- Weather Widget -->
-      <div id="weather-card"
-        class="glass-card rounded-2xl p-5 relative overflow-hidden group flex flex-col justify-center">
+    <div class="container mx-auto px-4 max-w-5xl">
+      <!-- Info Cards: Weather, Hotel & Flights -->
+      <div
+        class="grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-8 items-stretch"
+      >
+        <!-- Weather Widget -->
         <div
-          class="absolute -right-6 -top-6 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl group-hover:bg-blue-400/30 transition-colors">
-        </div>
-        <h2 class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider">
-          福岡 即時天氣
-        </h2>
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-4">
-            <div id="weather-icon-container"
-              class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center shadow-soft text-blue-500 text-2xl">
-              <i id="weather-icon" class="fa-solid fa-spinner fa-spin"></i>
-            </div>
-            <div>
-              <span id="weather-temp" class="text-3xl font-extrabold text-gray-800 tracking-tight">--°</span>
-              <p class="text-xs text-gray-400 font-medium">目前氣溫</p>
-            </div>
-          </div>
-          <div class="text-right text-sm text-gray-600 font-medium space-y-1">
-            <div class="flex items-center justify-end gap-1">
-              <i class="fa-solid fa-droplet text-blue-400 text-xs text-center w-4"></i><span id="weather-humidity"
-                class="text-blue-600 font-bold">--%</span>
-            </div>
-            <div class="flex items-center justify-end gap-1">
-              <i class="fa-solid fa-wind text-cyan-400 text-xs text-center w-4"></i><span id="weather-wind">--
-                km/h</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Hotel Info -->
-      <div
-        class="glass-card rounded-2xl p-5 relative overflow-hidden group hover:-translate-y-1 transition-transform flex flex-col justify-center">
-        <div class="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-primary to-indigo-400"></div>
-        <h2 class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider pl-2">
-          住宿飯店
-        </h2>
-        <div class="pl-2">
-          <h3 class="font-bold text-lg text-gray-800 tracking-tight truncate">
-            福岡蒙特利拉蘇瑞酒店
-          </h3>
-          <p class="text-xs text-gray-400 font-medium mb-3 truncate">
-            Hotel Monterey La Soeur Fukuoka
-          </p>
-          <p class="text-[13px] text-gray-600 font-medium flex items-start gap-2">
-            <i class="fa-solid fa-location-dot text-rose-500 mt-0.5"></i>福岡市中央區大名2-8-27
-          </p>
-          <a href="https://www.google.com/maps/search/?api=1&query=Hotel+Monterey+La+Soeur+Fukuoka" target="_blank"
-            class="text-primary text-xs mt-3 inline-flex items-center gap-1 font-bold group-hover:text-indigo-700 transition-colors">導航路線<i
-              class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-1"></i></a>
-        </div>
-      </div>
-
-      <!-- Flights -->
-      <div
-        class="glass-card rounded-2xl p-5 relative overflow-hidden group max-md:col-span-1 md:col-span-2 lg:col-span-1 hover:-translate-y-1 transition-transform flex flex-col justify-center">
-        <h2 class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider flex items-center gap-2">
-          <i class="fa-solid fa-plane-departure"></i> 航班資訊
-        </h2>
-        <div class="flex flex-col gap-3">
-          <!-- Outbound -->
-          <div class="flex items-center justify-between border-b border-gray-100 pb-3">
-            <div class="flex-1 w-full">
-              <div
-                class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-md text-[10px] font-bold mb-1 shadow-sm">
-                <i class="fa-solid fa-plane-departure"></i> 5/20 去程 BR106
-              </div>
-              <div class="flex items-center text-gray-800 w-full">
-                <span class="text-xl font-black font-mono tracking-tighter">08:00</span>
-                <span class="text-[10px] text-gray-400 font-bold ml-1">TPE</span>
-                <div class="flex-1 border-t border-dashed border-gray-300 mx-2 relative flex justify-center">
-                  <i class="fa-solid fa-plane text-emerald-400 absolute -top-[10px] text-[10px] bg-white px-1"></i>
-                </div>
-                <span class="text-xl font-black font-mono tracking-tighter">11:20</span>
-                <span class="text-[10px] text-gray-400 font-bold ml-1">FUK</span>
-              </div>
-            </div>
-          </div>
-          <!-- Inbound -->
+          id="weather-card"
+          class="glass-card rounded-2xl p-5 relative overflow-hidden group flex flex-col justify-center"
+        >
+          <div
+            class="absolute -right-6 -top-6 w-24 h-24 bg-blue-400/20 rounded-full blur-2xl group-hover:bg-blue-400/30 transition-colors"
+          ></div>
+          <h2
+            class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider"
+          >
+            福岡 即時天氣
+          </h2>
           <div class="flex items-center justify-between">
-            <div class="flex-1 w-full">
+            <div class="flex items-center gap-4">
               <div
-                class="inline-flex items-center gap-1.5 bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-md text-[10px] font-bold mb-1 shadow-sm">
-                <i class="fa-solid fa-plane-arrival"></i> 5/25 回程 BR101
+                id="weather-icon-container"
+                class="w-12 h-12 rounded-full bg-gradient-to-br from-blue-100 to-blue-50 flex items-center justify-center shadow-soft text-blue-500 text-2xl"
+              >
+                <i id="weather-icon" class="fa-solid fa-spinner fa-spin"></i>
               </div>
-              <div class="flex items-center text-gray-800 w-full">
-                <span class="text-xl font-black font-mono tracking-tighter">19:20</span>
-                <span class="text-[10px] text-gray-400 font-bold ml-1">FUK</span>
-                <div class="flex-1 border-t border-dashed border-gray-300 mx-2 relative flex justify-center">
-                  <i
-                    class="fa-solid fa-plane text-rose-400 absolute -top-[10px] text-[10px] bg-white px-1 transform rotate-180"></i>
+              <div>
+                <span
+                  id="weather-temp"
+                  class="text-3xl font-extrabold text-gray-800 tracking-tight"
+                  >--°</span
+                >
+                <p class="text-xs text-gray-400 font-medium">目前氣溫</p>
+              </div>
+            </div>
+            <div class="text-right text-sm text-gray-600 font-medium space-y-1">
+              <div class="flex items-center justify-end gap-1">
+                <i
+                  class="fa-solid fa-droplet text-blue-400 text-xs text-center w-4"
+                ></i
+                ><span id="weather-humidity" class="text-blue-600 font-bold"
+                  >--%</span
+                >
+              </div>
+              <div class="flex items-center justify-end gap-1">
+                <i
+                  class="fa-solid fa-wind text-cyan-400 text-xs text-center w-4"
+                ></i
+                ><span id="weather-wind">-- km/h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotel Info -->
+        <div
+          class="glass-card rounded-2xl p-5 relative overflow-hidden group hover:-translate-y-1 transition-transform flex flex-col justify-center"
+        >
+          <div
+            class="absolute left-0 top-0 h-full w-1.5 bg-gradient-to-b from-primary to-indigo-400"
+          ></div>
+          <h2
+            class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider pl-2"
+          >
+            住宿飯店
+          </h2>
+          <div class="pl-2">
+            <h3 class="font-bold text-lg text-gray-800 tracking-tight truncate">
+              福岡蒙特利拉蘇瑞酒店
+            </h3>
+            <p class="text-xs text-gray-400 font-medium mb-3 truncate">
+              Hotel Monterey La Soeur Fukuoka
+            </p>
+            <p
+              class="text-[13px] text-gray-600 font-medium flex items-start gap-2"
+            >
+              <i class="fa-solid fa-location-dot text-rose-500 mt-0.5"></i
+              >福岡市中央區大名2-8-27
+            </p>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Hotel+Monterey+La+Soeur+Fukuoka"
+              target="_blank"
+              class="text-primary text-xs mt-3 inline-flex items-center gap-1 font-bold group-hover:text-indigo-700 transition-colors"
+              >導航路線<i
+                class="fa-solid fa-arrow-right-long transition-transform group-hover:translate-x-1"
+              ></i
+            ></a>
+          </div>
+        </div>
+
+        <!-- Flights -->
+        <div
+          class="glass-card rounded-2xl p-5 relative overflow-hidden group max-md:col-span-1 md:col-span-2 lg:col-span-1 hover:-translate-y-1 transition-transform flex flex-col justify-center"
+        >
+          <h2
+            class="text-indigo-400 text-xs font-bold mb-3 uppercase tracking-wider flex items-center gap-2"
+          >
+            <i class="fa-solid fa-plane-departure"></i> 航班資訊
+          </h2>
+          <div class="flex flex-col gap-3">
+            <!-- Outbound -->
+            <div
+              class="flex items-center justify-between border-b border-gray-100 pb-3"
+            >
+              <div class="flex-1 w-full">
+                <div
+                  class="inline-flex items-center gap-1.5 bg-emerald-50 text-emerald-600 border border-emerald-100 px-2 py-0.5 rounded-md text-[10px] font-bold mb-1 shadow-sm"
+                >
+                  <i class="fa-solid fa-plane-departure"></i> 5/20 去程 BR106
                 </div>
-                <span class="text-xl font-black font-mono tracking-tighter">20:45</span>
-                <span class="text-[10px] text-gray-400 font-bold ml-1">TPE</span>
+                <div class="flex items-center text-gray-800 w-full">
+                  <span class="text-xl font-black font-mono tracking-tighter"
+                    >08:00</span
+                  >
+                  <span class="text-[10px] text-gray-400 font-bold ml-1"
+                    >TPE</span
+                  >
+                  <div
+                    class="flex-1 border-t border-dashed border-gray-300 mx-2 relative flex justify-center"
+                  >
+                    <i
+                      class="fa-solid fa-plane text-emerald-400 absolute -top-[10px] text-[10px] bg-white px-1"
+                    ></i>
+                  </div>
+                  <span class="text-xl font-black font-mono tracking-tighter"
+                    >11:20</span
+                  >
+                  <span class="text-[10px] text-gray-400 font-bold ml-1"
+                    >FUK</span
+                  >
+                </div>
+              </div>
+            </div>
+            <!-- Inbound -->
+            <div class="flex items-center justify-between">
+              <div class="flex-1 w-full">
+                <div
+                  class="inline-flex items-center gap-1.5 bg-rose-50 text-rose-600 border border-rose-100 px-2 py-0.5 rounded-md text-[10px] font-bold mb-1 shadow-sm"
+                >
+                  <i class="fa-solid fa-plane-arrival"></i> 5/25 回程 BR101
+                </div>
+                <div class="flex items-center text-gray-800 w-full">
+                  <span class="text-xl font-black font-mono tracking-tighter"
+                    >19:20</span
+                  >
+                  <span class="text-[10px] text-gray-400 font-bold ml-1"
+                    >FUK</span
+                  >
+                  <div
+                    class="flex-1 border-t border-dashed border-gray-300 mx-2 relative flex justify-center"
+                  >
+                    <i
+                      class="fa-solid fa-plane text-rose-400 absolute -top-[10px] text-[10px] bg-white px-1 transform rotate-180"
+                    ></i>
+                  </div>
+                  <span class="text-xl font-black font-mono tracking-tighter"
+                    >20:45</span
+                  >
+                  <span class="text-[10px] text-gray-400 font-bold ml-1"
+                    >TPE</span
+                  >
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!-- Itinerary Summary Table -->
-    <div class="glass-card rounded-2xl p-5 mt-5">
-      <div class="flex justify-between items-center mb-4">
-        <h2 class="text-indigo-400 text-xs font-bold uppercase tracking-wider flex items-center gap-2">
-          <i class="fa-solid fa-calendar-days"></i> 行程總覽
-        </h2>
-        <a href="https://www.google.com/maps/d/u/0/edit?hl=zh-TW&mid=1XPpQ3masEMwXz0_4JK0hMHWiFRI83c4&ll=33.54923958138674,130.63420139999997&z=9"
-          target="_blank"
-          class="text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 hover:bg-indigo-100 hover:text-indigo-700 px-3 py-1.5 rounded-lg shadow-sm transition-all flex items-center gap-1.5 hover:-translate-y-0.5 group">
-          <i class="fa-solid fa-map-location-dot transition-transform group-hover:scale-110"></i>
-          我的地圖
-        </a>
-      </div>
-      <div class="overflow-hidden rounded-xl border border-gray-100 bg-white/50">
-        <div class="overflow-x-auto pb-2 custom-scrollbar">
-          <table class="w-full text-left text-sm border-collapse min-w-[900px]">
-            <thead>
-              <tr class="bg-gray-50/90 text-gray-600 border-b border-gray-200">
-                <th
-                  class="px-2 py-3 font-bold text-center w-12 sticky left-0 bg-gray-50/95 backdrop-blur z-20 border-r border-gray-200 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]">
-                  時間
-                </th>
-                <th class="px-3 py-3 font-semibold text-center w-[16%] align-top">
-                  <span class="block text-[10px] text-gray-400 font-medium mb-1">Day 1</span><span
-                    class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto">5/20(三)</span>
-                </th>
-                <th class="px-3 py-3 font-semibold text-center w-[16%] align-top">
-                  <span class="block text-[10px] text-gray-400 font-medium mb-1">Day 2</span><span
-                    class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto">5/21(四)</span>
-                </th>
-                <th class="px-3 py-3 font-semibold text-center w-[16%] align-top">
-                  <span class="block text-[10px] text-gray-400 font-medium mb-1">Day 3</span><span
-                    class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto">5/22(五)</span>
-                </th>
-                <th class="px-3 py-3 font-semibold text-center w-[16%] align-top">
-                  <span class="block text-[10px] text-gray-400 font-medium mb-1">Day 4</span><span
-                    class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto">5/23(六)</span>
-                </th>
-                <th class="px-3 py-3 font-semibold text-center w-[16%] align-top">
-                  <span class="block text-[10px] text-gray-400 font-medium mb-1">Day 5</span><span
-                    class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto">5/24(日)</span>
-                </th>
-                <th class="px-3 py-3 font-semibold text-center w-[16%] align-top">
-                  <span class="block text-[10px] text-gray-400 font-medium mb-1">Day 6</span><span
-                    class="bg-pink-50 text-pink-700 px-2 py-0.5 rounded text-xs border border-pink-100 shadow-sm block w-fit mx-auto">5/25(一)</span>
-                </th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-gray-100">
-              <!-- 上午 -->
-              <tr class="hover:bg-indigo-50/20 transition-colors group">
-                <td
-                  class="px-2 py-4 font-bold text-indigo-500 text-center sticky left-0 bg-white/95 backdrop-blur z-10 border-r border-gray-100 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] group-hover:bg-indigo-50/50 align-middle">
-                  <div class="mx-auto my-2 leading-loose">上<br />午</div>
-                </td>
-                <td class="px-2 py-4 align-top">
-                  <div class="space-y-2">
-                    <div class="font-bold text-gray-800 text-sm">
-                      <i class="fa-solid fa-plane-arrival text-indigo-400 mr-1"></i>抵達福岡
+      <!-- Itinerary Summary Table -->
+      <div class="glass-card rounded-2xl p-5 mt-5">
+        <div class="flex justify-between items-center mb-4">
+          <h2
+            class="text-indigo-400 text-xs font-bold uppercase tracking-wider flex items-center gap-2"
+          >
+            <i class="fa-solid fa-calendar-days"></i> 行程總覽
+          </h2>
+          <a
+            href="https://www.google.com/maps/d/u/0/edit?hl=zh-TW&mid=1XPpQ3masEMwXz0_4JK0hMHWiFRI83c4&ll=33.54923958138674,130.63420139999997&z=9"
+            target="_blank"
+            class="text-xs font-bold text-indigo-600 bg-indigo-50 border border-indigo-100 hover:bg-indigo-100 hover:text-indigo-700 px-3 py-1.5 rounded-lg shadow-sm transition-all flex items-center gap-1.5 hover:-translate-y-0.5 group"
+          >
+            <i
+              class="fa-solid fa-map-location-dot transition-transform group-hover:scale-110"
+            ></i>
+            我的地圖
+          </a>
+        </div>
+        <div
+          class="overflow-hidden rounded-xl border border-gray-100 bg-white/50"
+        >
+          <div class="overflow-x-auto pb-2 custom-scrollbar">
+            <table
+              class="w-full text-left text-sm border-collapse min-w-[900px]"
+            >
+              <thead>
+                <tr
+                  class="bg-gray-50/90 text-gray-600 border-b border-gray-200"
+                >
+                  <th
+                    class="px-2 py-3 font-bold text-center w-12 sticky left-0 bg-gray-50/95 backdrop-blur z-20 border-r border-gray-200 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)]"
+                  >
+                    時間
+                  </th>
+                  <th
+                    class="px-3 py-3 font-semibold text-center w-[16%] align-top"
+                  >
+                    <span
+                      class="block text-[10px] text-gray-400 font-medium mb-1"
+                      >Day 1</span
+                    ><span
+                      class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto"
+                      >5/20(三)</span
+                    >
+                  </th>
+                  <th
+                    class="px-3 py-3 font-semibold text-center w-[16%] align-top"
+                  >
+                    <span
+                      class="block text-[10px] text-gray-400 font-medium mb-1"
+                      >Day 2</span
+                    ><span
+                      class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto"
+                      >5/21(四)</span
+                    >
+                  </th>
+                  <th
+                    class="px-3 py-3 font-semibold text-center w-[16%] align-top"
+                  >
+                    <span
+                      class="block text-[10px] text-gray-400 font-medium mb-1"
+                      >Day 3</span
+                    ><span
+                      class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto"
+                      >5/22(五)</span
+                    >
+                  </th>
+                  <th
+                    class="px-3 py-3 font-semibold text-center w-[16%] align-top"
+                  >
+                    <span
+                      class="block text-[10px] text-gray-400 font-medium mb-1"
+                      >Day 4</span
+                    ><span
+                      class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto"
+                      >5/23(六)</span
+                    >
+                  </th>
+                  <th
+                    class="px-3 py-3 font-semibold text-center w-[16%] align-top"
+                  >
+                    <span
+                      class="block text-[10px] text-gray-400 font-medium mb-1"
+                      >Day 5</span
+                    ><span
+                      class="bg-indigo-50 text-indigo-700 px-2 py-0.5 rounded text-xs border border-indigo-100 shadow-sm block w-fit mx-auto"
+                      >5/24(日)</span
+                    >
+                  </th>
+                  <th
+                    class="px-3 py-3 font-semibold text-center w-[16%] align-top"
+                  >
+                    <span
+                      class="block text-[10px] text-gray-400 font-medium mb-1"
+                      >Day 6</span
+                    ><span
+                      class="bg-pink-50 text-pink-700 px-2 py-0.5 rounded text-xs border border-pink-100 shadow-sm block w-fit mx-auto"
+                      >5/25(一)</span
+                    >
+                  </th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-gray-100">
+                <!-- 上午 -->
+                <tr class="hover:bg-indigo-50/20 transition-colors group">
+                  <td
+                    class="px-2 py-4 font-bold text-indigo-500 text-center sticky left-0 bg-white/95 backdrop-blur z-10 border-r border-gray-100 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] group-hover:bg-indigo-50/50 align-middle"
+                  >
+                    <div class="mx-auto my-2 leading-loose">上<br />午</div>
+                  </td>
+                  <td class="px-2 py-4 align-top">
+                    <div class="space-y-2">
+                      <div class="font-bold text-gray-800 text-sm">
+                        <i
+                          class="fa-solid fa-plane-arrival text-indigo-400 mr-1"
+                        ></i
+                        >抵達福岡
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        11:20 抵達 / 飯店寄件<br />Full Full 買麵包
+                      </div>
                     </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      11:20 抵達 / 飯店寄件<br />Full Full 買麵包
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-utensils"></i> 吉塚うなぎ
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <span
+                          class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600"
+                          >A</span
+                        ><i
+                          class="fa-solid fa-person-walking text-teal-500 mr-1"
+                        ></i
+                        >川端通/櫛田
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <span
+                          class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600"
+                          >B</span
+                        ><i
+                          class="fa-solid fa-child-reaching text-amber-500 mr-1"
+                        ></i
+                        >麵包超人博物館
+                      </div>
                     </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-bread-slice"></i> stock(天神店)
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <i class="fa-solid fa-torii-gate text-red-500 mr-1"></i
+                        >壱岐神社
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        絕景海上鳥居<br />海岸散策
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-bread-slice"></i> AKARI BAKERY
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-sm">
+                        <i class="fa-solid fa-tree text-green-500 mr-1"></i
+                        >大濠公園
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        福岡城跡散策<br />悠閒準備搭車
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-bread-slice"></i> Bread, Espresso
+                        & Hakata
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <i class="fa-solid fa-ship text-blue-500 mr-1"></i
+                        >關門海峽
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        潮風號小火車<br />關門海底隧道
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="px-2 py-4 align-top border-l border-gray-50/50 bg-pink-50/20"
+                  >
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-gray-600 font-bold bg-white px-1.5 py-1 rounded shadow-sm border border-gray-100 leading-tight"
+                      >
+                        <i
+                          class="fa-solid fa-suitcase-rolling text-blue-500"
+                        ></i>
+                        寄行李至機場
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-sm">
+                        <i class="fa-solid fa-gopuram text-rose-500 mr-1"></i
+                        >太宰府古都
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-white border border-gray-100 shadow-sm p-1.5 rounded mt-1 leading-tight"
+                      >
+                        天滿宮參拜<br />參道美食
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <!-- 午餐 / 下午 -->
+                <tr class="hover:bg-indigo-50/20 transition-colors group">
+                  <td
+                    class="px-2 py-4 font-bold text-orange-500 text-center sticky left-0 bg-white/95 backdrop-blur z-10 border-r border-gray-100 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] group-hover:bg-indigo-50/50 align-middle"
+                  >
+                    <div class="mx-auto my-2 leading-loose">下<br />午</div>
+                  </td>
+                  <td class="px-2 py-4 align-top">
+                    <div class="space-y-2">
+                      <div class="font-bold text-gray-800 text-sm">
+                        <i
+                          class="fa-solid fa-bag-shopping text-pink-400 mr-1"
+                        ></i
+                        >天神地下街
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        如水庵大福 / 大丸(小倉山莊)<br />治一郎 / 豆香洞
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-utensils"></i> (備案)蛋包飯 Ikura
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-sm">
+                        <i class="fa-solid fa-city text-indigo-400 mr-1"></i
+                        >運河城/博多車站
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        運河城噴泉<br />博多阪急/Seria
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-fish"></i> 博多炉端 魚男
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <span
+                          class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600"
+                          >A</span
+                        ><i class="fa-solid fa-shop text-emerald-500 mr-1"></i
+                        >藥院選物
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-[13px]">
+                        <span
+                          class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600"
+                          >B</span
+                        ><i class="fa-solid fa-hippo text-amber-500 mr-1"></i
+                        >福岡動植物園
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-gray-600 font-bold bg-white px-1.5 py-1 rounded shadow-sm border border-gray-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-camera"></i> 抵達柳川
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-sm">
+                        <i class="fa-solid fa-ship text-blue-400 mr-1"></i
+                        >柳川遊船
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        搖櫓船體驗<br />傍晚返回天神
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-utensils"></i> 唐戶市場 海鮮
+                      </div>
+                      <div class="font-bold text-gray-800 mt-1 text-sm">
+                        <i class="fa-solid fa-train text-indigo-400 mr-1"></i
+                        >門司港懷舊
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight"
+                      >
+                        鐵道紀念館<br />海峽廣場散策
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="px-2 py-4 align-top border-l border-gray-50/50 bg-pink-50/20"
+                  >
+                    <div class="space-y-2">
+                      <div class="font-bold text-gray-800 text-sm">
+                        <i
+                          class="fa-solid fa-bag-shopping text-pink-400 mr-1"
+                        ></i
+                        >LaLaport
+                      </div>
+                      <div
+                        class="text-[11px] text-gray-500 bg-white border border-gray-100 shadow-sm p-1.5 rounded leading-tight"
+                      >
+                        1:1 鋼彈<br />LOPIA 超市
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <!-- 晚餐 -->
+                <tr class="hover:bg-indigo-50/20 transition-colors group">
+                  <td
+                    class="px-2 py-4 font-bold text-pink-500 text-center sticky left-0 bg-white/95 backdrop-blur z-10 border-r border-gray-100 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] group-hover:bg-indigo-50/50 align-middle"
+                  >
+                    <div class="mx-auto my-2 leading-loose">晚<br />上</div>
+                  </td>
+                  <td class="px-2 py-4 align-top">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-fire"></i> 牛腸鍋 前田屋
+                      </div>
+                      <div class="text-[11px] text-gray-500">
+                        <i
+                          class="fa-solid fa-basket-shopping text-gray-400"
+                        ></i>
+                        超市買草莓
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-utensils"></i> ShinShin/超市熟食
+                      </div>
+                      <div class="text-[11px] text-gray-500">
+                        <i class="fa-solid fa-bag-shopping text-gray-400"></i>
+                        Mina / Aeon
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-fire-burner"></i> 燒肉 Nikuichi
+                      </div>
+                      <div class="text-[11px] text-gray-500">
+                        <i class="fa-solid fa-bag-shopping text-gray-400"></i>
+                        唐吉訶德
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-utensils"></i> 晚餐自理 (百貨熟食)
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-2 py-4 align-top border-l border-gray-50/50">
+                    <div class="space-y-2">
+                      <div
+                        class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight"
+                      >
+                        <i class="fa-solid fa-utensils"></i> 晚餐自理
+                      </div>
+                      <div class="text-[11px] text-gray-500 mt-1 leading-tight">
+                        天麩羅/牛丸/強棒麵<br />ShinShin/一蘭
+                      </div>
+                    </div>
+                  </td>
+                  <td
+                    class="px-2 py-4 align-top border-l border-gray-50/50 bg-pink-50/20"
+                  >
                     <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-utensils"></i> 吉塚うなぎ
+                      class="space-y-2 bg-white/70 p-1.5 rounded border border-pink-100 shadow-sm"
+                    >
+                      <div class="text-[11px] text-pink-700 font-bold">
+                        <i
+                          class="fa-solid fa-plane-departure text-pink-500"
+                        ></i>
+                        19:20 班機
+                      </div>
+                      <div class="text-[10px] text-gray-600 mt-1">
+                        <i class="fa-regular fa-clock"></i> 16:30 抵達機場<br /><i
+                          class="fa-solid fa-gift text-pink-400 mt-1"
+                        ></i>
+                        免稅店大採買
+                      </div>
                     </div>
-                    <div class="font-bold text-gray-800 mt-1 text-[13px]">
-                      <span class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600">A</span><i
-                        class="fa-solid fa-person-walking text-teal-500 mr-1"></i>川端通/櫛田
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-[13px]">
-                      <span class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600">B</span><i
-                        class="fa-solid fa-child-reaching text-amber-500 mr-1"></i>麵包超人博物館
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-bread-slice"></i> stock(天神店)
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-[13px]">
-                      <i class="fa-solid fa-torii-gate text-red-500 mr-1"></i>壱岐神社
-                    </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      絕景海上鳥居<br />海岸散策
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-bread-slice"></i> AKARI BAKERY
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-sm">
-                      <i class="fa-solid fa-tree text-green-500 mr-1"></i>大濠公園
-                    </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      福岡城跡散策<br />悠閒準備搭車
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-ticket"></i> 四葉草套票
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-[13px]">
-                      <i class="fa-solid fa-ship text-blue-500 mr-1"></i>關門海峽
-                    </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      潮風號小火車<br />關門海底隧道
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50 bg-pink-50/20">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-gray-600 font-bold bg-white px-1.5 py-1 rounded shadow-sm border border-gray-100 leading-tight">
-                      <i class="fa-solid fa-suitcase-rolling text-blue-500"></i>
-                      寄行李至機場
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-sm">
-                      <i class="fa-solid fa-gopuram text-rose-500 mr-1"></i>太宰府古都
-                    </div>
-                    <div
-                      class="text-[11px] text-gray-500 bg-white border border-gray-100 shadow-sm p-1.5 rounded mt-1 leading-tight">
-                      天滿宮參拜<br />參道美食
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <!-- 午餐 / 下午 -->
-              <tr class="hover:bg-indigo-50/20 transition-colors group">
-                <td
-                  class="px-2 py-4 font-bold text-orange-500 text-center sticky left-0 bg-white/95 backdrop-blur z-10 border-r border-gray-100 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] group-hover:bg-indigo-50/50 align-middle">
-                  <div class="mx-auto my-2 leading-loose">下<br />午</div>
-                </td>
-                <td class="px-2 py-4 align-top">
-                  <div class="space-y-2">
-                    <div class="font-bold text-gray-800 text-sm">
-                      <i class="fa-solid fa-bag-shopping text-pink-400 mr-1"></i>天神地下街
-                    </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      如水庵大福 / 大丸(小倉山莊)<br />治一郎 / 豆香洞
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-utensils"></i> (備案)蛋包飯 Ikura
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-sm">
-                      <i class="fa-solid fa-city text-indigo-400 mr-1"></i>運河城/博多車站
-                    </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      運河城噴泉<br />博多阪急/Seria
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-fish"></i> 博多炉端 魚男
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-[13px]">
-                      <span class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600">A</span><i
-                        class="fa-solid fa-shop text-emerald-500 mr-1"></i>藥院選物
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-[13px]">
-                      <span class="text-[10px] bg-gray-200 px-1 py-0.5 rounded mr-0.5 text-gray-600">B</span><i
-                        class="fa-solid fa-hippo text-amber-500 mr-1"></i>福岡動植物園
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-gray-600 font-bold bg-white px-1.5 py-1 rounded shadow-sm border border-gray-100 leading-tight">
-                      <i class="fa-solid fa-camera"></i> 抵達柳川
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-sm">
-                      <i class="fa-solid fa-ship text-blue-400 mr-1"></i>柳川遊船
-                    </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      搖櫓船體驗<br />傍晚返回天神
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-utensils"></i> 唐戶市場 海鮮
-                    </div>
-                    <div class="font-bold text-gray-800 mt-1 text-sm">
-                      <i class="fa-solid fa-train text-indigo-400 mr-1"></i>門司港懷舊
-                    </div>
-                    <div class="text-[11px] text-gray-500 bg-gray-50 p-1.5 rounded leading-tight">
-                      鐵道紀念館<br />海峽廣場散策
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50 bg-pink-50/20">
-                  <div class="space-y-2">
-                    <div class="font-bold text-gray-800 text-sm">
-                      <i class="fa-solid fa-bag-shopping text-pink-400 mr-1"></i>LaLaport
-                    </div>
-                    <div
-                      class="text-[11px] text-gray-500 bg-white border border-gray-100 shadow-sm p-1.5 rounded leading-tight">
-                      1:1 鋼彈<br />LOPIA 超市
-                    </div>
-                  </div>
-                </td>
-              </tr>
-              <!-- 晚餐 -->
-              <tr class="hover:bg-indigo-50/20 transition-colors group">
-                <td
-                  class="px-2 py-4 font-bold text-pink-500 text-center sticky left-0 bg-white/95 backdrop-blur z-10 border-r border-gray-100 shadow-[2px_0_5px_-2px_rgba(0,0,0,0.05)] group-hover:bg-indigo-50/50 align-middle">
-                  <div class="mx-auto my-2 leading-loose">晚<br />上</div>
-                </td>
-                <td class="px-2 py-4 align-top">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-fire"></i> 牛腸鍋 前田屋
-                    </div>
-                    <div class="text-[11px] text-gray-500">
-                      <i class="fa-solid fa-basket-shopping text-gray-400"></i>
-                      超市買草莓
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-utensils"></i> ShinShin/超市熟食
-                    </div>
-                    <div class="text-[11px] text-gray-500">
-                      <i class="fa-solid fa-bag-shopping text-gray-400"></i>
-                      Mina / Aeon
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-fire-burner"></i> 燒肉 Nikuichi
-                    </div>
-                    <div class="text-[11px] text-gray-500">
-                      <i class="fa-solid fa-bag-shopping text-gray-400"></i>
-                      唐吉訶德
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-utensils"></i> 晚餐自理 (百貨熟食)
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50">
-                  <div class="space-y-2">
-                    <div
-                      class="text-[10px] text-orange-600 font-bold bg-orange-50 px-1.5 py-1 rounded inline-block border border-orange-100 leading-tight">
-                      <i class="fa-solid fa-utensils"></i> 晚餐自理
-                    </div>
-                    <div class="text-[11px] text-gray-500 mt-1 leading-tight">
-                      天麩羅/牛丸/強棒麵<br />ShinShin/一蘭
-                    </div>
-                  </div>
-                </td>
-                <td class="px-2 py-4 align-top border-l border-gray-50/50 bg-pink-50/20">
-                  <div class="space-y-2 bg-white/70 p-1.5 rounded border border-pink-100 shadow-sm">
-                    <div class="text-[11px] text-pink-700 font-bold">
-                      <i class="fa-solid fa-plane-departure text-pink-500"></i>
-                      19:20 班機
-                    </div>
-                    <div class="text-[10px] text-gray-600 mt-1">
-                      <i class="fa-regular fa-clock"></i> 16:30 抵達機場<br /><i
-                        class="fa-solid fa-gift text-pink-400 mt-1"></i>
-                      免稅店大採買
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
+
+      <!-- Itinerary Navigation -->
+      <div
+        class="flex overflow-x-auto gap-2 mt-6 py-3 px-1 no-scrollbar sticky top-0 z-40 bg-gray-50/90 backdrop-blur-md border-b border-gray-200/50 shadow-sm -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent sm:backdrop-blur-none sm:border-0 sm:shadow-none transition-all"
+        id="day-tabs"
+      >
+        <!-- Tabs injected by JS -->
+      </div>
+
+      <!-- Itinerary Content -->
+      <div id="itinerary-container" class="mt-2">
+        <!-- Content injected by JS -->
+      </div>
     </div>
 
-    <!-- Itinerary Navigation -->
-    <div
-      class="flex overflow-x-auto gap-2 mt-6 py-3 px-1 no-scrollbar sticky top-0 z-40 bg-gray-50/90 backdrop-blur-md border-b border-gray-200/50 shadow-sm -mx-4 px-4 sm:mx-0 sm:px-0 sm:bg-transparent sm:backdrop-blur-none sm:border-0 sm:shadow-none transition-all"
-      id="day-tabs">
-      <!-- Tabs injected by JS -->
+    <!-- Lightbox Modal -->
+    <div id="lightbox" onclick="closeLightbox()">
+      <span id="lightbox-close">&times;</span>
+      <img
+        id="lightbox-img"
+        src=""
+        alt="Full Screen Image"
+        onclick="event.stopPropagation()"
+      />
     </div>
 
-    <!-- Itinerary Content -->
-    <div id="itinerary-container" class="mt-2">
-      <!-- Content injected by JS -->
-    </div>
-  </div>
+    <script>
+      // Mock Data Configuration
+      const EXCHANGE_RATE = 4.72; // 1 TWD = X JPY
 
-  <!-- Lightbox Modal -->
-  <div id="lightbox" onclick="closeLightbox()">
-    <span id="lightbox-close">&times;</span>
-    <img id="lightbox-img" src="" alt="Full Screen Image" onclick="event.stopPropagation()" />
-  </div>
+      // Itinerary Data
+      const itinerary = [
+        {
+          date: "5/20 (三)",
+          title: "抵達福岡與天神探索",
+          memo: "(已確認路線可行)",
+          weather: "晴時多雲 23°C",
+          events: [
+            {
+              time: "11:20",
+              title: "抵達福岡機場",
+              desc: "辦理入境手續，領取行李",
+              icon: "fa-plane-arrival",
+            },
+            {
+              time: "12:30",
+              title: "前往飯店寄放行李",
+              desc: "1️⃣ 地鐵：需先在國際線 1F 航廈外搭乘「免費接駁巴士」至國內線航廈（車程約 10-15 分），下車後前往 B1 搭乘地下鐵空港線至天神站（車程約 11 分），再步行前往飯店（約步行 5-8 分）。<br>2️⃣ 高速巴士：「<a href='https://www.nishitetsu.jp/bus/rosen/airportexpress/' target='_blank' class='underline text-blue-600 hover:text-blue-800'>Airport Express</a>」從國際線 8 號乘車處出發直達西鐵天神客運總站 (約30-40分，¥500)，下車步行約 10 分。<br>3️⃣ 計程車：從機場直達飯店，車程約 20 分鐘，車資約 ¥2,000 - ¥2,500 (多人分攤很划算，且免扛行李！)<br>4️⃣ Uber XL (Van)：人多或大件行李專用，⚠️ 需特別注意：必須在機場停車場內的「預約計程車指定範圍」上下車。",
+              icon: "fa-hotel",
+              image: "img/batch_IMG_2266.jpg",
+              imgType: "attraction",
+              transport: {
+                text: "地鐵 / 巴士 / 計程車 / Uber",
+                icon: "fa-taxi",
+              },
+            },
+            {
+              time: "13:00",
+              title: "Full Full 天神麵包工房 (Pan to Wine)",
+              desc: "【必吃清單】10:00 開店！先去搶超猛的「明太子法國麵包」。<br>買完寄放飯店或隨身帶著，當作下午小點心超級滿足！",
+              tag: "必吃",
+              icon: "fa-bread-slice",
+              price: "¥300 - ¥800",
+              menuLink: "https://www.full-full.jp/",
+              location: "福岡市中央区天神3-3-5",
+              googleMap: "Full+Full+Tenjin+Pan+to+Wine",
+              imgType: "bread",
+              image: "img/LINE_ALBUM_福岡必吃_260210_4.jpg",
+              transport: {
+                text: "步行前往 (約 5-10 分)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "13:30",
+              title: "午餐與逛街：ONE FUKUOKA BLDG. / 大丸天神 / 天神地下街",
+              desc: "抵達天神後吃午餐與逛街。⚠️ 請務必先去 ONE FUKUOKA BLDG. 的「如水庵」買水果大福，以免向隅賣完！<br><br>【ONE FUKUOKA BLDG 巡禮】<br>🍡 如水庵：超級必吃水果大福！<br>☕ 豆香洞コーヒースタンド (B2F)：推薦咖啡與名物「珈琲羊羹」。<br>🏬 中川政七商店 (3F)：九州最大旗艦店。<br><br>【天神地下街 / PARCO B1F】<br>🍎 必吃：RINGO 蘋果派。順道逛逛天神地下街。<br>🍮 必吃甜點：治一郎 (PARCO B1F)，必吃布丁與年輪蛋糕。<br>🍗 必買宵夜：福岡努努雞 (PARCO B1F)，超人氣冰鎮手羽先(冷雞翅)！<br>🛒 必買推薦：Kitano Ace (PARCO B1F)，目標「大人のための贅沢なぽん酢」。<br><br>【大丸福岡天神店 (B2F)】<br>🍘 小倉山莊：必買超級人氣仙貝伴手禮！<br>",
+              icon: "fa-bag-shopping",
+              tag: "必吃",
+              link: "https://bobbyfun.tw/tenjin-chikagai/",
+              linkText: "天神地下街攻略 (必買/美食/地圖)",
+              nonShopper:
+                "不逛街推薦：可至地下街的「Appetito Cafe」或「Ueshima Coffee」休息。",
+              location: "天神地下街 / PARCO / ONE FUKUOKA BLDG.",
+              googleMap: "ONE+FUKUOKA+BLDG.",
+              imgType: "dessert",
+              image:
+                "img/540701843_17928013167097630_6601496453050942942_n.jpg",
+              transport: {
+                text: "步行前往 (大名 -> 天神區, 約 8 分)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "17:00",
+              title: "博多牛腸鍋 前田屋 (大名店)",
+              desc: "【必吃清單】推薦：和牛牛腸鍋、花腹鯖生魚片(胡麻鯖魚)。就在飯店附近的大名區。<br>⏰ 營業時間：17:00 - 00:00 (週末另有午餐 11:00 - 14:30)",
+              tag: "必吃",
+              price: "晚餐 ¥4,000 - ¥5,000",
+              menuLink: "https://motsunabe-maedaya.com/menu/",
+              booking: "已訂位，代碼 #74730(17:00 6位) - 瀅訂",
+              location: "福岡市中央区大名1-12-39",
+              googleMap: "Maedaya+Daimyo",
+              imgType: "food",
+              image: "img/DSC_1873.webp",
+              transport: {
+                text: "步行前往 (ONE FUKUOKA BLDG. -> 前田屋, 約 10 分)",
+                icon: "fa-person-walking",
+              },
+            },
 
-  <script>
-    // Mock Data Configuration
-    const EXCHANGE_RATE = 4.72; // 1 TWD = X JPY
+            {
+              time: "18:30",
+              title: "超市採買：MaxValu / Reganet",
+              desc: "回飯店前去超市買福岡草莓(あまおう)與酒。<br>🍓 關於草莓：<br>1. 福岡「甘王草莓 (Amaou)」的產季通常到 5月底結束。<br>2. 這時候可能已經是尾聲了，不過還是有機會買到！<br>3. 如果超市沒看到草莓，推薦試試當時盛產的 熊本西瓜 或 長崎枇杷，也非常甜美！<br>🛒 超市推薦：「MaxValu Express 大名店」(開到 24:00) 或「Reganet 天神」(開到 23:00)。",
+              icon: "fa-basket-shopping",
+              transport: {
+                text: "步行前往 (大名區內, 約 5 分)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "19:00",
+              title: "返回飯店休息",
+              desc: "步行返回飯店 (Hotel Monterey La Soeur Fukuoka)。",
+              icon: "fa-bed",
+              transport: {
+                text: "步行前往 (超市 -> 飯店, 約 10 分)",
+                icon: "fa-person-walking",
+              },
+            },
+          ],
+        },
+        {
+          date: "5/21 (四)",
+          title: "市區名店巡禮",
+          memo: "(待確認行程細節)",
+          weather: "多雲時晴 24°C",
+          events: [
+            {
+              time: "09:30",
+              title: "📍 飯店大廳集合出發",
+              desc: "今天可以稍微睡飽一點，集合後出發去吃早午餐！",
+              icon: "fa-bell",
+              transport: {
+                text: "散步出發",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "10:00",
+              title: "早午餐：吉塚うなぎ (Yoshizuka Unagi)",
+              desc: "【百年名店】福岡最知名的鰻魚飯，焦香味美！備註：不吃鰻魚飯的人可以稍微晚點吃蛋包飯 Ikura。<br>⏰ 營業時間：10:00 - 21:00 (週三公休)",
+              tag: "必吃",
+              icon: "fa-utensils",
+              price: "¥3,500 - ¥5,000",
+              menuLink: "https://yoshizukaunagi.com/",
+              location: "福岡市博多区中洲2-8-27",
+              googleMap: "Yoshizuka+Unagi+Honten",
+              imgType: "food",
+              image: "img/yoshidukaunagi10.jpg.webp",
+              transport: {
+                text: "步行前往 (中洲川端站 5 分鐘)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "11:00",
+              title: "川端通商店街 & 櫛田神社 & FUK COFFEE",
+              desc: "【順路不繞道】經典散步路線！<br>1️⃣ 川端通商店街：吃飽後從天神過橋到中洲，逛傳統工藝與土產。<br>2️⃣ 櫛田神社：商店街走到底就是神社南門，參拜博多總鎮守。<br>3️⃣ FUK COFFEE：參拜完從神社旁走出來，喝杯飛機圖案拿鐵。<br>📍 路線：天神 -> 商店街(北往南) -> 櫛田神社 -> FUK COFFEE。",
+              icon: "fa-torii-gate",
+              tag: "順路",
+              image: "img/19-177478.webp",
+              imgType: "attraction",
+              price: "拿鐵 ¥650",
+              menuLink: "https://fuk-coffee.com/menu/",
+              transport: {
+                text: "步行 (中洲川端 -> 商店街 -> 櫛田神社, 一路向南)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "11:00",
+              title: "麵包超人兒童博物館",
+              desc: "【親子必訪】位於博多河畔城 (Hakata Riverain) 5F-6F。<br>帶小孩必去！從中洲川端站直結，室內樂園不怕下雨。<br>🎡 必玩：麵包超人劇場、果醬爺爺的麵包工場。<br>📍 就在中洲川端站旁，非常方便！",
+              icon: "fa-child-reaching",
+              tag: "親子推薦",
+              link: "https://fullfenblog.tw/fukuoka-anpanman/",
+              linkText: "福岡麵包超人博物館遊記分享",
+              image: "img/20250111_105549_58232f63_w1920.webp",
+              imgType: "attraction",
+              price: "門票 ¥2,000",
+              location: "博多河畔城 5F-6F",
+              transport: {
+                text: "步行前往 (中洲川端站直結)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "12:30",
+              title: "（午餐備案）漢堡排與蛋包飯 Ikura (博多店)",
+              desc: "【必吃清單】網路超人氣！滑嫩歐姆蛋包飯與多汁漢堡排。<br>⏰ 營業時間：11:30 - 15:00 (最後點餐 14:00) / 17:00 - 21:00 (不定休)<br>⚠️ 蛋包飯僅午餐時段供應，務必中午來！",
+              icon: "fa-utensils",
+              tag: "必吃",
+              imgType: "food",
+              image: "img/LINE_ALBUM_福岡必吃_260210_2.jpg",
+              price: "¥1,500 - ¥2,000",
+              menuLink:
+                "https://tabelog.com/tw/fukuoka/A4001/A400101/40063348/dtlmenu/",
+              transport: {
+                text: "步行/巴士 (櫛田神社 -> 博多站/運河城, 約 10-15 分)",
+                icon: "fa-bus",
+              },
+            },
+            {
+              time: "14:00",
+              title: "博多運河城逛街 (Canal City Hakata)",
+              desc: "【超大型複合商場】剛吃飽就在旁邊散步逛街！<br>🛍️ 購物：服飾、雜貨、扭蛋、伴手禮通通有。<br>⛲ 必看：B1 的音樂水舞噴泉秀 (每半小時/整點演出)。<br>🍜 拉麵競技場：如果沒吃午餐，這裡有全國拉麵名店齊聚一堂！",
+              icon: "fa-water",
+              image: "img/20250731113555_0_4eccd6.jpg",
+              imgType: "attraction",
+              transport: {
+                text: "步行 (就在旁邊)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "16:00",
+              title: "博多車站逛街 (JR Hakata City)",
+              desc: "博多車站就很好逛！<br>🛍️ Amu Plaza、阪急百貨、伴手禮街(「隆勝堂」抹茶麻糬)。<br>🛒 雜貨尋寶：Seria 百元商店 (KITTE博多 4F)，生活雜貨超好買！<br>🍰 必吃推薦：博多阪急B1「Mon cher」堂島生乳捲 (堂島ロール)。<br>🍮 必買甜點：LeClerc 可麗露。<br>🥞 下午茶推薦：The Original Pancake House (KITTE博多 2F，必點招牌荷蘭寶貝鬆餅 Dutch Baby)。<br>🌿 燕林廣場 (RF)：頂樓神社與展望台，看風景好去處。",
+              icon: "fa-city",
+              link: "https://boo2k.com/jr-hakata-city-guide/",
+              linkText: "博多城全攻略",
+              nonShopper:
+                "燕林廣場 (つばめの杜ひろば)：位於 JR博多城頂樓。有小火車與神社。<br>休憩：REC COFFEE (KITTE博多店)。",
+              transport: {
+                text: "步行/公車 (運河城 -> 博多站, 約 10 分)",
+                icon: "fa-bus",
+              },
+            },
+            {
+              time: "18:00",
+              title: "逛街與晚餐：Mina 天神 / Aeon / ShinShin 拉麵",
+              desc: "【天神北逛街區】<br>1️⃣ Mina 天神：超大 UNIQLO、GU、LOFT。<br>2️⃣ Aeon Shoppers：逛超市、藥妝、百元商店。<br>🍜 晚餐推薦：博多純情拉麵 ShinShin 或在 Aeon 買超市熟食回飯店吃。",
+              icon: "fa-bag-shopping",
+              location: "天神地區 Mina Tenjin / Aeon",
+              googleMap: "Mina+Tenjin",
+              imgType: "food",
+              image: "img/Tempura-Hirao27.jpg",
+              transport: {
+                text: "步行/公車前往",
+                icon: "fa-bus",
+              },
+            },
+            {
+              time: "20:00",
+              title: "返回飯店休息",
+              desc: "從博多返回天神飯店。",
+              icon: "fa-bed",
+              transport: {
+                text: "計程車/地鐵 (櫛田神社前/博多 -> 天神, 車程約 10 分)",
+                icon: "fa-taxi",
+              },
+            },
+          ],
+        },
 
-    // Itinerary Data
-    const itinerary = [
-      {
-        date: "5/20 (三)",
-        title: "抵達福岡與天神探索",
-        memo: "(已確認路線可行)",
-        weather: "晴時多雲 23°C",
-        events: [
-          {
-            time: "11:20",
-            title: "抵達福岡機場",
-            desc: "辦理入境手續，領取行李",
-            icon: "fa-plane-arrival",
-          },
-          {
-            time: "12:30",
-            title: "前往飯店寄放行李",
-            desc: "1️⃣ 地鐵：需先在國際線 1F 航廈外搭乘「免費接駁巴士」至國內線航廈（車程約 10-15 分），下車後前往 B1 搭乘地下鐵空港線至天神站（車程約 11 分），再步行前往飯店（約步行 5-8 分）。<br>2️⃣ 高速巴士：「<a href='https://www.nishitetsu.jp/bus/rosen/airportexpress/' target='_blank' class='underline text-blue-600 hover:text-blue-800'>Airport Express</a>」從國際線 8 號乘車處出發直達西鐵天神客運總站 (約30-40分，¥500)，下車步行約 10 分。<br>3️⃣ 計程車：從機場直達飯店，車程約 20 分鐘，車資約 ¥2,000 - ¥2,500 (多人分攤很划算，且免扛行李！)<br>4️⃣ Uber XL (Van)：人多或大件行李專用，⚠️ 需特別注意：必須在機場停車場內的「預約計程車指定範圍」上下車。",
-            icon: "fa-hotel",
-            image: "img/batch_IMG_2266.jpg",
-            imgType: "attraction",
-            transport: {
-              text: "地鐵 / 巴士 / 計程車 / Uber",
-              icon: "fa-taxi",
+        {
+          date: "5/22 (五)",
+          title: "絕景神社與藥院散策",
+          memo: "(已確認路線可行，晚餐待討論)",
+          weather: "晴朗 25°C",
+          events: [
+            {
+              time: "08:00",
+              title: "早餐：stock (Pain Stock 天神店)",
+              desc: "【必吃清單】福岡最強麵包店 Pain Stock 與 COFFEE COUNTY 聯名店。<br>⏰ 營業時間：08:00 - 20:00 (週日到 18:30 / 週一、第1及第3個週二公休)<br>🥖 必吃：明太子法國麵包 (Mentai France) 與 蜂蜜咖啡。<br>📍 位置：西中洲 (天神中央公園旁)。",
+              icon: "fa-bread-slice",
+              tag: "排隊名店",
+              price: "¥300 - ¥800",
+              menuLink:
+                "https://tabelog.com/tw/fukuoka/A4001/A400103/40052317/",
+              location: "福岡市中央区西中洲6-17",
+              image: "img/54622856024_3835b36d49_b.jpg",
+              imgType: "food",
+              googleMap: "stock+Pain+Stock+Tenjin",
+              transport: {
+                text: "步行前往 (大名 -> 西中洲, 約 15 分)",
+                icon: "fa-person-walking",
+              },
+              link: "https://tenjo.tw/painstock/",
+              linkText: "明太子麵包發明店",
             },
-          },
-          {
-            time: "13:00",
-            title: "Full Full 天神麵包工房 (Pan to Wine)",
-            desc: "【必吃清單】10:00 開店！先去搶超猛的「明太子法國麵包」。<br>買完寄放飯店或隨身帶著，當作下午小點心超級滿足！",
-            tag: "必吃",
-            icon: "fa-bread-slice",
-            price: "¥300 - ¥800",
-            menuLink: "https://www.full-full.jp/",
-            location: "福岡市中央区天神3-3-5",
-            googleMap: "Full+Full+Tenjin+Pan+to+Wine",
-            imgType: "bread",
-            image: "img/LINE_ALBUM_福岡必吃_260210_4.jpg",
-            transport: {
-              text: "步行前往 (約 5-10 分)",
-              icon: "fa-person-walking",
+            {
+              time: "09:00",
+              title: "絕景海上鳥居：壱岐神社 & 一の鳥居",
+              desc: "吃完早餐後，搭乘地下鐵空港線（往姪浜・唐津方向）直達「下山門站」。<br>⛩️ 徒步約 15 分鐘穿過松原，即可享受海岸邊絕美的「一の鳥居」美景！<br>潮起潮落都有不同的風味，非常適合早上來此散步拍照，接近 10:30 再慢慢搭地鐵返回今泉區吃午餐。",
+              icon: "fa-torii-gate",
+              location: "福岡市の絶景生松原海岸",
+              googleMap: "Iki+Shrine+First+Torii+Gate",
+              image:
+                "img/W3siZm9ybWF0IjoianBnIn0seyJrZXkiOiJzdWdnZXN0aW9uLzI3ODE3NDMwLzUzODUxNDI1LzE3NDk5NDE4NDg5ODIifSx7InJlc2l6ZSI6eyJ3aWR0aCI6IjE0NDAifX1d.jpeg",
+              imgType: "attraction",
+              transport: {
+                text: "地鐵/步行 (天神 -> 下山門 -> 鳥居, 約 30 分鐘)",
+                icon: "fa-train",
+              },
             },
-          },
-          {
-            time: "13:30",
-            title: "午餐與逛街：ONE FUKUOKA BLDG. / 大丸天神 / 天神地下街",
-            desc: "抵達天神後吃午餐與逛街。⚠️ 請務必先去 ONE FUKUOKA BLDG. 的「如水庵」買水果大福，以免向隅賣完！<br><br>【ONE FUKUOKA BLDG 巡禮】<br>🍡 如水庵：超級必吃水果大福！<br>☕ 豆香洞コーヒースタンド (B2F)：推薦咖啡與名物「珈琲羊羹」。<br>🏬 中川政七商店 (3F)：九州最大旗艦店。<br><br>【天神地下街 / PARCO B1F】<br>🍎 必吃：RINGO 蘋果派。順道逛逛天神地下街。<br>🍮 必吃甜點：治一郎 (PARCO B1F)，必吃布丁與年輪蛋糕。<br>🍗 必買宵夜：福岡努努雞 (PARCO B1F)，超人氣冰鎮手羽先(冷雞翅)！<br>🛒 必買推薦：Kitano Ace (PARCO B1F)，目標「大人のための贅沢なぽん酢」。<br><br>【大丸福岡天神店 (B2F)】<br>🍘 小倉山莊：必買超級人氣仙貝伴手禮！<br>",
-            icon: "fa-bag-shopping",
-            tag: "必吃",
-            link: "https://bobbyfun.tw/tenjin-chikagai/",
-            linkText: "天神地下街攻略 (必買/美食/地圖)",
-            nonShopper:
-              "不逛街推薦：可至地下街的「Appetito Cafe」或「Ueshima Coffee」休息。",
-            location: "天神地下街 / PARCO / ONE FUKUOKA BLDG.",
-            googleMap: "ONE+FUKUOKA+BLDG.",
-            imgType: "dessert",
-            image:
-              "img/540701843_17928013167097630_6601496453050942942_n.jpg",
-            transport: {
-              text: "步行前往 (大名 -> 天神區, 約 8 分)",
-              icon: "fa-person-walking",
+            {
+              time: "11:00",
+              title: "午餐：博多炉端 魚男 (Uonan)",
+              desc: "【超人氣打卡名店】以滿滿浮誇海鮮丼與生魚片階梯聞名！<br>⏰ 營業時間：午餐 11:00 - 15:00 / 晚餐 17:00 - 23:00<br>🍣 必點推薦：魚男鮮魚丼、特色生魚片拼盤。<br>⚠️ 午餐時段非常熱門，建議提前訂位或是早點抵達。可以順理成章接續下午今泉區與藥院區逛街！",
+              tag: "必吃",
+              icon: "fa-fish",
+              price: "¥1,500 - ¥2,500",
+              menuLink:
+                "https://tabelog.com/tw/fukuoka/A4001/A400104/40006960/dtlmenu/lunch/",
+              location: "福岡市中央区今泉1-4-23",
+              googleMap: "博多炉端 魚男",
+              imgType: "food",
+              image: "img/IMG_5962-scaled.webp",
+              transport: {
+                text: "地鐵/步行 (下山門 -> 天神 -> 今泉, 總車程加步行約 30 分)",
+                icon: "fa-train",
+              },
             },
-          },
-          {
-            time: "17:00",
-            title: "博多牛腸鍋 前田屋 (大名店)",
-            desc: "【必吃清單】推薦：和牛牛腸鍋、花腹鯖生魚片(胡麻鯖魚)。就在飯店附近的大名區。<br>⏰ 營業時間：17:00 - 00:00 (週末另有午餐 11:00 - 14:30)",
-            tag: "必吃",
-            price: "晚餐 ¥4,000 - ¥5,000",
-            menuLink: "https://motsunabe-maedaya.com/menu/",
-            booking: "已訂位，代碼 #74730(17:00 6位) - 瀅訂",
-            location: "福岡市中央区大名1-12-39",
-            googleMap: "Maedaya+Daimyo",
-            imgType: "food",
-            image: "img/DSC_1873.webp",
-            transport: {
-              text: "步行前往 (ONE FUKUOKA BLDG. -> 前田屋, 約 10 分)",
-              icon: "fa-person-walking",
-            },
-          },
 
-          {
-            time: "18:30",
-            title: "超市採買：MaxValu / Reganet",
-            desc: "回飯店前去超市買福岡草莓(あまおう)與酒。<br>🍓 關於草莓：<br>1. 福岡「甘王草莓 (Amaou)」的產季通常到 5月底結束。<br>2. 這時候可能已經是尾聲了，不過還是有機會買到！<br>3. 如果超市沒看到草莓，推薦試試當時盛產的 熊本西瓜 或 長崎枇杷，也非常甜美！<br>🛒 超市推薦：「MaxValu Express 大名店」(開到 24:00) 或「Reganet 天神」(開到 23:00)。",
-            icon: "fa-basket-shopping",
-            transport: {
-              text: "步行前往 (大名區內, 約 5 分)",
-              icon: "fa-person-walking",
+            {
+              time: "14:00",
+              title: "藥院質感選物巡禮 (Shopping)",
+              desc: "推薦散步路線（由今泉/白金一路逛回藥院，順路接晚餐！）：<br>1. Yamabikoya 山響屋 (今泉區鄉土玩具)<br>2. HIGHTIDE STORE (知名文具雜貨)<br>3. B・B・B POTTERS (必逛生活器皿)<br>4. フランス菓子16区 (必吃達克瓦茲)<br>5. 🍞 むつか堂 藥院本店 (接續晚餐前去買生吐司！)",
+              icon: "fa-shop",
+              location: "福岡県福岡市中央区薬院エリア",
+              image: "img/LINE_ALBUM_福岡景點_260210_1.jpg",
+              imgType: "attraction",
+              transport: {
+                text: "步行前往 (今泉區餐廳 -> 藥院選物店, 順路直達)",
+                icon: "fa-person-walking",
+              },
             },
-          },
-          {
-            time: "19:00",
-            title: "返回飯店休息",
-            desc: "步行返回飯店 (Hotel Monterey La Soeur Fukuoka)。",
-            icon: "fa-bed",
-            transport: {
-              text: "步行前往 (超市 -> 飯店, 約 10 分)",
-              icon: "fa-person-walking",
+            {
+              time: "14:00",
+              title: "下午備案：福岡動植物園",
+              desc: "如果想親近大自然，吃飽後從今泉搭公車，不到 15 分鐘即可直達園區門口！<br>🐘 園區剛翻新，可以近距離看企鵝與人猿，綠意盎然，非常適合休閒放電與拍照！<br>⏰ 營業時間：09:00 - 17:00 (16:30 最後入園，每週一休園)<br>🎫 門票：成人 600円 / 高中生 300円 / 國中生以下及未滿小學兒童 免費",
+              icon: "fa-hippo",
+              location: "福岡県福岡市中央区南公園1-1",
+              googleMap: "Fukuoka+City+Zoological+and+Botanical+Garden",
+              link: "https://saly1350.pixnet.net/blog/posts/10358238985",
+              linkText: "動植物園遊記分享",
+              imgType: "attraction",
+              image: "img/Fukuoka-City-Zoological-and-Botanical-Garden.jpg",
+              transport: {
+                text: "搭乘公車直達 (今泉 -> 動植物園, 乘車約 15 分)",
+                icon: "fa-bus",
+              },
             },
-          },
-        ],
-      }, {
-        date: "5/21 (四)",
-        title: "市區名店巡禮",
-        memo: "(待確認行程細節)",
-        weather: "多雲時晴 24°C",
-        events: [
-          {
-            time: "09:30",
-            title: "📍 飯店大廳集合出發",
-            desc: "今天可以稍微睡飽一點，集合後出發去吃早午餐！",
-            icon: "fa-bell",
-            transport: {
-              text: "散步出發",
-              icon: "fa-person-walking",
+            {
+              time: "18:00",
+              title: "晚餐：燒肉 Nikuichi (藥院店)",
+              desc: "【在地推薦】CP值極高的黑毛和牛燒肉店！<br>⏰ 營業時間：16:00 - 00:00<br>就在藥院區域，逛完直接來吃。",
+              icon: "fa-fire-burner",
+              tag: "必吃",
+              link: "https://hedonistjun.com/yakuin-nikuichi/",
+              linkText: "Nikuichi 药院店",
+              booking:
+                "務必提前訂位 <a href='https://www.tablecheck.com/zh-TW/yakiniku-nikuichi/reserve/landing?rwg_token=AFd1xnEIn8J5MMnz0edUrF2gjHZo3j8Oc82QjuEnUBzU9eD4fI2tvsGi0PI1RilNfUOVZK9AL_aOwsksKdhOkClf2rjj_PPwjXQtfc-FxQTEaNSTTHL46gk%3D' target='_blank' class='underline text-amber-600 hover:text-amber-800 ml-1'>線上預約 <i class='fa-solid fa-arrow-up-right-from-square text-xs'></i></a>",
+              location: "福岡市中央区薬院3-16-34",
+              price: "晚餐 ¥4,000 - ¥6,000",
+              menuLink: "https://www.yakiniku-nikuichi.com/menu.html",
+              googleMap: "Yakiniku+Nikuichi+Yakuin",
+              imgType: "food",
+              image: "img/S__31596551_0.jpg",
+              transport: {
+                text: "步行前往 (藥院選物店 -> 餐廳, 約 5-10 分)",
+                icon: "fa-person-walking",
+              },
             },
-          },
-          {
-            time: "10:00",
-            title: "早午餐：吉塚うなぎ (Yoshizuka Unagi)",
-            desc: "【百年名店】福岡最知名的鰻魚飯，焦香味美！備註：不吃鰻魚飯的人可以稍微晚點吃蛋包飯 Ikura。<br>⏰ 營業時間：10:00 - 21:00 (週三公休)",
-            tag: "必吃",
-            icon: "fa-utensils",
-            price: "¥3,500 - ¥5,000",
-            menuLink: "https://yoshizukaunagi.com/",
-            location: "福岡市博多区中洲2-8-27",
-            googleMap: "Yoshizuka+Unagi+Honten",
-            imgType: "food",
-            image: "img/yoshidukaunagi10.jpg.webp",
-            transport: {
-              text: "步行前往 (中洲川端站 5 分鐘)",
-              icon: "fa-person-walking",
+            {
+              time: "20:30",
+              title: "逛街採買：唐吉訶德 天神本店",
+              desc: "【24小時營業】就在飯店附近！吃完燒肉順道過來逛逛。<br>隨時可以補貨零食、電器 or 伴手禮。",
+              icon: "fa-bag-shopping",
+              transport: {
+                text: "步行前往 (餐廳 -> 唐吉訶德)",
+                icon: "fa-person-walking",
+              },
             },
-          },
-          {
-            time: "11:00",
-            title: "川端通商店街 & 櫛田神社 & FUK COFFEE",
-            desc: "【順路不繞道】經典散步路線！<br>1️⃣ 川端通商店街：吃飽後從天神過橋到中洲，逛傳統工藝與土產。<br>2️⃣ 櫛田神社：商店街走到底就是神社南門，參拜博多總鎮守。<br>3️⃣ FUK COFFEE：參拜完從神社旁走出來，喝杯飛機圖案拿鐵。<br>📍 路線：天神 -> 商店街(北往南) -> 櫛田神社 -> FUK COFFEE。",
-            icon: "fa-torii-gate",
-            tag: "順路",
-            image: "img/19-177478.webp",
-            imgType: "attraction",
-            price: "拿鐵 ¥650",
-            menuLink: "https://fuk-coffee.com/menu/",
-            transport: {
-              text: "步行 (中洲川端 -> 商店街 -> 櫛田神社, 一路向南)",
-              icon: "fa-person-walking",
+            {
+              time: "22:30",
+              title: "返回飯店休息",
+              desc: "逛完唐吉訶德，散步回附近的飯店 (Hotel Monterey La Soeur Fukuoka)。",
+              icon: "fa-bed",
+              transport: {
+                text: "步行前往 (唐吉訶德 -> 飯店, 約 5-8 分)",
+                icon: "fa-person-walking",
+              },
             },
-          },
-          {
-            time: "11:00",
-            title: "麵包超人兒童博物館",
-            desc: "【親子必訪】位於博多河畔城 (Hakata Riverain) 5F-6F。<br>帶小孩必去！從中洲川端站直結，室內樂園不怕下雨。<br>🎡 必玩：麵包超人劇場、果醬爺爺的麵包工場。<br>📍 就在中洲川端站旁，非常方便！",
-            icon: "fa-child-reaching",
-            tag: "親子推薦",
-            link: "https://fullfenblog.tw/fukuoka-anpanman/",
-            linkText: "福岡麵包超人博物館遊記分享",
-            image: "img/20250111_105549_58232f63_w1920.webp",
-            imgType: "attraction",
-            price: "門票 ¥2,000",
-            location: "博多河畔城 5F-6F",
-            transport: {
-              text: "步行前往 (中洲川端站直結)",
-              icon: "fa-person-walking",
+          ],
+        },
+        {
+          date: "5/23 (六)",
+          title: "THE RAIL KITCHEN CHIKUGO 觀光列車與水鄉柳川",
+          memo: "(午餐於列車上享用)",
+          weather: "多雲 24°C",
+          events: [
+            {
+              time: "10:00",
+              title: "早餐：AKARI BAKERY (アカリベーカリー)",
+              desc: "【大濠公園旁的人氣麵包店】出地鐵站步行1分鐘！<br>⏰ 營業時間：08:30 - 18:00 (週一、第1與第3個週四公休)<br>買完非常適合直接帶去公園吃晨光野餐！由豬排專門店監修的極厚「豬排三明治」、咖哩麵包都是必吃招牌。<br>📍 位於大濠公園站周邊。",
+              icon: "fa-bread-slice",
+              location: "大濠公園駅旁",
+              googleMap: "AKARI+BAKERY+Ohori",
+              image: "img/DSC09681.jpg",
+              imgType: "food",
+              transport: {
+                text: "地下鐵 (天神 -> 大濠公園, 3 分鐘) 出站即達",
+                icon: "fa-train",
+              },
             },
-          },
-          {
-            time: "12:30",
-            title: "（午餐備案）漢堡排與蛋包飯 Ikura (博多店)",
-            desc: "【必吃清單】網路超人氣！滑嫩歐姆蛋包飯與多汁漢堡排。<br>⏰ 營業時間：11:30 - 15:00 (最後點餐 14:00) / 17:00 - 21:00 (不定休)<br>⚠️ 蛋包飯僅午餐時段供應，務必中午來！",
-            icon: "fa-utensils",
-            tag: "必吃",
-            imgType: "food",
-            image: "img/LINE_ALBUM_福岡必吃_260210_2.jpg",
-            price: "¥1,500 - ¥2,000",
-            menuLink:
-              "https://tabelog.com/tw/fukuoka/A4001/A400101/40063348/dtlmenu/",
-            transport: {
-              text: "步行/巴士 (櫛田神社 -> 博多站/運河城, 約 10-15 分)",
-              icon: "fa-bus",
+            {
+              time: "10:30",
+              title: "大濠公園 & 福岡城散策",
+              desc: "帶著美味的豬排三明治，在早晨舒服的湖畔野餐散步！<br>吃飽可以走遠一點去福岡城跡，或在湖景第一排咖啡廳喝飲料。<br>☕ 休憩推薦：&LOCALS 大濠公園(大濠テラス) - 必吃「八女茶最中」。",
+              icon: "fa-tree",
+              link: "https://marukoblog.tw/locals.html",
+              linkText: "& LOCALS 大濠公園湖景第一排咖啡店",
+              imgType: "coffee",
+              image: "img/locals-_6.jpg",
+              rain: "備案: 還是買 AKARI，帶去 &LOCALS 等室內點杯飲料吃。",
+              transport: {
+                text: "步行 (過個馬路即達公園)",
+                icon: "fa-person-walking",
+              },
             },
-          },
-          {
-            time: "14:00",
-            title: "博多運河城逛街 (Canal City Hakata)",
-            desc: "【超大型複合商場】剛吃飽就在旁邊散步逛街！<br>🛍️ 購物：服飾、雜貨、扭蛋、伴手禮通通有。<br>⛲ 必看：B1 的音樂水舞噴泉秀 (每半小時/整點演出)。<br>🍜 拉麵競技場：如果沒吃午餐，這裡有全國拉麵名店齊聚一堂！",
-            icon: "fa-water",
-            image: "img/20250731113555_0_4eccd6.jpg",
-            imgType: "attraction",
-            transport: {
-              text: "步行 (就在旁邊)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "16:00",
-            title: "博多車站逛街 (JR Hakata City)",
-            desc: "博多車站就很好逛！<br>🛍️ Amu Plaza、阪急百貨、伴手禮街(「隆勝堂」抹茶麻糬)。<br>🛒 雜貨尋寶：Seria 百元商店 (KITTE博多 4F)，生活雜貨超好買！<br>🍰 必吃推薦：博多阪急B1「Mon cher」堂島生乳捲 (堂島ロール)。<br>🍮 必買甜點：LeClerc 可麗露。<br>🥞 下午茶推薦：The Original Pancake House (KITTE博多 2F，必點招牌荷蘭寶貝鬆餅 Dutch Baby)。<br>🌿 燕林廣場 (RF)：頂樓神社與展望台，看風景好去處。",
-            icon: "fa-city",
-            link: "https://boo2k.com/jr-hakata-city-guide/",
-            linkText: "博多城全攻略",
-            nonShopper:
-              "燕林廣場 (つばめの杜ひろば)：位於 JR博多城頂樓。有小火車與神社。<br>休憩：REC COFFEE (KITTE博多店)。",
-            transport: {
-              text: "步行/公車 (運河城 -> 博多站, 約 10 分)",
-              icon: "fa-bus",
-            },
-          },
-          {
-            time: "18:00",
-            title: "逛街與晚餐：Mina 天神 / Aeon / ShinShin 拉麵",
-            desc: "【天神北逛街區】<br>1️⃣ Mina 天神：超大 UNIQLO、GU、LOFT。<br>2️⃣ Aeon Shoppers：逛超市、藥妝、百元商店。<br>🍜 晚餐推薦：博多純情拉麵 ShinShin 或在 Aeon 買超市熟食回飯店吃。",
-            icon: "fa-bag-shopping",
-            location: "天神地區 Mina Tenjin / Aeon",
-            googleMap: "Mina+Tenjin",
-            imgType: "food",
-            image: "img/Tempura-Hirao27.jpg",
-            transport: {
-              text: "步行/公車前往",
-              icon: "fa-bus",
-            },
-          },
-          {
-            time: "20:00",
-            title: "返回飯店休息",
-            desc: "從博多返回天神飯店。",
-            icon: "fa-bed",
-            transport: {
-              text: "計程車/地鐵 (櫛田神社前/博多 -> 天神, 車程約 10 分)",
-              icon: "fa-taxi",
-            },
-          },
-        ],
-      },
-
-      {
-        date: "5/22 (五)",
-        title: "絕景神社與藥院散策",
-        memo: "(已確認路線可行，晚餐待討論)",
-        weather: "晴朗 25°C",
-        events: [
-          {
-            time: "08:00",
-            title: "早餐：stock (Pain Stock 天神店)",
-            desc: "【必吃清單】福岡最強麵包店 Pain Stock 與 COFFEE COUNTY 聯名店。<br>⏰ 營業時間：08:00 - 20:00 (週日到 18:30 / 週一、第1及第3個週二公休)<br>🥖 必吃：明太子法國麵包 (Mentai France) 與 蜂蜜咖啡。<br>📍 位置：西中洲 (天神中央公園旁)。",
-            icon: "fa-bread-slice",
-            tag: "排隊名店",
-            price: "¥300 - ¥800",
-            menuLink:
-              "https://tabelog.com/tw/fukuoka/A4001/A400103/40052317/",
-            location: "福岡市中央区西中洲6-17",
-            image: "img/54622856024_3835b36d49_b.jpg",
-            imgType: "food",
-            googleMap: "stock+Pain+Stock+Tenjin",
-            transport: {
-              text: "步行前往 (大名 -> 西中洲, 約 15 分)",
-              icon: "fa-person-walking",
-            },
-            link: "https://tenjo.tw/painstock/",
-            linkText: "明太子麵包發明店",
-          },
-          {
-            time: "09:00",
-            title: "絕景海上鳥居：壱岐神社 & 一の鳥居",
-            desc: "吃完早餐後，搭乘地下鐵空港線（往姪浜・唐津方向）直達「下山門站」。<br>⛩️ 徒步約 15 分鐘穿過松原，即可享受海岸邊絕美的「一の鳥居」美景！<br>潮起潮落都有不同的風味，非常適合早上來此散步拍照，接近 10:30 再慢慢搭地鐵返回今泉區吃午餐。",
-            icon: "fa-torii-gate",
-            location: "福岡市の絶景生松原海岸",
-            googleMap: "Iki+Shrine+First+Torii+Gate",
-            image:
-              "img/W3siZm9ybWF0IjoianBnIn0seyJrZXkiOiJzdWdnZXN0aW9uLzI3ODE3NDMwLzUzODUxNDI1LzE3NDk5NDE4NDg5ODIifSx7InJlc2l6ZSI6eyJ3aWR0aCI6IjE0NDAifX1d.jpeg",
-            imgType: "attraction",
-            transport: {
-              text: "地鐵/步行 (天神 -> 下山門 -> 鳥居, 約 30 分鐘)",
+            {
+              time: "12:30",
+              title: "西鐵福岡（天神）站集合",
+              desc: "準備搭乘 THE RAIL KITCHEN CHIKUGO，請準時抵達車站報到。<br>⚠️ 建議在 **12:10** 左右從大濠公園出發。<br>💡 **省錢必買**：在有站務員的窗口出示預約畫面，加購「THE RAIL KITCHEN 限定1日乘車券」 (成人 650円 / 兒童 330円)。<br>於搭乘當日可在天神大牟田線、太宰府線及甘木線自由上下車，回程從柳川搭西鐵特急回天神直接用這張卡就全包了！",
               icon: "fa-train",
+              transport: {
+                text: "搭乘地鐵空港線 (大濠公園站 -> 天神站, 車程 4 分) + 轉乘步行 (約 8 分)",
+                icon: "fa-subway",
+              },
             },
-          },
-          {
-            time: "11:00",
-            title: "午餐：博多炉端 魚男 (Uonan)",
-            desc: "【超人氣打卡名店】以滿滿浮誇海鮮丼與生魚片階梯聞名！<br>⏰ 營業時間：午餐 11:00 - 15:00 / 晚餐 17:00 - 23:00<br>🍣 必點推薦：魚男鮮魚丼、特色生魚片拼盤。<br>⚠️ 午餐時段非常熱門，建議提前訂位或是早點抵達。可以順理成章接續下午今泉區與藥院區逛街！",
-            tag: "必吃",
-            icon: "fa-fish",
-            price: "¥1,500 - ¥2,500",
-            menuLink:
-              "https://tabelog.com/tw/fukuoka/A4001/A400104/40006960/dtlmenu/lunch/",
-            location: "福岡市中央区今泉1-4-23",
-            googleMap: "博多炉端 魚男",
-            imgType: "food",
-            image: "img/IMG_5962-scaled.webp",
-            transport: {
-              text: "地鐵/步行 (下山門 -> 天神 -> 今泉, 總車程加步行約 30 分)",
-              icon: "fa-train",
+            {
+              time: "12:51",
+              title: "搭乘 THE RAIL KITCHEN CHIKUGO (Late Lunch)",
+              desc: "【鐵道美食之旅】搭乘高級觀光列車前往柳川！<br>🍕 午餐將在列車上享用熱騰騰的在地食材窯烤披薩與豐盛套餐。<br>沿途欣賞筑後平原的田園風光，享受舒適的兩小時用餐與乘車時光。<br>✅ 已完成預約！",
+              icon: "fa-utensils",
+              tag: "已預約",
+              booking:
+                "預約番號：ECFL004419 <a href='https://niccs.nishitetsutravel.jp/ntc_tours/tours/ja/login' target='_blank' class='underline text-amber-600 hover:text-amber-800 ml-1'>查詢預約 <i class='fa-solid fa-arrow-up-right-from-square text-xs'></i></a>",
+              price: "約 ¥13,000 / ¥7,000 (含午餐)",
+              link: "https://natasha-traveler.tw/rail-kitchen-chikugo-review/#The_rail_kitchen_chikugo_%E6%9C%89%E5%93%AA%E4%BA%9B%E8%B7%AF%E7%B7%9A%E3%80%81%E6%99%82%E6%AE%B5%E9%81%B8%E6%93%87",
+              linkText: "THE RAIL KITCHEN CHIKUGO 心得",
+              image: "img/54400003206_0a1506a40f_b.jpg",
+              imgType: "attraction",
+              transport: {
+                text: "觀光列車 (天神 12:51 -> 柳川 15:02)",
+                icon: "fa-train",
+              },
             },
-          },
-
-          {
-            time: "14:00",
-            title: "藥院質感選物巡禮 (Shopping)",
-            desc: "推薦散步路線（由今泉/白金一路逛回藥院，順路接晚餐！）：<br>1. Yamabikoya 山響屋 (今泉區鄉土玩具)<br>2. HIGHTIDE STORE (知名文具雜貨)<br>3. B・B・B POTTERS (必逛生活器皿)<br>4. フランス菓子16区 (必吃達克瓦茲)<br>5. 🍞 むつか堂 藥院本店 (接續晚餐前去買生吐司！)",
-            icon: "fa-shop",
-            location: "福岡県福岡市中央区薬院エリア",
-            image: "img/LINE_ALBUM_福岡景點_260210_1.jpg",
-            imgType: "attraction",
-            transport: {
-              text: "步行前往 (今泉區餐廳 -> 藥院選物店, 順路直達)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "14:00",
-            title: "下午備案：福岡動植物園",
-            desc: "如果想親近大自然，吃飽後從今泉搭公車，不到 15 分鐘即可直達園區門口！<br>🐘 園區剛翻新，可以近距離看企鵝與人猿，綠意盎然，非常適合休閒放電與拍照！<br>⏰ 營業時間：09:00 - 17:00 (16:30 最後入園，每週一休園)<br>🎫 門票：成人 600円 / 高中生 300円 / 國中生以下及未滿小學兒童 免費",
-            icon: "fa-hippo",
-            location: "福岡県福岡市中央区南公園1-1",
-            googleMap: "Fukuoka+City+Zoological+and+Botanical+Garden",
-            link: "https://saly1350.pixnet.net/blog/posts/10358238985",
-            linkText: "動植物園遊記分享",
-            imgType: "attraction",
-            image: "img/Fukuoka-City-Zoological-and-Botanical-Garden.jpg",
-            transport: {
-              text: "搭乘公車直達 (今泉 -> 動植物園, 乘車約 15 分)",
-              icon: "fa-bus",
-            },
-          },
-          {
-            time: "18:00",
-            title: "晚餐：燒肉 Nikuichi (藥院店)",
-            desc: "【在地推薦】CP值極高的黑毛和牛燒肉店！<br>⏰ 營業時間：16:00 - 00:00<br>就在藥院區域，逛完直接來吃。",
-            icon: "fa-fire-burner",
-            tag: "必吃",
-            link: "https://hedonistjun.com/yakuin-nikuichi/",
-            linkText: "Nikuichi 药院店",
-            booking:
-              "務必提前訂位 <a href='https://www.tablecheck.com/zh-TW/yakiniku-nikuichi/reserve/landing?rwg_token=AFd1xnEIn8J5MMnz0edUrF2gjHZo3j8Oc82QjuEnUBzU9eD4fI2tvsGi0PI1RilNfUOVZK9AL_aOwsksKdhOkClf2rjj_PPwjXQtfc-FxQTEaNSTTHL46gk%3D' target='_blank' class='underline text-amber-600 hover:text-amber-800 ml-1'>線上預約 <i class='fa-solid fa-arrow-up-right-from-square text-xs'></i></a>",
-            location: "福岡市中央区薬院3-16-34",
-            price: "晚餐 ¥4,000 - ¥6,000",
-            menuLink: "https://www.yakiniku-nikuichi.com/menu.html",
-            googleMap: "Yakiniku+Nikuichi+Yakuin",
-            imgType: "food",
-            image: "img/S__31596551_0.jpg",
-            transport: {
-              text: "步行前往 (藥院選物店 -> 餐廳, 約 5-10 分)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "20:30",
-            title: "逛街採買：唐吉訶德 天神本店",
-            desc: "【24小時營業】就在飯店附近！吃完燒肉順道過來逛逛。<br>隨時可以補貨零食、電器 or 伴手禮。",
-            icon: "fa-bag-shopping",
-            transport: {
-              text: "步行前往 (餐廳 -> 唐吉訶德)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "22:30",
-            title: "返回飯店休息",
-            desc: "逛完唐吉訶德，散步回附近的飯店 (Hotel Monterey La Soeur Fukuoka)。",
-            icon: "fa-bed",
-            transport: {
-              text: "步行前往 (唐吉訶德 -> 飯店, 約 5-8 分)",
-              icon: "fa-person-walking",
-            },
-          },
-        ],
-      },
-      {
-        date: "5/23 (六)",
-        title: "THE RAIL KITCHEN CHIKUGO 觀光列車與水鄉柳川",
-        memo: "(午餐於列車上享用)",
-        weather: "多雲 24°C",
-        events: [
-          {
-            time: "10:00",
-            title: "早餐：AKARI BAKERY (アカリベーカリー)",
-            desc: "【大濠公園旁的人氣麵包店】出地鐵站步行1分鐘！<br>⏰ 營業時間：08:30 - 18:00 (週一、第1與第3個週四公休)<br>買完非常適合直接帶去公園吃晨光野餐！由豬排專門店監修的極厚「豬排三明治」、咖哩麵包都是必吃招牌。<br>📍 位於大濠公園站周邊。",
-            icon: "fa-bread-slice",
-            location: "大濠公園駅旁",
-            googleMap: "AKARI+BAKERY+Ohori",
-            image: "img/DSC09681.jpg",
-            imgType: "food",
-            transport: {
-              text: "地下鐵 (天神 -> 大濠公園, 3 分鐘) 出站即達",
-              icon: "fa-train",
-            },
-          },
-          {
-            time: "10:30",
-            title: "大濠公園 & 福岡城散策",
-            desc: "帶著美味的豬排三明治，在早晨舒服的湖畔野餐散步！<br>吃飽可以走遠一點去福岡城跡，或在湖景第一排咖啡廳喝飲料。<br>☕ 休憩推薦：&LOCALS 大濠公園(大濠テラス) - 必吃「八女茶最中」。",
-            icon: "fa-tree",
-            link: "https://marukoblog.tw/locals.html",
-            linkText: "& LOCALS 大濠公園湖景第一排咖啡店",
-            imgType: "coffee",
-            image: "img/locals-_6.jpg",
-            rain: "備案: 還是買 AKARI，帶去 &LOCALS 等室內點杯飲料吃。",
-            transport: {
-              text: "步行 (過個馬路即達公園)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "12:30",
-            title: "西鐵福岡（天神）站集合",
-            desc: "準備搭乘 THE RAIL KITCHEN CHIKUGO，請準時抵達車站報到。<br>⚠️ 建議在 **12:10** 左右從大濠公園出發。<br>💡 **省錢必買**：在有站務員的窗口出示預約畫面，加購「THE RAIL KITCHEN 限定1日乘車券」 (成人 650円 / 兒童 330円)。<br>於搭乘當日可在天神大牟田線、太宰府線及甘木線自由上下車，回程從柳川搭西鐵特急回天神直接用這張卡就全包了！",
-            icon: "fa-train",
-            transport: {
-              text: "搭乘地鐵空港線 (大濠公園站 -> 天神站, 車程 4 分) + 轉乘步行 (約 8 分)",
-              icon: "fa-subway",
-            },
-          },
-          {
-            time: "12:51",
-            title: "搭乘 THE RAIL KITCHEN CHIKUGO (Late Lunch)",
-            desc: "【鐵道美食之旅】搭乘高級觀光列車前往柳川！<br>🍕 午餐將在列車上享用熱騰騰的在地食材窯烤披薩與豐盛套餐。<br>沿途欣賞筑後平原的田園風光，享受舒適的兩小時用餐與乘車時光。<br>✅ 已完成預約！",
-            icon: "fa-utensils",
-            tag: "已預約",
-            booking:
-              "預約番號：ECFL004419 <a href='https://niccs.nishitetsutravel.jp/ntc_tours/tours/ja/login' target='_blank' class='underline text-amber-600 hover:text-amber-800 ml-1'>查詢預約 <i class='fa-solid fa-arrow-up-right-from-square text-xs'></i></a>",
-            price: "約 ¥13,000 / ¥7,000 (含午餐)",
-            link: "https://natasha-traveler.tw/rail-kitchen-chikugo-review/#The_rail_kitchen_chikugo_%E6%9C%89%E5%93%AA%E4%BA%9B%E8%B7%AF%E7%B7%9A%E3%80%81%E6%99%82%E6%AE%B5%E9%81%B8%E6%93%87",
-            linkText: "THE RAIL KITCHEN CHIKUGO 心得",
-            image: "img/54400003206_0a1506a40f_b.jpg",
-            imgType: "attraction",
-            transport: {
-              text: "觀光列車 (天神 12:51 -> 柳川 15:02)",
-              icon: "fa-train",
-            },
-          },
-          {
-            time: "15:30",
-            title: "柳川遊船體驗 (Donko Boat)",
-            desc: "15:02 抵達柳川站後，轉乘接駁車或步行至乘船處。<br>體驗約 60 分鐘的搖櫓船，午後陽光與沿岸垂柳交織，非常浪漫悠閒。",
-            icon: "fa-ship",
-            link: "https://yanagawakk.co.jp/index_tw.html",
-            linkText: "柳川觀光開發株式會社",
-            image: "img/yanagawakawakudari_eyecatch-853x569.jpg.webp",
-            imgType: "attraction",
-            transport: {
-              text: "接駁車/巴士 (柳川站 -> 乘船場)",
-              icon: "fa-bus",
-            },
-          },
-          {
-            time: "17:30",
-            title: "搭乘西鐵特急返回福岡市區",
-            desc: "遊船結束後，搭乘接駁公車或計程車回到柳川站，再搭乘西鐵特急返回天神。<br>🎫 **記得使用早上加購的「THE RAIL KITCHEN 限定 1 日乘車券」進站喔！**",
-            icon: "fa-train",
-            transport: {
-              text: "西鐵電車 (柳川 -> 天神, 約 50 分)",
-              icon: "fa-train",
-            },
-          },
-          {
-            time: "18:30",
-            title:
-              "晚餐自理：天麩羅處 Hirao / 漢堡排 牛丸 / 強棒拉麵 / ShinShin / 一蘭拉麵",
-            desc: "晚餐可自由選擇：<br>1️⃣ 天麩羅處 Hirao：現炸天婦羅靈魂美食！柚子花枝小菜吃到飽。<br>2️⃣ 漢堡排 牛丸 (Gyumaru)：推薦手工多汁漢堡排。<br>3️⃣ 強棒拉麵 (長崎ちゃんぽん)：蔬菜滿滿的日式經典麵食。<br>4️⃣ 博多拉麵 ShinShin：在地超人氣豚骨拉麵。<br>5️⃣ 一蘭拉麵：天神西通店有獨家方形便當盒豚骨拉麵！<br>6️⃣ 兼虎拉麵：強推濃郁沾麵，麵條極具彈性。",
-            icon: "fa-utensils",
-            price: "約 ¥800 - ¥2,000",
-            location: "天神地區周邊",
-            imgType: "food",
-            image: "img/Tempura-Hirao27.jpg",
-            transport: {
-              text: "步行前往 (都在天神/大名周邊)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "20:00",
-            title: "返回飯店休息",
-            desc: "享受悠閒的夜晚，或是再去附近超市補貨！",
-            icon: "fa-bed",
-            transport: {
-              text: "步行",
-              icon: "fa-person-walking",
-            },
-          },
-        ],
-      }, {
-        date: "5/24 (日)",
-        title: "關門海峽套票與唐戶市場海鮮之旅",
-        memo: "(週日唐戶市場海鮮大排檔營業！)",
-        weather: "晴時多雲 25°C",
-        events: [
-          {
-            time: "07:40",
-            title: "📍 飯店大廳集合出發",
-            desc: "【重要】今天要搭新幹線前往門司港，請大家準時集合哦！",
-            icon: "fa-bell",
-            transport: {
-              text: "馬上出發",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "08:00",
-            title: "早餐：Bread, Espresso & Hakata",
-            desc: "【人氣早餐】位於博多站前 (The Blossom Hakata Premier 1F)，推薦鐵板法式吐司與獨家「穆」土司套餐。<br>⏰ 營業時間：08:00 - 19:00 (不定休)<br>⚠️經常排隊，需要搶頭香，沒有位子就外帶",
-            icon: "fa-mug-hot",
-            location: "福岡市博多区博多駅前2-8-12",
-            googleMap: "Bread+Espresso+Hakata",
-            imgType: "bread",
-            image: "img/breadEspressoHakata.jpeg",
-            price: "早餐套餐 ¥1,500 起",
-            menuLink: "https://bread-espresso.jp/shop/hakata.html",
-            transport: {
-              text: "地鐵 (天神 -> 博多站, 約 17 分)",
-              icon: "fa-train-subway",
-            },
-          },
-          {
-            time: "09:30",
-            title: "抵達門司港：購買關門海峽四葉草套票",
-            desc: "吃飽後前往博多車站，使用外國遊客優惠票（1,600円）搭乘新幹線前往小倉，轉 JR 抵達門司港。<br>🎫 抵達後立刻購買【關門海峽四葉草套票 (クローバーきっぷ)】 (成人 800円 / 兒童 400円)，包含小火車、公車、聯絡船各一次搭乘券！",
-            icon: "fa-ticket",
-            link: "https://www.retro-line.net/about/value_tickets/%E9%96%A2%E9%96%80%E6%B5%B7%E5%B3%A1%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%90%E3%83%BC%E3%81%8D%E3%81%A3%E3%81%B7/",
-            linkText: "關門海峽四葉草套票官網",
-            transport: {
-              text: "新幹線 + JR (博多 -> 小倉 -> 門司港站)",
-              icon: "fa-train-subway",
-            },
-          },
-          {
-            time: "10:00",
-            title: "搭乘潮風號小火車 (Shiokaze Go)",
-            desc: "從「九州鐵道紀念館站」搭乘 10:00 發車的第一班觀光小火車，沿著海岸線逆時針出發。<br>火車行駛途中會進入隧道，車頂會有驚喜的螢光彩繪！",
-            icon: "fa-train",
-            image: "img/LINE_ALBUM_福岡景點_260210_2.jpg",
-            imgType: "attraction",
-            transport: {
-              text: "潮風號 (九州鐵道紀念館站 -> 關門海峽和布刈站, 約 10 分)",
-              icon: "fa-train",
-            },
-          },
-          {
-            time: "10:10",
-            title: "和布刈公園：巨大章魚溜滑梯",
-            desc: "下車後步行前往旁邊的和布刈公園，這裡有國內最大級別的「章魚溜滑梯 (たこの滑り台)」！<br>可以在這裡稍作停留拍照並欣賞關門橋的壯麗海景。",
-            icon: "fa-camera",
-            transport: {
-              text: "步行前往 (車站旁)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "10:40",
-            title: "步行穿越關門海底人道隧道",
-            desc: "搭電梯深入海底，走過約 780 公尺的行人專用海底隧道！<br>隧道中段有「福岡縣」與「山口縣」的交界標誌，是必拍的打卡點。",
-            icon: "fa-person-walking",
-            transport: {
-              text: "步行 (海底隧道, 約 10-15 分)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "11:15",
-            title: "轉乘御裳川公車至唐戶市場",
-            desc: "出海底隧道後(下關側)，使用套票轉乘前往唐戶的公車。<br>下車後直達唐戶市場與海響館周邊。",
-            icon: "fa-bus",
-            transport: {
-              text: "桑電交通巴士 (御裳川 -> 唐戶, 約 5 分)",
-              icon: "fa-bus",
-            },
-          },
-          {
-            time: "11:30",
-            title: "午餐：唐戶市場 活きいき馬関街 / 燒咖哩備案",
-            desc: "【週末限定的壽司大排檔】星期日才有營業的最強海鮮市場！<br>可以在各個攤位挑選新鮮的握壽司、海鮮丼與炸河豚，拿到一樓靠海的木棧道享用。<br>⚠️ **備案**：如果市場人太多不想擠，就先不要吃，直接拿套票搭聯絡船回門司港，去吃「伽哩本舗」的招牌燒咖哩！",
-            icon: "fa-fish",
-            tag: "必吃",
-            price: "約 ¥1,500 - ¥2,500",
-            imgType: "food",
-            image: "img/20190215161131_37.jpg",
-            transport: {
-              text: "步行抵達",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "13:30",
-            title: "搭乘關門汽船返回門司港",
-            desc: "吃飽喝足後，在唐戶棧橋使用套票搭乘關門聯絡船，約 5 分鐘便可快速橫渡關門海峽，回到充滿大正浪漫氛圍的門司港懷舊區！",
-            icon: "fa-ship",
-            transport: {
-              text: "關門海峽聯絡船 (唐戶 -> 門司港, 約 5 分)",
+            {
+              time: "15:30",
+              title: "柳川遊船體驗 (Donko Boat)",
+              desc: "15:02 抵達柳川站後，轉乘接駁車或步行至乘船處。<br>體驗約 60 分鐘的搖櫓船，午後陽光與沿岸垂柳交織，非常浪漫悠閒。",
               icon: "fa-ship",
+              link: "https://yanagawakk.co.jp/index_tw.html",
+              linkText: "柳川觀光開發株式會社",
+              image: "img/yanagawakawakudari_eyecatch-853x569.jpg.webp",
+              imgType: "attraction",
+              transport: {
+                text: "接駁車/巴士 (柳川站 -> 乘船場)",
+                icon: "fa-bus",
+              },
             },
-          },
-          {
-            time: "14:00",
-            title: "門司港懷舊區散策：鐵道紀念館與海峽廣場",
-            desc: "回到門司港後接著參觀景點！<br>🚂 **九州鐵道紀念館**：早上還沒看，現在直接進去參觀，體驗迷你鐵道。<br>🌉 **藍翼門司吊橋**：全國最大的步行者專用開闔橋。<br>🍌 **香蕉人雕像**：門司港名物打卡。<br>☕ 逛逛「海峽廣場」買伴手禮，或是找間大正浪漫風咖啡廳吃下午茶。",
-            icon: "fa-camera",
-            link: "https://journey.tw/kurogane-rail/",
-            linkText: "九州鐵道紀念館攻略",
-            transport: {
-              text: "步行前往 (各景點間約 5-10 分)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "17:00",
-            title: "返回天神",
-            desc: "從門司港搭乘 JR 鹿兒島本線到小倉（約 15 分鐘），接著轉乘新幹線快速回到博多（優惠票），最後轉乘地鐵回天神。全程順暢只需約 40-50 分鐘！",
-            icon: "fa-train-subway",
-            transport: {
-              text: "JR+新幹線+地鐵 (門司港 -> 小倉 -> 博多 -> 天神)",
-              icon: "fa-train-subway",
-            },
-          },
-          {
-            time: "18:30",
-            title:
-              "晚餐自理：天麩羅處 Hirao / 漢堡排 牛丸 / 強棒拉麵 / ShinShin / 一蘭拉麵",
-            desc: "晚餐可自由選擇：<br>1️⃣ 天麩羅處 Hirao：現炸天婦羅靈魂美食！柚子花枝小菜吃到飽。<br>2️⃣ 漢堡排 牛丸 (Gyumaru)：推薦手工多汁漢堡排。<br>3️⃣ 強棒拉麵 (長崎ちゃんぽん)：蔬菜滿滿的日式經典麵食。<br>4️⃣ 博多拉麵 ShinShin：在地超人氣豚骨拉麵。<br>5️⃣ 一蘭拉麵：天神西通店有獨家方形便當盒豚骨拉麵！<br>6️⃣ 兼虎拉麵：強推濃郁沾麵，麵條極具彈性。",
-            icon: "fa-utensils",
-            price: "約 ¥800 - ¥2,000",
-            location: "天神地區周邊",
-            imgType: "food",
-            image: "img/Tempura-Hirao27.jpg",
-            transport: {
-              text: "步行前往 (都在天神/大名周邊)",
-              icon: "fa-person-walking",
-            },
-          },
-          {
-            time: "20:00",
-            title: "返回飯店休息",
-            desc: "吃飽喝足，散步回飯店。",
-            icon: "fa-bed",
-            transport: {
-              text: "步行前往 (ShinShin -> 飯店, 約 8 分)",
-              icon: "fa-person-walking",
-            },
-          },
-        ],
-      },
-
-      {
-        date: "5/25 (一)",
-        title: "最後巡禮與返程",
-        memo: "(待確認行程細節)",
-        weather: "多雲 23°C",
-        events: [
-          {
-            time: "09:00",
-            title: "寄送行李 & 飯店退房",
-            desc: "先將行李交給飯店櫃台寄往機場 (Cargo Pass，需 10:00 前)，並辦理退房手續。一身輕便出發！",
-            icon: "fa-suitcase",
-            booking: "行李費用約 ¥550-¥1100/件",
-            transport: { text: "飯店櫃台辦理", icon: "fa-bell-concierge" },
-          },
-          {
-            time: "09:30",
-            title: "太宰府古都散策",
-            desc: "行李托運後，一早搭乘西鐵電車前往太宰府 (需在「二日市」轉乘)。<br>1. 參拜：學問之神與御本殿。<br>2. 美食：梅枝餅 (かさの家)、現烤明太子飯糰 (福太郎)、太宰府漢堡 (筑紫庵)、蒙布朗冰淇淋 (香菓)。<br>3. 咖啡：星巴克 表參道店 (隈研吾設計)。<br>結束後買點小點墊肚子，搭車前往 LaLaport 吃午餐！",
-            icon: "fa-gopuram",
-            tag: "必訪",
-            location: "福岡県太宰府市宰府4-7-1",
-            googleMap: "Dazaifu+Tenmangu",
-            price: "梅枝餅 ¥150 等",
-            image: "img/dazaifu2025_01FULL(nene)-870x500-1751900544.webp",
-            imgType: "attraction",
-            transport: {
-              text: "西鐵電車 (天神 -> 二日市 -> 太宰府, 約 40 分)",
+            {
+              time: "17:30",
+              title: "搭乘西鐵特急返回福岡市區",
+              desc: "遊船結束後，搭乘接駁公車或計程車回到柳川站，再搭乘西鐵特急返回天神。<br>🎫 **記得使用早上加購的「THE RAIL KITCHEN 限定 1 日乘車券」進站喔！**",
               icon: "fa-train",
+              transport: {
+                text: "西鐵電車 (柳川 -> 天神, 約 50 分)",
+                icon: "fa-train",
+              },
             },
-          },
-          {
-            time: "11:30",
-            title: "前往 LaLaport 福岡",
-            desc: "直接出發前往 LaLaport 準備購物吃午餐。<br>📌 建議路線：從太宰府搭直達「旅人巴士」回到博多巴士總站，再從博多轉乘前往 LaLaport 的公車 (約 15 分)，順暢不繞路。<br>🚌 旅人巴士資訊：單程約 700円，白天班次很密集（約 15-30 分鐘一班），免預約且可直接刷 IC 卡！",
-            icon: "fa-bus",
-            transport: {
-              text: "旅人巴士/西鐵巴士 (太宰府 -> 博多站 -> LaLaport)",
-              icon: "fa-bus-simple",
+            {
+              time: "18:30",
+              title:
+                "晚餐自理：天麩羅處 Hirao / 漢堡排 牛丸 / 強棒拉麵 / ShinShin / 一蘭拉麵",
+              desc: "晚餐可自由選擇：<br>1️⃣ 天麩羅處 Hirao：現炸天婦羅靈魂美食！柚子花枝小菜吃到飽。<br>2️⃣ 漢堡排 牛丸 (Gyumaru)：推薦手工多汁漢堡排。<br>3️⃣ 強棒拉麵 (長崎ちゃんぽん)：蔬菜滿滿的日式經典麵食。<br>4️⃣ 博多拉麵 ShinShin：在地超人氣豚骨拉麵。<br>5️⃣ 一蘭拉麵：天神西通店有獨家方形便當盒豚骨拉麵！<br>6️⃣ 兼虎拉麵：強推濃郁沾麵，麵條極具彈性。",
+              icon: "fa-utensils",
+              price: "約 ¥800 - ¥2,000",
+              location: "天神地區周邊",
+              imgType: "food",
+              image: "img/Tempura-Hirao27.jpg",
+              transport: {
+                text: "步行前往 (都在天神/大名周邊)",
+                icon: "fa-person-walking",
+              },
             },
-          },
-          {
-            time: "12:00",
-            title: "購物與午餐：LaLaport 福岡",
-            desc: "【必去地標】1:1 實物大鋼彈像 (RX-93ff ν鋼彈)。<br>🛍️ 購物重點：<br>1. Gundam Park：鋼彈迷必去。<br>2. LOPIA 超市：便宜好買。<br>3. 中川政七商店：生活雜貨 (離開前最後一站，買好買滿！)。<br>4. 八女本舖 (福岡縣產直銷)：買八女茶/星野製茶園抹茶的好地方。",
-            icon: "fa-bag-shopping",
-            tag: "購物",
-            link: "https://www.gltjp.com/zh-hant/article/item/21091/",
-            linkText: "LaLaport福岡 完整指南",
-            image: "img/2K4A0127.webp",
-            imgType: "attraction",
-            location: "福岡市博多区那珂6-23-1",
-            googleMap: "LaLaport+Fukuoka",
-            transport: {
-              text: "步行前往 (商場內)",
+            {
+              time: "20:00",
+              title: "返回飯店休息",
+              desc: "享受悠閒的夜晚，或是再去附近超市補貨！",
+              icon: "fa-bed",
+              transport: {
+                text: "步行",
+                icon: "fa-person-walking",
+              },
+            },
+          ],
+        },
+        {
+          date: "5/24 (日)",
+          title: "關門海峽套票與唐戶市場海鮮之旅",
+          memo: "(週日唐戶市場海鮮大排檔營業！)",
+          weather: "晴時多雲 25°C",
+          events: [
+            {
+              time: "07:40",
+              title: "📍 飯店大廳集合出發",
+              desc: "【重要】今天要搭新幹線前往門司港，請大家準時集合哦！",
+              icon: "fa-bell",
+              transport: {
+                text: "馬上出發",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "08:00",
+              title: "早餐：Bread, Espresso & Hakata",
+              desc: "【人氣早餐】位於博多站前 (The Blossom Hakata Premier 1F)，推薦鐵板法式吐司與獨家「穆」土司套餐。<br>⏰ 營業時間：08:00 - 19:00 (不定休)<br>⚠️經常排隊，需要搶頭香，沒有位子就外帶",
+              icon: "fa-mug-hot",
+              location: "福岡市博多区博多駅前2-8-12",
+              googleMap: "Bread+Espresso+Hakata",
+              imgType: "bread",
+              image: "img/breadEspressoHakata.jpeg",
+              price: "早餐套餐 ¥1,500 起",
+              menuLink: "https://bread-espresso.jp/shop/hakata.html",
+              transport: {
+                text: "地鐵 (天神 -> 博多站, 約 17 分)",
+                icon: "fa-train-subway",
+              },
+            },
+            {
+              time: "09:30",
+              title: "抵達門司港：購買關門海峽四葉草套票",
+              desc: "吃飽後前往博多車站，使用外國遊客優惠票（1,600円）搭乘新幹線前往小倉，轉 JR 抵達門司港。<br>🎫 抵達後立刻購買【關門海峽四葉草套票 (クローバーきっぷ)】 (成人 800円 / 兒童 400円)，包含小火車、公車、聯絡船各一次搭乘券！",
+              icon: "fa-ticket",
+              link: "https://www.retro-line.net/about/value_tickets/%E9%96%A2%E9%96%80%E6%B5%B7%E5%B3%A1%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%90%E3%83%BC%E3%81%8D%E3%81%A3%E3%81%B7/",
+              linkText: "關門海峽四葉草套票官網",
+              transport: {
+                text: "新幹線 + JR (博多 -> 小倉 -> 門司港站)",
+                icon: "fa-train-subway",
+              },
+            },
+            {
+              time: "10:00",
+              title: "搭乘潮風號小火車 (Shiokaze Go)",
+              desc: "從「九州鐵道紀念館站」搭乘 10:00 發車的第一班觀光小火車，沿著海岸線逆時針出發。<br>火車行駛途中會進入隧道，車頂會有驚喜的螢光彩繪！",
+              icon: "fa-train",
+              image: "img/20250306161944_0_7b1761.webp",
+              imgType: "attraction",
+              transport: {
+                text: "潮風號 (九州鐵道紀念館站 -> 關門海峽和布刈站, 約 10 分)",
+                icon: "fa-train",
+              },
+            },
+            {
+              time: "10:10",
+              title: "和布刈公園：巨大章魚溜滑梯",
+              desc: "下車後步行前往旁邊的和布刈公園，這裡有國內最大級別的「章魚溜滑梯 (たこの滑り台)」！<br>可以在這裡稍作停留拍照並欣賞關門橋的壯麗海景。",
+              icon: "fa-camera",
+              image: "img/20181025115630_80.jpg",
+              imgType: "attraction",
+              transport: {
+                text: "步行前往 (車站旁)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "10:40",
+              title: "步行穿越關門海底人道隧道",
+              desc: "搭電梯深入海底，走過約 780 公尺的行人專用海底隧道！<br>隧道中段有「福岡縣」與「山口縣」的交界標誌，是必拍的打卡點。",
               icon: "fa-person-walking",
+              transport: {
+                text: "步行 (海底隧道, 約 10-15 分)",
+                icon: "fa-person-walking",
+              },
             },
-          },
-          {
-            time: "16:30",
-            title: "前往福岡機場 & 領取行李",
-            desc: "搭乘計程車直達國際線航廈。在 1F 入境大廳 (Cargo Pass/宅配櫃台) 領取行李。<br>🛍️ 免稅店必買：<br>1. YAMAYA 軟管明太子醬 (需冷藏 12hr)。<br>2. 一蘭拉麵博多細麵 (直條麵) (福岡限定版/盒裝)。必喝: THE MATCHA TOKYO 抹茶",
-            icon: "fa-suitcase-rolling",
-            tag: "重要",
-            image: "img/48998695593_5e008f2474_c.jpg",
-            imgType: "attraction",
-            transport: {
-              text: "計程車 (LaLaport -> 福岡機場國際線, 約 15-20 分)",
-              icon: "fa-taxi",
+            {
+              time: "11:15",
+              title: "轉乘御裳川公車至唐戶市場",
+              desc: "出海底隧道後(下關側)，使用套票轉乘前往唐戶的公車。<br>下車後直達唐戶市場與海響館周邊。",
+              icon: "fa-bus",
+              transport: {
+                text: "桑電交通巴士 (御裳川 -> 唐戶, 約 5 分)",
+                icon: "fa-bus",
+              },
             },
-          },
-          {
-            time: "19:20",
-            title: "搭機返台",
-            desc: "帶著滿滿的回憶回家",
-            icon: "fa-plane-departure",
-          },
-        ],
-      },
-    ];
+            {
+              time: "11:30",
+              title: "午餐：唐戶市場 活きいき馬関街 / 燒咖哩備案",
+              desc: "【週末限定的壽司大排檔】星期日才有營業的最強海鮮市場！<br>可以在各個攤位挑選新鮮的握壽司、海鮮丼與炸河豚，拿到一樓靠海的木棧道享用。<br>⚠️ **備案**：如果市場人太多不想擠，就先不要吃，直接拿套票搭聯絡船回門司港，去吃「伽哩本舗」的招牌燒咖哩！",
+              icon: "fa-fish",
+              tag: "必吃",
+              price: "約 ¥1,500 - ¥2,500",
+              imgType: "food",
+              image: "img/20190215161131_37.jpg",
+              transport: {
+                text: "步行抵達",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "13:30",
+              title: "搭乘關門汽船返回門司港",
+              desc: "吃飽喝足後，在唐戶棧橋使用套票搭乘關門聯絡船，約 5 分鐘便可快速橫渡關門海峽，回到充滿大正浪漫氛圍的門司港懷舊區！",
+              icon: "fa-ship",
+              image: "img/DSC01386.jpg.webp",
+              imgType: "attraction",
+              transport: {
+                text: "關門海峽聯絡船 (唐戶 -> 門司港, 約 5 分)",
+                icon: "fa-ship",
+              },
+            },
+            {
+              time: "14:00",
+              title: "門司港懷舊區散策：鐵道紀念館與海峽廣場",
+              desc: "回到門司港後接著參觀景點！<br>🚂 **九州鐵道紀念館**：早上還沒看，現在直接進去參觀，體驗迷你鐵道。<br>🌉 **藍翼門司吊橋**：全國最大的步行者專用開闔橋。<br>🍌 **香蕉人雕像**：門司港名物打卡。<br>☕ 逛逛「海峽廣場」買伴手禮，或是找間大正浪漫風咖啡廳吃下午茶。",
+              icon: "fa-camera",
+              link: "https://journey.tw/kurogane-rail/",
+              linkText: "九州鐵道紀念館攻略",
+              image: "img/LINE_ALBUM_福岡景點_260210_2.jpg",
+              imgType: "attraction",
+              transport: {
+                text: "步行前往 (各景點間約 5-10 分)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "17:00",
+              title: "返回天神",
+              desc: "從門司港搭乘 JR 鹿兒島本線到小倉（約 15 分鐘），接著轉乘新幹線快速回到博多（優惠票），最後轉乘地鐵回天神。全程順暢只需約 40-50 分鐘！",
+              icon: "fa-train-subway",
+              transport: {
+                text: "JR+新幹線+地鐵 (門司港 -> 小倉 -> 博多 -> 天神)",
+                icon: "fa-train-subway",
+              },
+            },
+            {
+              time: "18:30",
+              title:
+                "晚餐自理：天麩羅處 Hirao / 漢堡排 牛丸 / 強棒拉麵 / ShinShin / 一蘭拉麵",
+              desc: "晚餐可自由選擇：<br>1️⃣ 天麩羅處 Hirao：現炸天婦羅靈魂美食！柚子花枝小菜吃到飽。<br>2️⃣ 漢堡排 牛丸 (Gyumaru)：推薦手工多汁漢堡排。<br>3️⃣ 強棒拉麵 (長崎ちゃんぽん)：蔬菜滿滿的日式經典麵食。<br>4️⃣ 博多拉麵 ShinShin：在地超人氣豚骨拉麵。<br>5️⃣ 一蘭拉麵：天神西通店有獨家方形便當盒豚骨拉麵！<br>6️⃣ 兼虎拉麵：強推濃郁沾麵，麵條極具彈性。",
+              icon: "fa-utensils",
+              price: "約 ¥800 - ¥2,000",
+              location: "天神地區周邊",
+              imgType: "food",
+              image: "img/Tempura-Hirao27.jpg",
+              transport: {
+                text: "步行前往 (都在天神/大名周邊)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "20:00",
+              title: "返回飯店休息",
+              desc: "吃飽喝足，散步回飯店。",
+              icon: "fa-bed",
+              transport: {
+                text: "步行前往 (ShinShin -> 飯店, 約 8 分)",
+                icon: "fa-person-walking",
+              },
+            },
+          ],
+        },
 
-    // Init Exchange Rate
-    document.getElementById("exchange-rate").innerHTML =
-      `1 TWD ≈ ${EXCHANGE_RATE} JPY <i class="fa-solid fa-arrows-rotate ml-1 text-xs cursor-pointer" onclick="alert('匯率已更新')"></i>`;
+        {
+          date: "5/25 (一)",
+          title: "最後巡禮與返程",
+          memo: "(待確認行程細節)",
+          weather: "多雲 23°C",
+          events: [
+            {
+              time: "09:00",
+              title: "寄送行李 & 飯店退房",
+              desc: "先將行李交給飯店櫃台寄往機場 (Cargo Pass，需 10:00 前)，並辦理退房手續。一身輕便出發！",
+              icon: "fa-suitcase",
+              booking: "行李費用約 ¥550-¥1100/件",
+              transport: { text: "飯店櫃台辦理", icon: "fa-bell-concierge" },
+            },
+            {
+              time: "09:30",
+              title: "太宰府古都散策",
+              desc: "行李托運後，一早搭乘西鐵電車前往太宰府 (需在「二日市」轉乘)。<br>1. 參拜：學問之神與御本殿。<br>2. 美食：梅枝餅 (かさの家)、現烤明太子飯糰 (福太郎)、太宰府漢堡 (筑紫庵)、蒙布朗冰淇淋 (香菓)。<br>3. 咖啡：星巴克 表參道店 (隈研吾設計)。<br>結束後買點小點墊肚子，搭車前往 LaLaport 吃午餐！",
+              icon: "fa-gopuram",
+              tag: "必訪",
+              location: "福岡県太宰府市宰府4-7-1",
+              googleMap: "Dazaifu+Tenmangu",
+              price: "梅枝餅 ¥150 等",
+              image: "img/dazaifu2025_01FULL(nene)-870x500-1751900544.webp",
+              imgType: "attraction",
+              transport: {
+                text: "西鐵電車 (天神 -> 二日市 -> 太宰府, 約 40 分)",
+                icon: "fa-train",
+              },
+            },
+            {
+              time: "11:30",
+              title: "前往 LaLaport 福岡",
+              desc: "直接出發前往 LaLaport 準備購物吃午餐。<br>📌 建議路線：從太宰府搭直達「旅人巴士」回到博多巴士總站，再從博多轉乘前往 LaLaport 的公車 (約 15 分)，順暢不繞路。<br>🚌 旅人巴士資訊：單程約 700円，白天班次很密集（約 15-30 分鐘一班），免預約且可直接刷 IC 卡！",
+              icon: "fa-bus",
+              transport: {
+                text: "旅人巴士/西鐵巴士 (太宰府 -> 博多站 -> LaLaport)",
+                icon: "fa-bus-simple",
+              },
+            },
+            {
+              time: "12:00",
+              title: "購物與午餐：LaLaport 福岡",
+              desc: "【必去地標】1:1 實物大鋼彈像 (RX-93ff ν鋼彈)。<br>🛍️ 購物重點：<br>1. Gundam Park：鋼彈迷必去。<br>2. LOPIA 超市：便宜好買。<br>3. 中川政七商店：生活雜貨 (離開前最後一站，買好買滿！)。<br>4. 八女本舖 (福岡縣產直銷)：買八女茶/星野製茶園抹茶的好地方。",
+              icon: "fa-bag-shopping",
+              tag: "購物",
+              link: "https://www.gltjp.com/zh-hant/article/item/21091/",
+              linkText: "LaLaport福岡 完整指南",
+              image: "img/2K4A0127.webp",
+              imgType: "attraction",
+              location: "福岡市博多区那珂6-23-1",
+              googleMap: "LaLaport+Fukuoka",
+              transport: {
+                text: "步行前往 (商場內)",
+                icon: "fa-person-walking",
+              },
+            },
+            {
+              time: "16:30",
+              title: "前往福岡機場 & 領取行李",
+              desc: "搭乘計程車直達國際線航廈。在 1F 入境大廳 (Cargo Pass/宅配櫃台) 領取行李。<br>🛍️ 免稅店必買：<br>1. YAMAYA 軟管明太子醬 (需冷藏 12hr)。<br>2. 一蘭拉麵博多細麵 (直條麵) (福岡限定版/盒裝)。必喝: THE MATCHA TOKYO 抹茶",
+              icon: "fa-suitcase-rolling",
+              tag: "重要",
+              image: "img/48998695593_5e008f2474_c.jpg",
+              imgType: "attraction",
+              transport: {
+                text: "計程車 (LaLaport -> 福岡機場國際線, 約 15-20 分)",
+                icon: "fa-taxi",
+              },
+            },
+            {
+              time: "19:20",
+              title: "搭機返台",
+              desc: "帶著滿滿的回憶回家",
+              icon: "fa-plane-departure",
+            },
+          ],
+        },
+      ];
 
-    // Render Tabs
-    const tabContainer = document.getElementById("day-tabs");
-    const contentContainer = document.getElementById("itinerary-container");
+      // Init Exchange Rate
+      document.getElementById("exchange-rate").innerHTML =
+        `1 TWD ≈ ${EXCHANGE_RATE} JPY <i class="fa-solid fa-arrows-rotate ml-1 text-xs cursor-pointer" onclick="alert('匯率已更新')"></i>`;
 
-    itinerary.forEach((day, index) => {
-      const btn = document.createElement("button");
-      btn.className = `day-tab whitespace-nowrap px-4 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-colors duration-200 hover:bg-gray-50 focus:outline-none flex-shrink-0 ${index === 0 ? "active" : ""}`;
-      btn.textContent = day.date;
-      btn.onclick = () => switchTab(index);
-      tabContainer.appendChild(btn);
-    });
+      // Render Tabs
+      const tabContainer = document.getElementById("day-tabs");
+      const contentContainer = document.getElementById("itinerary-container");
 
-    // Function to Switch Tabs and Render Content
-    function switchTab(index, isInitialLoad = false) {
-      try {
-        // Update Tab Styles
-        const tabs = document.querySelectorAll(".day-tab");
-        tabs.forEach((t, i) => {
-          if (i === index) {
-            t.classList.add("active");
-          } else {
-            t.classList.remove("active");
-          }
-        });
+      itinerary.forEach((day, index) => {
+        const btn = document.createElement("button");
+        btn.className = `day-tab whitespace-nowrap px-4 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-colors duration-200 hover:bg-gray-50 focus:outline-none flex-shrink-0 ${index === 0 ? "active" : ""}`;
+        btn.textContent = day.date;
+        btn.onclick = () => switchTab(index);
+        tabContainer.appendChild(btn);
+      });
 
-        // Render Content
-        const day = itinerary[index];
-        if (!day) return;
+      // Function to Switch Tabs and Render Content
+      function switchTab(index, isInitialLoad = false) {
+        try {
+          // Update Tab Styles
+          const tabs = document.querySelectorAll(".day-tab");
+          tabs.forEach((t, i) => {
+            if (i === index) {
+              t.classList.add("active");
+            } else {
+              t.classList.remove("active");
+            }
+          });
 
-        let html = `
+          // Render Content
+          const day = itinerary[index];
+          if (!day) return;
+
+          let html = `
                     <div class="glass-card rounded-3xl shadow-glass p-6 sm:p-8 animate-fade-in relative overflow-hidden mt-4">
                         <div class="absolute -right-20 -top-20 w-64 h-64 bg-primary/5 rounded-full blur-3xl"></div>
                         <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 relative z-10 gap-4 border-b border-gray-100 pb-6">
@@ -1413,44 +1634,44 @@
                         <div class="space-y-8 relative before:absolute before:inset-0 before:ml-[1.4rem] before:-translate-x-px before:h-[98%] before:w-1 before:bg-gradient-to-b before:from-primary/30 before:via-secondary/20 before:to-transparent before:rounded-full pt-2">
                 `;
 
-        // Group events by time
-        const groupedEvents = {};
-        day.events.forEach((event) => {
-          if (!groupedEvents[event.time]) groupedEvents[event.time] = [];
-          groupedEvents[event.time].push(event);
-        });
+          // Group events by time
+          const groupedEvents = {};
+          day.events.forEach((event) => {
+            if (!groupedEvents[event.time]) groupedEvents[event.time] = [];
+            groupedEvents[event.time].push(event);
+          });
 
-        Object.values(groupedEvents).forEach((eventGroup) => {
-          const timeStr = eventGroup[0].time;
-          const isMultiOption = eventGroup.length > 1;
+          Object.values(groupedEvents).forEach((eventGroup) => {
+            const timeStr = eventGroup[0].time;
+            const isMultiOption = eventGroup.length > 1;
 
-          html += `
+            html += `
                         <div class="relative pl-10 sm:pl-12 pr-1 sm:pr-2 group">
                             <div class="absolute left-0 top-1 w-[2.4rem] h-[2.4rem] sm:w-[2.8rem] sm:h-[2.8rem] bg-white border-4 border-indigo-50 rounded-full flex items-center justify-center shadow-soft z-10 text-primary transition-all duration-300 group-hover:scale-110 group-hover:border-indigo-100 group-hover:text-indigo-600 whitespace-nowrap">
                                 <i class="fa-solid ${isMultiOption ? "fa-code-branch" : eventGroup[0].icon || "fa-location-dot"} text-base sm:text-lg"></i>
                             </div>
           `;
 
-          if (isMultiOption) {
-            html += `
+            if (isMultiOption) {
+              html += `
                             <div class="mb-3 pl-1 sm:pl-2">
                                 <span class="bg-indigo-50 text-indigo-700 px-3 py-1.5 rounded-lg border border-indigo-100 shadow-sm font-black font-mono tracking-tighter inline-flex items-center text-base sm:text-lg"><i class="fa-regular fa-clock mr-2"></i>${timeStr} (擇一)</span>
                             </div>
                             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 ml-1 sm:ml-2">
             `;
-          } else {
-            html += `<div class="grid grid-cols-1 ml-1 sm:ml-2">`;
-          }
-
-          eventGroup.forEach((event, idx) => {
-            let tagHtml = "";
-            if (event.tag) {
-              tagHtml = `<span class="inline-block bg-gradient-to-r from-pink-50 to-rose-50 text-pink-600 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-200 shadow-sm">${event.tag}</span>`;
+            } else {
+              html += `<div class="grid grid-cols-1 ml-1 sm:ml-2">`;
             }
 
-            // Pre-calculate conditional HTML blocks to avoid nested template literal confusion
-            const transportHtml = event.transport
-              ? `
+            eventGroup.forEach((event, idx) => {
+              let tagHtml = "";
+              if (event.tag) {
+                tagHtml = `<span class="inline-block bg-gradient-to-r from-pink-50 to-rose-50 text-pink-600 text-xs font-bold px-3 py-1.5 rounded-full border border-pink-200 shadow-sm">${event.tag}</span>`;
+              }
+
+              // Pre-calculate conditional HTML blocks to avoid nested template literal confusion
+              const transportHtml = event.transport
+                ? `
                           <div class="flex items-center text-slate-500 text-sm bg-slate-50/80 backdrop-blur-sm p-3 rounded-xl mb-3 border border-slate-100/50 hover:bg-slate-100 transition-colors group">
                               <div class="w-8 h-8 rounded-lg bg-white shadow-soft flex items-center justify-center mr-3 text-slate-400 group-hover:text-primary transition-colors">
                                   <i class="fa-solid ${event.transport.icon}"></i>
@@ -1458,55 +1679,55 @@
                               <span class="font-medium">${event.transport.text}</span>
                           </div>
                       `
-              : "";
+                : "";
 
-            const bookingHtml = event.booking
-              ? `
+              const bookingHtml = event.booking
+                ? `
                           <div class="flex items-start text-amber-700 text-sm bg-gradient-to-r from-amber-50 to-orange-50 border border-amber-200 p-3 rounded-xl mb-3 shadow-sm">
                               <i class="fa-solid fa-calendar-check mt-0.5 w-6 text-center text-amber-500 mr-2"></i>
                               <span class="font-bold tracking-wide">⚠️ ${typeof event.booking === "string" ? event.booking : "需提前預約"}</span>
                           </div>
                       `
-              : "";
+                : "";
 
-            const rainHtml = event.rain
-              ? `
+              const rainHtml = event.rain
+                ? `
                           <div class="flex items-start text-blue-700 text-sm bg-blue-50 border border-blue-200 p-3 rounded-xl mb-3 shadow-sm">
                               <i class="fa-solid fa-umbrella mt-0.5 w-6 text-center text-blue-400 mr-2"></i>
                               <span class="font-bold tracking-wide">${event.rain}</span>
                           </div>
                       `
-              : "";
+                : "";
 
-            const nonShopperHtml = event.nonShopper
-              ? `
+              const nonShopperHtml = event.nonShopper
+                ? `
                           <div class="flex items-start text-teal-700 text-sm bg-teal-50 border border-teal-200 p-3 rounded-xl mb-3 shadow-sm">
                               <i class="fa-solid fa-mug-hot mt-0.5 w-6 text-center text-teal-500 mr-2"></i>
                               <span class="font-bold tracking-wide">${event.nonShopper}</span>
                           </div>
                       `
-              : "";
+                : "";
 
-            const priceHtml = event.price
-              ? `
+              const priceHtml = event.price
+                ? `
                           <div class="inline-flex items-center text-xs font-bold text-gray-700 bg-white border border-gray-100 shadow-sm px-3 py-1.5 rounded-lg mr-2 mb-2 transition-transform hover:scale-105">
                               <i class="fa-solid fa-yen-sign mr-1.5 text-gray-400"></i>
                               平均：${event.price}
                           </div>
                       `
-              : "";
+                : "";
 
-            const menuHtml = event.menuLink
-              ? `
+              const menuHtml = event.menuLink
+                ? `
                           <a href="${event.menuLink}" target="_blank" class="inline-flex items-center text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1.5 rounded-lg border border-orange-200 hover:bg-orange-100 hover:-translate-y-0.5 transition-all mb-2 shadow-sm">
                               <i class="fa-solid fa-book-open mr-1.5"></i>
                               查看菜單
                           </a>
                       `
-              : "";
+                : "";
 
-            const linkHtml = event.link
-              ? `
+              const linkHtml = event.link
+                ? `
                           <div class="mb-4 mt-2">
                               <a href="${event.link}" target="_blank" class="inline-flex items-center justify-center text-sm font-bold text-white bg-indigo-500 hover:bg-indigo-600 px-4 py-2.5 rounded-xl transition-all w-full sm:w-auto shadow-sm hover:shadow-md hover:-translate-y-0.5">
                                   <i class="fa-solid fa-book-open mr-2"></i>
@@ -1514,10 +1735,10 @@
                               </a>
                           </div>
                       `
-              : "";
+                : "";
 
-            const imageHtml = event.image
-              ? `
+              const imageHtml = event.image
+                ? `
                           <div class="mt-4 rounded-xl overflow-hidden relative group cursor-pointer shadow-soft border border-gray-100" onclick="openLightbox('${event.image}')">
                               <img src="${event.image}" alt="${event.title}" class="w-full h-56 object-cover transition-transform duration-700 group-hover:scale-105">
                               <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent transition-opacity duration-300 opacity-0 group-hover:opacity-100"></div>
@@ -1528,10 +1749,10 @@
                               </div>
                           </div>
                       `
-              : "";
+                : "";
 
-            const locationHtml = event.location
-              ? `
+              const locationHtml = event.location
+                ? `
                           <div class="mt-auto pt-3 border-t border-gray-100 flex flex-col sm:flex-row justify-between items-start sm:items-center bg-gray-50/50 -mx-4 sm:-mx-5 -mb-4 sm:-mb-5 px-4 sm:px-5 py-3 rounded-b-2xl gap-2 sm:gap-0 mt-4">
                               <span class="text-xs text-gray-500 font-medium truncate w-full sm:w-[70%]"><i class="fa-solid fa-map-pin mr-1.5 text-gray-400"></i>${event.location}</span>
                               <a href="https://www.google.com/maps/search/?api=1&query=${event.googleMap || event.location}" target="_blank" class="map-link text-xs font-bold text-primary flex items-center bg-white px-3 py-1.5 sm:px-2.5 sm:py-1 rounded-md shadow-sm border border-indigo-50 hover:bg-indigo-50 w-full justify-center sm:w-auto sm:justify-start">
@@ -1539,27 +1760,28 @@
                               </a>
                           </div>
                       `
-              : "";
+                : "";
 
-            const optionLabel = isMultiOption
-              ? `<div class="absolute top-0 left-0 bg-indigo-50/90 backdrop-blur-sm text-indigo-700 text-[11px] font-bold px-3 py-1.5 rounded-tl-2xl shadow-sm z-20 border-r border-b border-indigo-100">選項 ${String.fromCharCode(65 + idx)}</div>`
-              : "";
-            const timeDisplayHtml = isMultiOption
-              ? ""
-              : `<span class="font-black text-transparent bg-clip-text bg-gradient-to-br from-primary to-indigo-400 font-mono text-xl tracking-tighter">${event.time}</span>`;
+              const optionLabel = isMultiOption
+                ? `<div class="absolute top-0 left-0 bg-indigo-50/90 backdrop-blur-sm text-indigo-700 text-[11px] font-bold px-3 py-1.5 rounded-tl-2xl shadow-sm z-20 border-r border-b border-indigo-100">選項 ${String.fromCharCode(65 + idx)}</div>`
+                : "";
+              const timeDisplayHtml = isMultiOption
+                ? ""
+                : `<span class="font-black text-transparent bg-clip-text bg-gradient-to-br from-primary to-indigo-400 font-mono text-xl tracking-tighter">${event.time}</span>`;
 
-            html += `
+              html += `
                               <div class="glass-card event-card p-4 sm:p-5 rounded-2xl relative z-0 shadow-soft hover:shadow-lg w-full break-words h-full flex flex-col">
                                   ${optionLabel}
-                                  ${!isMultiOption || tagHtml
-                ? `
+                                  ${
+                                    !isMultiOption || tagHtml
+                                      ? `
                                   <div class="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-3 gap-2 sm:gap-0">
                                       ${timeDisplayHtml ? timeDisplayHtml : "<div></div>"}
                                       <div class="sm:ml-2">${tagHtml}</div>
                                   </div>
                                   `
-                : ""
-              }
+                                      : ""
+                                  }
                                   <h3 class="font-extrabold text-gray-800 text-lg sm:text-xl mb-2 tracking-tight leading-snug break-words hyphens-auto ${isMultiOption && !tagHtml ? "mt-7 sm:mt-5" : "mt-1"}">${event.title}</h3>
                                   <div class="mb-3 flex flex-wrap gap-2">
                                       ${priceHtml}
@@ -1578,230 +1800,229 @@
                                   ${locationHtml}
                               </div>
                       `;
+            });
+
+            html += `
+                        </div>
+                    </div>
+          `;
           });
 
           html += `
                         </div>
                     </div>
-          `;
-        });
-
-        html += `
-                        </div>
-                    </div>
                 `;
-        contentContainer.innerHTML = html;
+          contentContainer.innerHTML = html;
 
-        // Scroll to top of the itinerary container smoothly
-        if (!isInitialLoad) {
-          // Set a small timeout to allow DOM to render to get accurate positioning
-          setTimeout(() => {
-            const tabsHeight = tabContainer.offsetHeight;
-            const offsetPosition =
-              contentContainer.offsetTop - tabsHeight - 10;
+          // Scroll to top of the itinerary container smoothly
+          if (!isInitialLoad) {
+            // Set a small timeout to allow DOM to render to get accurate positioning
+            setTimeout(() => {
+              const tabsHeight = tabContainer.offsetHeight;
+              const offsetPosition =
+                contentContainer.offsetTop - tabsHeight - 10;
 
-            window.scrollTo({
-              top: Math.max(0, offsetPosition),
-              behavior: "smooth",
-            });
-          }, 10);
+              window.scrollTo({
+                top: Math.max(0, offsetPosition),
+                behavior: "smooth",
+              });
+            }, 10);
+          }
+        } catch (e) {
+          console.error("Error rendering itinerary:", e);
+          contentContainer.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"><strong class="font-bold">發生錯誤!</strong><span class="block sm:inline"> 無法顯示行程內容: ${e.message}</span></div>`;
         }
-      } catch (e) {
-        console.error("Error rendering itinerary:", e);
-        contentContainer.innerHTML = `<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert"><strong class="font-bold">發生錯誤!</strong><span class="block sm:inline"> 無法顯示行程內容: ${e.message}</span></div>`;
       }
-    }
 
-    // Initial Render
-    switchTab(0, true);
+      // Initial Render
+      switchTab(0, true);
 
-    // Lightbox Functions
-    function openLightbox(src) {
-      const lightbox = document.getElementById("lightbox");
-      const img = document.getElementById("lightbox-img");
-      img.src = src;
-      lightbox.style.display = "flex";
-      // Trigger reflow
-      void lightbox.offsetWidth;
-      lightbox.classList.add("show");
-      document.body.style.overflow = "hidden"; // Prevent scrolling
-    }
+      // Lightbox Functions
+      function openLightbox(src) {
+        const lightbox = document.getElementById("lightbox");
+        const img = document.getElementById("lightbox-img");
+        img.src = src;
+        lightbox.style.display = "flex";
+        // Trigger reflow
+        void lightbox.offsetWidth;
+        lightbox.classList.add("show");
+        document.body.style.overflow = "hidden"; // Prevent scrolling
+      }
 
-    function closeLightbox() {
-      const lightbox = document.getElementById("lightbox");
-      lightbox.classList.remove("show");
-      document.body.style.overflow = ""; // Restore scrolling
-      setTimeout(() => {
-        lightbox.style.display = "none";
-        document.getElementById("lightbox-img").src = "";
-      }, 300);
-    }
+      function closeLightbox() {
+        const lightbox = document.getElementById("lightbox");
+        lightbox.classList.remove("show");
+        document.body.style.overflow = ""; // Restore scrolling
+        setTimeout(() => {
+          lightbox.style.display = "none";
+          document.getElementById("lightbox-img").src = "";
+        }, 300);
+      }
 
-    // Fetch Weather Data
-    async function fetchWeather() {
-      try {
-        // Fukuoka Coordinates
-        const lat = 33.5902;
-        const lon = 130.4017;
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=Asia%2FTokyo`;
+      // Fetch Weather Data
+      async function fetchWeather() {
+        try {
+          // Fukuoka Coordinates
+          const lat = 33.5902;
+          const lon = 130.4017;
+          const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=Asia%2FTokyo`;
 
-        const response = await fetch(url);
-        if (!response.ok)
-          throw new Error("Weather network response was not ok");
+          const response = await fetch(url);
+          if (!response.ok)
+            throw new Error("Weather network response was not ok");
 
-        const data = await response.json();
-        const current = data.current;
+          const data = await response.json();
+          const current = data.current;
 
-        // Update UI
-        document.getElementById("weather-temp").innerText =
-          `${Math.round(current.temperature_2m)}°`;
-        document.getElementById("weather-humidity").innerText =
-          `${Math.round(current.relative_humidity_2m)}%`;
-        document.getElementById("weather-wind").innerText =
-          `${Math.round(current.wind_speed_10m)} km/h`;
+          // Update UI
+          document.getElementById("weather-temp").innerText =
+            `${Math.round(current.temperature_2m)}°`;
+          document.getElementById("weather-humidity").innerText =
+            `${Math.round(current.relative_humidity_2m)}%`;
+          document.getElementById("weather-wind").innerText =
+            `${Math.round(current.wind_speed_10m)} km/h`;
 
-        // Map WMO Weather Codes to FontAwesome Icons and Colors
-        // WMO Code Ref: https://open-meteo.com/en/docs
-        const code = current.weather_code;
-        const iconMap = {
-          0: {
-            icon: "fa-sun",
-            iconColor: "text-yellow-500",
-            bg: "from-yellow-100 to-yellow-50",
-          }, // Clear
-          1: {
-            icon: "fa-cloud-sun",
-            iconColor: "text-yellow-500",
-            bg: "from-yellow-100 to-yellow-50",
-          }, // Mainly clear
-          2: {
-            icon: "fa-cloud-sun",
-            iconColor: "text-gray-500",
-            bg: "from-gray-100 to-gray-50",
-          }, // Partly cloudy
-          3: {
+          // Map WMO Weather Codes to FontAwesome Icons and Colors
+          // WMO Code Ref: https://open-meteo.com/en/docs
+          const code = current.weather_code;
+          const iconMap = {
+            0: {
+              icon: "fa-sun",
+              iconColor: "text-yellow-500",
+              bg: "from-yellow-100 to-yellow-50",
+            }, // Clear
+            1: {
+              icon: "fa-cloud-sun",
+              iconColor: "text-yellow-500",
+              bg: "from-yellow-100 to-yellow-50",
+            }, // Mainly clear
+            2: {
+              icon: "fa-cloud-sun",
+              iconColor: "text-gray-500",
+              bg: "from-gray-100 to-gray-50",
+            }, // Partly cloudy
+            3: {
+              icon: "fa-cloud",
+              iconColor: "text-gray-500",
+              bg: "from-gray-200 to-gray-100",
+            }, // Overcast
+            45: {
+              icon: "fa-smog",
+              iconColor: "text-gray-400",
+              bg: "from-gray-200 to-gray-100",
+            }, // Fog
+            48: {
+              icon: "fa-smog",
+              iconColor: "text-gray-400",
+              bg: "from-gray-200 to-gray-100",
+            },
+            51: {
+              icon: "fa-cloud-rain",
+              iconColor: "text-blue-500",
+              bg: "from-blue-100 to-blue-50",
+            }, // Drizzle
+            53: {
+              icon: "fa-cloud-rain",
+              iconColor: "text-blue-500",
+              bg: "from-blue-100 to-blue-50",
+            },
+            55: {
+              icon: "fa-cloud-rain",
+              iconColor: "text-blue-500",
+              bg: "from-blue-100 to-blue-50",
+            },
+            61: {
+              icon: "fa-cloud-showers-heavy",
+              iconColor: "text-blue-600",
+              bg: "from-blue-200 to-blue-100",
+            }, // Rain
+            63: {
+              icon: "fa-cloud-showers-heavy",
+              iconColor: "text-blue-600",
+              bg: "from-blue-200 to-blue-100",
+            },
+            65: {
+              icon: "fa-cloud-showers-heavy",
+              iconColor: "text-blue-600",
+              bg: "from-blue-200 to-blue-100",
+            },
+            71: {
+              icon: "fa-snowflake",
+              iconColor: "text-cyan-500",
+              bg: "from-cyan-100 to-cyan-50",
+            }, // Snow
+            73: {
+              icon: "fa-snowflake",
+              iconColor: "text-cyan-500",
+              bg: "from-cyan-100 to-cyan-50",
+            },
+            75: {
+              icon: "fa-snowflake",
+              iconColor: "text-cyan-500",
+              bg: "from-cyan-100 to-cyan-50",
+            },
+            80: {
+              icon: "fa-cloud-showers-water",
+              iconColor: "text-blue-500",
+              bg: "from-blue-100 to-blue-50",
+            }, // Showers
+            81: {
+              icon: "fa-cloud-showers-water",
+              iconColor: "text-blue-500",
+              bg: "from-blue-100 to-blue-50",
+            },
+            82: {
+              icon: "fa-cloud-showers-water",
+              iconColor: "text-blue-500",
+              bg: "from-blue-100 to-blue-50",
+            },
+            95: {
+              icon: "fa-cloud-bolt",
+              iconColor: "text-indigo-600",
+              bg: "from-indigo-200 to-indigo-100",
+            }, // Thunderstorm
+            96: {
+              icon: "fa-cloud-bolt",
+              iconColor: "text-indigo-600",
+              bg: "from-indigo-200 to-indigo-100",
+            },
+            99: {
+              icon: "fa-cloud-bolt",
+              iconColor: "text-indigo-600",
+              bg: "from-indigo-200 to-indigo-100",
+            },
+          };
+
+          const weatherConfig = iconMap[code] || {
             icon: "fa-cloud",
-            iconColor: "text-gray-500",
-            bg: "from-gray-200 to-gray-100",
-          }, // Overcast
-          45: {
-            icon: "fa-smog",
-            iconColor: "text-gray-400",
-            bg: "from-gray-200 to-gray-100",
-          }, // Fog
-          48: {
-            icon: "fa-smog",
-            iconColor: "text-gray-400",
-            bg: "from-gray-200 to-gray-100",
-          },
-          51: {
-            icon: "fa-cloud-rain",
             iconColor: "text-blue-500",
             bg: "from-blue-100 to-blue-50",
-          }, // Drizzle
-          53: {
-            icon: "fa-cloud-rain",
-            iconColor: "text-blue-500",
-            bg: "from-blue-100 to-blue-50",
-          },
-          55: {
-            icon: "fa-cloud-rain",
-            iconColor: "text-blue-500",
-            bg: "from-blue-100 to-blue-50",
-          },
-          61: {
-            icon: "fa-cloud-showers-heavy",
-            iconColor: "text-blue-600",
-            bg: "from-blue-200 to-blue-100",
-          }, // Rain
-          63: {
-            icon: "fa-cloud-showers-heavy",
-            iconColor: "text-blue-600",
-            bg: "from-blue-200 to-blue-100",
-          },
-          65: {
-            icon: "fa-cloud-showers-heavy",
-            iconColor: "text-blue-600",
-            bg: "from-blue-200 to-blue-100",
-          },
-          71: {
-            icon: "fa-snowflake",
-            iconColor: "text-cyan-500",
-            bg: "from-cyan-100 to-cyan-50",
-          }, // Snow
-          73: {
-            icon: "fa-snowflake",
-            iconColor: "text-cyan-500",
-            bg: "from-cyan-100 to-cyan-50",
-          },
-          75: {
-            icon: "fa-snowflake",
-            iconColor: "text-cyan-500",
-            bg: "from-cyan-100 to-cyan-50",
-          },
-          80: {
-            icon: "fa-cloud-showers-water",
-            iconColor: "text-blue-500",
-            bg: "from-blue-100 to-blue-50",
-          }, // Showers
-          81: {
-            icon: "fa-cloud-showers-water",
-            iconColor: "text-blue-500",
-            bg: "from-blue-100 to-blue-50",
-          },
-          82: {
-            icon: "fa-cloud-showers-water",
-            iconColor: "text-blue-500",
-            bg: "from-blue-100 to-blue-50",
-          },
-          95: {
-            icon: "fa-cloud-bolt",
-            iconColor: "text-indigo-600",
-            bg: "from-indigo-200 to-indigo-100",
-          }, // Thunderstorm
-          96: {
-            icon: "fa-cloud-bolt",
-            iconColor: "text-indigo-600",
-            bg: "from-indigo-200 to-indigo-100",
-          },
-          99: {
-            icon: "fa-cloud-bolt",
-            iconColor: "text-indigo-600",
-            bg: "from-indigo-200 to-indigo-100",
-          },
-        };
+          };
 
-        const weatherConfig = iconMap[code] || {
-          icon: "fa-cloud",
-          iconColor: "text-blue-500",
-          bg: "from-blue-100 to-blue-50",
-        };
+          const iconContainer = document.getElementById(
+            "weather-icon-container",
+          );
+          iconContainer.className = `w-12 h-12 rounded-full bg-gradient-to-br ${weatherConfig.bg} flex items-center justify-center shadow-soft ${weatherConfig.iconColor} text-2xl transition-colors duration-500`;
 
-        const iconContainer = document.getElementById(
-          "weather-icon-container",
-        );
-        iconContainer.className = `w-12 h-12 rounded-full bg-gradient-to-br ${weatherConfig.bg} flex items-center justify-center shadow-soft ${weatherConfig.iconColor} text-2xl transition-colors duration-500`;
+          // Use innerHTML because FontAwesome SVG core replaces the <i> tag natively
+          iconContainer.innerHTML = `<i id="weather-icon" class="fa-solid ${weatherConfig.icon} animate-fade-in"></i>`;
+        } catch (error) {
+          console.error("Error fetching weather:", error);
+          document.getElementById("weather-temp").innerText = "N/A";
 
-        // Use innerHTML because FontAwesome SVG core replaces the <i> tag natively
-        iconContainer.innerHTML = `<i id="weather-icon" class="fa-solid ${weatherConfig.icon} animate-fade-in"></i>`;
-      } catch (error) {
-        console.error("Error fetching weather:", error);
-        document.getElementById("weather-temp").innerText = "N/A";
-
-        const iconContainer = document.getElementById(
-          "weather-icon-container",
-        );
-        if (iconContainer) {
-          iconContainer.innerHTML = `<i id="weather-icon" class="fa-solid fa-circle-exclamation text-red-500 animate-fade-in"></i>`;
+          const iconContainer = document.getElementById(
+            "weather-icon-container",
+          );
+          if (iconContainer) {
+            iconContainer.innerHTML = `<i id="weather-icon" class="fa-solid fa-circle-exclamation text-red-500 animate-fade-in"></i>`;
+          }
         }
       }
-    }
 
-    // Initialize weather fetching after DOM is fully loaded
-    document.addEventListener("DOMContentLoaded", () => {
-      fetchWeather();
-    });
-  </script>
-</body>
-
+      // Initialize weather fetching after DOM is fully loaded
+      document.addEventListener("DOMContentLoaded", () => {
+        fetchWeather();
+      });
+    </script>
+  </body>
 </html>
