@@ -220,6 +220,43 @@
     .animate-fade-in {
       animation: fadeUp 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
+    /* Expense Modal Styles */
+    #expense-modal {
+      display: none;
+      position: fixed;
+      z-index: 1100;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      backdrop-filter: blur(8px);
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    #expense-modal.show {
+      opacity: 1;
+    }
+
+    .modal-content {
+      transform: scale(0.9);
+      transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    #expense-modal.show .modal-content {
+      transform: scale(1);
+    }
+
+    .expense-table-container {
+      overflow-x: auto;
+    }
+
+    .expense-row:hover {
+      background-color: rgba(79, 70, 229, 0.03);
+    }
   </style>
 </head>
 
@@ -238,9 +275,15 @@
           <span>Currency</span>
           <span>Exchange Rate</span>
         </div>
-        <div id="exchange-rate"
-          class="text-sm font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20 shadow-soft">
-          匯率載入中...
+        <div class="flex items-center gap-2">
+          <div id="exchange-rate"
+            class="text-sm font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-lg border border-white/20 shadow-soft">
+            匯率載入中...
+          </div>
+          <button onclick="openExpenseModal()" 
+            class="w-9 h-9 flex items-center justify-center bg-white text-primary rounded-lg shadow-soft hover:bg-indigo-50 hover:scale-105 active:scale-95 transition-all">
+            <i class="fa-solid fa-plus"></i>
+          </button>
         </div>
       </div>
     </div>
@@ -784,9 +827,80 @@
   </div>
 
   <!-- Lightbox Modal -->
+  </div>
+
+  <!-- Lightbox Modal -->
   <div id="lightbox" onclick="closeLightbox()">
     <span id="lightbox-close">&times;</span>
     <img id="lightbox-img" src="" alt="Full Screen Image" onclick="event.stopPropagation()" />
+  </div>
+
+  <!-- Expense Entry Modal -->
+  <div id="expense-modal" onclick="closeExpenseModal()">
+    <div class="modal-content glass-card rounded-3xl p-6 sm:p-8 w-full max-w-lg mx-4 shadow-2xl relative" onclick="event.stopPropagation()">
+      <button onclick="closeExpenseModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+        <i class="fa-solid fa-xmark text-xl"></i>
+      </button>
+      
+      <div class="mb-6" id="modal-header">
+        <h3 id="modal-title" class="text-2xl font-black text-gray-800 tracking-tight flex items-center gap-2">
+          <i class="fa-solid fa-receipt text-primary"></i> 紀錄花費
+        </h3>
+        <p id="modal-subtitle" class="text-xs text-gray-400 font-medium uppercase tracking-widest mt-1">Add new expense record</p>
+      </div>
+
+      <form id="expense-form" class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="col-span-2 sm:col-span-1">
+            <label class="block text-xs font-bold text-gray-500 uppercase mb-1.5 ml-1">日期</label>
+            <input type="date" id="exp-date" required
+              class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+          </div>
+          <div class="col-span-2 sm:col-span-1">
+            <label class="block text-xs font-bold text-gray-500 uppercase mb-1.5 ml-1">項目</label>
+            <input type="text" id="exp-item" placeholder="如：一蘭拉麵" required
+              class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-bold text-gray-500 uppercase mb-1.5 ml-1">日幣金額 (JPY)</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">¥</span>
+              <input type="number" id="exp-jpy" step="any" placeholder="0" required
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-8 pr-4 py-2.5 text-sm font-mono focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-gray-500 uppercase mb-1.5 ml-1">台幣金額 (TWD)</label>
+            <div class="relative">
+              <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">NT$</span>
+              <input type="number" id="exp-twd" step="any" placeholder="0" required
+                class="w-full bg-gray-50 border border-gray-200 rounded-xl pl-12 pr-4 py-2.5 text-sm font-mono focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-500 uppercase mb-1.5 ml-1">付款人</label>
+          <input type="text" id="exp-payer" placeholder="付款人名稱" required list="payer-list"
+            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all">
+          <datalist id="payer-list"></datalist>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-gray-500 uppercase mb-1.5 ml-1">備註</label>
+          <textarea id="exp-note" rows="2" placeholder="備註資訊..."
+            class="w-full bg-gray-50 border border-gray-200 rounded-xl px-4 py-2.5 text-sm focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all"></textarea>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-gradient-to-r from-primary to-secondary text-white font-bold py-3.5 rounded-xl shadow-lg hover:shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all mt-2">
+          儲存紀錄
+        </button>
+      </form>
+    </div>
   </div>
 
   <script>
@@ -1584,17 +1698,185 @@
     document.getElementById("exchange-rate").innerHTML =
       `1 TWD ≈ ${EXCHANGE_RATE} JPY <i class="fa-solid fa-arrows-rotate ml-1 text-xs cursor-pointer" onclick="alert('匯率已更新')"></i>`;
 
+    // Expense State Management & Cloud Sync
+    const CLOUD_API_URL = "https://script.google.com/macros/s/AKfycbxgTgGRWFrpWGZk9-wyoNbXAuoj4QZvvxpZpV_ihGuCi5XFNGy7vrT4iZQ7w9KaZstC/exec";
+    let expenses = [];
+    let editingId = null;
+    let isLoading = false;
+    let sortConfig = { key: 'date', direction: 'desc' }; // Default sort
+
+    async function fetchExpenses() {
+      try {
+        isLoading = true;
+        const response = await fetch(CLOUD_API_URL);
+        expenses = await response.json();
+        
+        updatePayerList(); // Update the datalist for suggestions
+        renderBudget(); // Update total in header
+        
+        // If current tab is Overview, re-render it
+        const activeTab = document.querySelector(".day-tab.active");
+        if (activeTab && (activeTab.textContent === "花費總覽" || activeTab.textContent === "Expense Overview")) {
+          renderExpenseOverview();
+        }
+      } catch (error) {
+        console.error("Failed to fetch expenses:", error);
+      } finally {
+        isLoading = false;
+      }
+    }
+
+    async function cloudUpdate(action, data = {}) {
+      try {
+        const response = await fetch(CLOUD_API_URL, {
+          method: "POST",
+          mode: "no-cors", // Required for Google Apps Script redirection
+          cache: "no-cache",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ action, ...data })
+        });
+        // Since we use no-cors, we can't check response.ok, but we assume success if no error is thrown
+        return true;
+      } catch (error) {
+        console.error("Cloud update failed:", error);
+        alert("雲端同步失敗，請檢查網路連線");
+        return false;
+      }
+    }
+
+    function updatePayerList() {
+      const payerList = document.getElementById("payer-list");
+      const uniquePayers = [...new Set(expenses.map(exp => exp.payer))].filter(p => p);
+      payerList.innerHTML = uniquePayers.map(p => `<option value="${p}">`).join("");
+    }
+
+    function openExpenseModal(id = null) {
+      const modal = document.getElementById("expense-modal");
+      const title = document.getElementById("modal-title");
+      const subtitle = document.getElementById("modal-subtitle");
+      const form = document.getElementById("expense-form");
+      
+      editingId = id;
+      
+      if (id) {
+        title.innerHTML = '<i class="fa-solid fa-pen-to-square text-primary"></i> 編輯支出紀錄';
+        subtitle.textContent = 'Update existing expense record';
+        const exp = expenses.find(e => e.id.toString() === id.toString());
+        if (exp) {
+          document.getElementById("exp-date").value = exp.date;
+          document.getElementById("exp-item").value = exp.item;
+          document.getElementById("exp-jpy").value = exp.jpy;
+          document.getElementById("exp-twd").value = exp.twd;
+          document.getElementById("exp-payer").value = exp.payer;
+          document.getElementById("exp-note").value = exp.note;
+        }
+      } else {
+        title.innerHTML = '<i class="fa-solid fa-receipt text-primary"></i> 紀錄花費';
+        subtitle.textContent = 'Add new expense record';
+        form.reset();
+        document.getElementById("exp-date").value = new Date().toISOString().split('T')[0];
+      }
+
+      modal.style.display = "flex";
+      void modal.offsetWidth;
+      modal.classList.add("show");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeExpenseModal() {
+      const modal = document.getElementById("expense-modal");
+      modal.classList.remove("show");
+      document.body.style.overflow = "";
+      setTimeout(() => {
+        modal.style.display = "none";
+        editingId = null;
+      }, 300);
+    }
+
+    // Auto-conversion logic
+    document.getElementById("exp-jpy").addEventListener("input", (e) => {
+      const jpy = parseFloat(e.target.value);
+      if (!isNaN(jpy)) {
+        document.getElementById("exp-twd").value = Math.round(jpy / EXCHANGE_RATE);
+      }
+    });
+
+    document.getElementById("exp-twd").addEventListener("input", (e) => {
+      const twd = parseFloat(e.target.value);
+      if (!isNaN(twd)) {
+        document.getElementById("exp-jpy").value = Math.round(twd * EXCHANGE_RATE);
+      }
+    });
+
+    document.getElementById("expense-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const submitBtn = e.target.querySelector('button[type="submit"]');
+      const originalBtnHtml = submitBtn.innerHTML;
+      
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> 同步中...';
+
+      const expenseData = {
+        date: document.getElementById("exp-date").value,
+        item: document.getElementById("exp-item").value,
+        jpy: parseFloat(document.getElementById("exp-jpy").value),
+        twd: parseFloat(document.getElementById("exp-twd").value),
+        payer: document.getElementById("exp-payer").value,
+        note: document.getElementById("exp-note").value
+      };
+
+      let success = false;
+      if (editingId) {
+        success = await cloudUpdate("update", { id: editingId, ...expenseData });
+      } else {
+        success = await cloudUpdate("add", { id: Date.now(), ...expenseData });
+      }
+
+      if (success) {
+        closeExpenseModal();
+        e.target.reset();
+        // Optimistic update or refetch
+        fetchExpenses();
+        alert(editingId ? "支出紀錄已更新！" : "支出紀錄已儲存！");
+      }
+      
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalBtnHtml;
+    });
+
+    async function deleteExpense(id) {
+      if (confirm("確定要刪除這筆紀錄嗎？")) {
+        const success = await cloudUpdate("delete", { id });
+        if (success) {
+          fetchExpenses();
+          alert("紀錄已刪除");
+        }
+      }
+    }
+
     // Render Tabs
     const tabContainer = document.getElementById("day-tabs");
     const contentContainer = document.getElementById("itinerary-container");
 
-    itinerary.forEach((day, index) => {
-      const btn = document.createElement("button");
-      btn.className = `day-tab whitespace-nowrap px-4 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-colors duration-200 hover:bg-gray-50 focus:outline-none flex-shrink-0 ${index === 0 ? "active" : ""}`;
-      btn.textContent = day.date;
-      btn.onclick = () => switchTab(index);
-      tabContainer.appendChild(btn);
-    });
+    function initTabs() {
+      tabContainer.innerHTML = "";
+      itinerary.forEach((day, index) => {
+        const btn = document.createElement("button");
+        btn.className = `day-tab whitespace-nowrap px-4 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-colors duration-200 hover:bg-gray-50 focus:outline-none flex-shrink-0 ${index === 0 ? "active" : ""}`;
+        btn.textContent = day.date;
+        btn.onclick = () => switchTab(index);
+        tabContainer.appendChild(btn);
+      });
+
+      // Add Expense Overview Tab
+      const overviewBtn = document.createElement("button");
+      overviewBtn.className = `day-tab whitespace-nowrap px-4 py-2 rounded-full border border-gray-300 bg-white text-gray-600 font-medium transition-colors duration-200 hover:bg-gray-50 focus:outline-none flex-shrink-0`;
+      overviewBtn.textContent = "花費總覽";
+      overviewBtn.onclick = () => renderExpenseOverview();
+      tabContainer.appendChild(overviewBtn);
+    }
+
+    initTabs();
 
     // Function to Switch Tabs and Render Content
     function switchTab(index, isInitialLoad = false) {
@@ -2016,10 +2298,174 @@
       }
     }
 
+    function renderExpenseOverview() {
+      // Update Tab Styles
+      const tabs = document.querySelectorAll(".day-tab");
+      tabs.forEach(t => {
+        if (t.textContent === "花費總覽") {
+          t.classList.add("active");
+        } else {
+          t.classList.remove("active");
+        }
+      });
+
+      const totalJPY = expenses.reduce((sum, exp) => sum + exp.jpy, 0);
+      const totalTWD = expenses.reduce((sum, exp) => sum + exp.twd, 0);
+
+      // Group by payer
+      const payerSummary = {};
+      expenses.forEach(exp => {
+        if (!payerSummary[exp.payer]) payerSummary[exp.payer] = { jpy: 0, twd: 0 };
+        payerSummary[exp.payer].jpy += exp.jpy;
+        payerSummary[exp.payer].twd += exp.twd;
+      });
+
+      // Sort expenses
+      const sortedExpenses = [...expenses].sort((a, b) => {
+        let valA = a[sortConfig.key];
+        let valB = b[sortConfig.key];
+        
+        // Handle numbers
+        if (['jpy', 'twd', 'id'].includes(sortConfig.key)) {
+          valA = parseFloat(valA) || 0;
+          valB = parseFloat(valB) || 0;
+        } else {
+          // Handle strings/dates
+          valA = (valA || "").toString().toLowerCase();
+          valB = (valB || "").toString().toLowerCase();
+        }
+
+        if (valA < valB) return sortConfig.direction === 'asc' ? -1 : 1;
+        if (valA > valB) return sortConfig.direction === 'asc' ? 1 : -1;
+        return 0;
+      });
+
+      let html = `
+        <div class="glass-card rounded-3xl shadow-glass p-6 sm:p-8 animate-fade-in mt-4 relative overflow-hidden">
+          <div class="absolute -right-20 -top-20 w-64 h-64 bg-secondary/5 rounded-full blur-3xl"></div>
+          
+          <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-6 border-b border-gray-100 pb-6 relative z-10">
+            <div>
+              <h2 class="text-3xl font-extrabold text-gray-800 tracking-tight">花費總覽</h2>
+              <p class="text-[13px] font-medium text-slate-500 mt-1 flex items-center gap-1.5"><i class="fa-solid fa-chart-pie text-slate-400"></i>即時統計所有行程支出紀錄</p>
+            </div>
+            <div class="flex items-center gap-4">
+              <div class="text-right">
+                <span class="block text-[10px] font-black text-gray-400 uppercase tracking-widest">總計日幣</span>
+                <span class="text-2xl font-black text-gray-800">¥ ${totalJPY.toLocaleString()}</span>
+              </div>
+              <div class="h-8 w-px bg-gray-200"></div>
+              <div class="text-right">
+                <span class="block text-[10px] font-black text-primary uppercase tracking-widest">總計台幣</span>
+                <span class="text-2xl font-black text-primary">NT$ ${totalTWD.toLocaleString()}</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 relative z-10">
+            ${Object.entries(payerSummary).map(([payer, data]) => `
+              <div class="bg-white/60 backdrop-blur-sm border border-gray-100 p-4 rounded-2xl shadow-soft">
+                <div class="flex items-center gap-3 mb-2">
+                  <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600">
+                    <i class="fa-solid fa-user text-sm"></i>
+                  </div>
+                  <span class="font-bold text-gray-700">${payer}</span>
+                </div>
+                <div class="flex justify-between items-end">
+                  <span class="text-xs text-gray-400 font-medium">支出了</span>
+                  <div class="text-right">
+                    <div class="text-sm font-bold text-gray-800">¥ ${data.jpy.toLocaleString()}</div>
+                    <div class="text-[11px] font-bold text-primary">NT$ ${data.twd.toLocaleString()}</div>
+                  </div>
+                </div>
+              </div>
+            `).join('')}
+            ${Object.keys(payerSummary).length === 0 ? '<div class="col-span-full text-center py-8 text-gray-400 font-medium">尚無分人統計資料</div>' : ''}
+          </div>
+
+          <div class="relative z-10">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 flex items-center gap-2">
+              <i class="fa-solid fa-list-ul text-primary"></i> 詳細消費清單
+            </h3>
+            <div class="overflow-x-auto rounded-2xl border border-gray-100 bg-white/50 shadow-inner">
+              <table class="w-full text-left text-sm border-collapse min-w-[600px]">
+                <thead>
+                  <tr class="bg-gray-50/80 text-gray-500 border-b border-gray-100">
+                    <th onclick="toggleSort('date')" class="px-4 py-3 font-bold text-xs uppercase tracking-wider cursor-pointer hover:bg-gray-100/50 transition-colors group">
+                      日期 ${sortConfig.key === 'date' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '<i class="fa-solid fa-sort ml-1 opacity-20 group-hover:opacity-100"></i>'}
+                    </th>
+                    <th onclick="toggleSort('item')" class="px-4 py-3 font-bold text-xs uppercase tracking-wider cursor-pointer hover:bg-gray-100/50 transition-colors group">
+                      項目 ${sortConfig.key === 'item' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '<i class="fa-solid fa-sort ml-1 opacity-20 group-hover:opacity-100"></i>'}
+                    </th>
+                    <th onclick="toggleSort('jpy')" class="px-4 py-3 font-bold text-xs uppercase tracking-wider text-right cursor-pointer hover:bg-gray-100/50 transition-colors group">
+                      日幣 (¥) ${sortConfig.key === 'jpy' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '<i class="fa-solid fa-sort ml-1 opacity-20 group-hover:opacity-100"></i>'}
+                    </th>
+                    <th onclick="toggleSort('twd')" class="px-4 py-3 font-bold text-xs uppercase tracking-wider text-right cursor-pointer hover:bg-gray-100/50 transition-colors group">
+                      台幣 (NT$) ${sortConfig.key === 'twd' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '<i class="fa-solid fa-sort ml-1 opacity-20 group-hover:opacity-100"></i>'}
+                    </th>
+                    <th onclick="toggleSort('payer')" class="px-4 py-3 font-bold text-xs uppercase tracking-wider cursor-pointer hover:bg-gray-100/50 transition-colors group">
+                      付款人 ${sortConfig.key === 'payer' ? (sortConfig.direction === 'asc' ? '↑' : '↓') : '<i class="fa-solid fa-sort ml-1 opacity-20 group-hover:opacity-100"></i>'}
+                    </th>
+                    <th class="px-4 py-3 font-bold text-xs uppercase tracking-wider">備註</th>
+                    <th class="px-4 py-3 font-bold text-xs uppercase tracking-wider text-center w-16">操作</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-50">
+                  ${sortedExpenses.map(exp => `
+                    <tr class="expense-row transition-colors">
+                      <td class="px-4 py-3 text-gray-500 font-mono text-xs whitespace-nowrap">
+                        ${exp.date ? (exp.date.toString().includes('T') ? exp.date.split('T')[0] : exp.date) : '-'}
+                      </td>
+                      <td class="px-4 py-3 font-bold text-gray-800">${exp.item}</td>
+                      <td class="px-4 py-3 font-black text-gray-700 text-right font-mono">¥${exp.jpy.toLocaleString()}</td>
+                      <td class="px-4 py-3 font-black text-primary text-right font-mono">NT$${exp.twd.toLocaleString()}</td>
+                      <td class="px-4 py-3 text-gray-600 font-medium">${exp.payer}</td>
+                      <td class="px-4 py-3 text-gray-400 text-xs italic">${exp.note || "-"}</td>
+                      <td class="px-4 py-3 text-center">
+                        <div class="flex items-center justify-center gap-2">
+                          <button onclick="openExpenseModal(${exp.id})" class="text-indigo-400 hover:text-indigo-600 p-1 transition-colors">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                          </button>
+                          <button onclick="deleteExpense(${exp.id})" class="text-rose-400 hover:text-rose-600 p-1 transition-colors">
+                            <i class="fa-solid fa-trash-can"></i>
+                          </button>
+                        </div>
+                      </td>
+                    </tr>
+                  `).join('')}
+                  ${expenses.length === 0 ? '<tr><td colspan="7" class="px-4 py-12 text-center text-gray-400 font-medium">尚無任何支出紀錄，點選右上方「+」按鈕開始記錄吧！</td></tr>' : ''}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      `;
+      contentContainer.innerHTML = html;
+
+      // Scroll to top
+      setTimeout(() => {
+        window.scrollTo({
+          top: contentContainer.offsetTop - tabContainer.offsetHeight - 10,
+          behavior: "smooth"
+        });
+      }, 10);
+    }
+
+    function toggleSort(key) {
+      if (sortConfig.key === key) {
+        sortConfig.direction = sortConfig.direction === 'asc' ? 'desc' : 'asc';
+      } else {
+        sortConfig.key = key;
+        sortConfig.direction = 'asc';
+      }
+      renderExpenseOverview();
+    }
+
     // Initialize budget and weather fetching after DOM is fully loaded
     document.addEventListener("DOMContentLoaded", () => {
       fetchWeather();
       renderBudget();
+      fetchExpenses(); // Start cloud sync
     });
 
     // Budget Calculation Logic
