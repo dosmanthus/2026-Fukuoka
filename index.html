@@ -258,10 +258,51 @@
     .expense-row:hover {
       background-color: rgba(79, 70, 229, 0.03);
     }
+    .sync-timer {
+      font-family: 'Inter', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--primary);
+      margin-top: 10px;
+    }
+    #sync-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 9999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      color: white;
+    }
+    #sync-overlay.show {
+      display: flex;
+    }
+    .sync-spinner {
+      width: 50px;
+      height: 50px;
+      border: 4px solid rgba(255, 255, 255, 0.1);
+      border-left-color: #ffffff;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin-bottom: 20px;
+    }
   </style>
 </head>
 
 <body class="pb-10 antialiased selection:bg-indigo-100 selection:text-indigo-900">
+  <!-- Sync Overlay -->
+  <div id="sync-overlay">
+    <div class="sync-spinner"></div>
+    <p class="text-xl font-bold tracking-wider">資料同步中...</p>
+    <p class="text-sm opacity-60 mt-3 font-medium uppercase tracking-widest text-white">請稍候片刻</p>
+  </div>
   <!-- Header -->
   <header class="bg-gradient-to-r from-primary to-secondary text-white p-5 shadow-glass bg-opacity-90">
     <div class="container mx-auto flex justify-between items-center px-2">
@@ -2020,6 +2061,11 @@
       submitBtn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> 儲存中...';
 
       try {
+        // 立即顯示同步遮罩並關閉編輯視窗
+        const overlay = document.getElementById('sync-overlay');
+        overlay.classList.add('show');
+        closeExpenseModal();
+
         let success = false;
         if (editingId) {
           success = await cloudUpdate("update", { id: editingId.toString(), ...expenseData });
@@ -2027,16 +2073,11 @@
           success = await cloudUpdate("add", { id: Date.now().toString(), ...expenseData });
         }
 
-        // 只要雲端有回應，立刻關閉視窗並重置
-        closeExpenseModal();
+        // 重置表單
         e.target.reset();
 
-        // 然後在背景刷新資料
-        await fetchExpenses();
-        
-        if (success) {
-          alert(editingId ? "支出紀錄已更新！" : "支出紀錄已儲存！");
-        }
+        // 進入同步倒數與讀取流程
+        await startSyncBlock(true);
       } catch (err) {
         console.error(err);
       } finally {
@@ -2045,21 +2086,51 @@
       }
     });
 
+    async function startSyncBlock(alreadyShown = false) {
+      const overlay = document.getElementById('sync-overlay');
+      let count = 5;
+      
+      if (!alreadyShown) {
+        overlay.classList.add('show');
+      }
+      
+      const interval = setInterval(() => {
+        count--;
+      }, 1000);
+      
+      try {
+        // 同時執行 fetchExpenses
+        await fetchExpenses();
+        
+        // 確保至少等待 5 秒 (給予 GAS 緩衝時間)
+        if (count > 0) {
+          await new Promise(r => setTimeout(r, count * 1000));
+        }
+      } catch (err) {
+        console.error("Sync block error:", err);
+      } finally {
+        clearInterval(interval);
+        overlay.classList.remove('show');
+      }
+    }
+
     async function deleteExpense(id) {
       if (!checkAuth()) return;
       if (!confirm("確定要刪除這筆紀錄嗎？")) return;
       
+      // 立即顯示遮罩防止操作延遲
+      const overlay = document.getElementById('sync-overlay');
+      overlay.classList.add('show');
+      
       try {
-        const success = await cloudUpdate("delete", { id });
-        // 不論 success 是 true 還是 false，都執行重新讀取
-        await fetchExpenses();
-        if (success) {
-          alert("紀錄已刪除");
-        }
+        // 在遮罩保護下執行刪除
+        await cloudUpdate("delete", { id });
+        // 進入同步倒數與讀取流程
+        await startSyncBlock(true); // true 表示遮罩已經在顯示中
       } catch (err) {
         console.error(err);
-        // 如果發生嚴重錯誤才重新讀取一次確保狀態
         await fetchExpenses();
+        overlay.classList.remove('show');
       }
     }
 
